@@ -11,6 +11,11 @@ CSS
 2. Header interrupt the pages (Doesnt display correctly).
 
 How to Set up all these files on your computer???
+
+Requirement:
+1.XAMPP Software
+
+Steps:
 1. Download all these provided files.
 2. Make a folder "Voting System".
 3. Paste all of these files in this new created Folder.
