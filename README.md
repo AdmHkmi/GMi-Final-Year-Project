@@ -13,7 +13,7 @@ CSS
 How to Set up all these files on your computer???
 
 Requirement:
-1.XAMPP Software
+1. XAMPP Software
 
 Steps:
 1. Download all these provided files.
