@@ -12,7 +12,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Background Image */
 .background-image {
     background-image: url('../../../Images/BackgroundImage2.0.png');
     background-size: cover;
@@ -26,23 +25,23 @@ body {
     opacity: 0.8;
 }
 
-/* Header Styles */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     box-sizing: border-box;
     z-index: 1000;
-    background-color: white;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,9 +53,6 @@ header {
 }
 
 .top-right-buttons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     display: flex;
     align-items: center;
 }
@@ -81,20 +77,29 @@ header {
 }
 
 main {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #24287E;
+    margin-bottom: 10px; /* Add a bit of margin between the header and container */
 }
 
 .Profile-Container {
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 36px; /* Reduced padding to make it 10% smaller */
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); /* Slightly reduced box shadow */
+    padding: 36px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
-    max-width: 375px; /* Reduced max-width to make it 10% smaller */
+    max-width: 375px;
     width: 100%;
-    margin-top: 18px; /* Reduced margin to maintain spacing */
+    margin-top: 0; /* No margin needed */
 }
 
 .Profile-Container table {
@@ -102,29 +107,29 @@ main {
 }
 
 .Profile-Container table td {
-    padding: 12px; /* Reduced padding for td elements */
+    padding: 12px;
 }
 
 .Profile-Container input[type="text"],
 .Profile-Container input[type="password"] {
     background-color: rgba(169, 169, 204, 0.87);    
-    width: calc(100% - 16px); /* Reduced width to adjust for padding */
-    padding: 8px; /* Reduced padding for inputs */
-    margin: 8px 0; /* Reduced margin */
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin: 8px 0;
     border: 1px solid #ccc;
-    border-radius: 4px; /* Slightly reduced border radius */
-    font-size: 16px; /* Slightly reduced font size */
+    border-radius: 4px;
+    font-size: 16px;
     color: #333;
 }
 
 .Profile-Container button {
     background-color: rgb(36, 40, 104);
-    width: calc(100% - 16px); /* Reduced width to adjust for padding */
-    padding: 8px; /* Reduced padding for button */
-    margin: 8px 0; /* Reduced margin */
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin: 8px 0;
     border: 1px solid #ccc;
-    border-radius: 4px; /* Slightly reduced border radius */
-    font-size: 16px; /* Slightly reduced font size */
+    border-radius: 4px;
+    font-size: 16px;
     color: white;
     cursor: pointer;
 }
