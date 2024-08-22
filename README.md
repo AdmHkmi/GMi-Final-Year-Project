@@ -16,10 +16,11 @@ FYP TASK TO DO:
 - Funtionalities
 1. Set up the session more properly and correctly.
 2. Student Login Process
+3. Put comment on all code files.
 
 
 - CSS
-1. Set up the others POV (Phone, Table, Desktop).
+1. Set up others POV (Phone, Table, Desktop).
 2. Header interrupt the overall display (Affect all pages).
 3. Put "-" on the event that had no StartDate and EndDate (Manage Events Page, GMi Updates Page)
 4. Content appear outside the container (Manage Participants Page)
