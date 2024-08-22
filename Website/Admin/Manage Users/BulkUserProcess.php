@@ -32,14 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_users']) && i
                     echo "Error deleting from VSSRCVote: " . $conn->error;
                 }
 
-                $sql = "DELETE FROM VSApprovedCandidates WHERE StudentID = '$userID'";
+                $sql = "DELETE FROM VSCurrentCandidate WHERE StudentID = '$userID'";
                 if (!$conn->query($sql)) {
-                    echo "Error deleting from VSApprovedCandidates: " . $conn->error;
+                    echo "Error deleting from VSCurrentCandidate: " . $conn->error;
                 }
 
-                $sql = "DELETE FROM VSApprovedSRC WHERE StudentID = '$userID'";
+                $sql = "DELETE FROM VSCurrentSRC WHERE StudentID = '$userID'";
                 if (!$conn->query($sql)) {
-                    echo "Error deleting from VSApprovedSRC: " . $conn->error;
+                    echo "Error deleting from VSCurrentSRC: " . $conn->error;
                 }
 
                 // Then delete the user
