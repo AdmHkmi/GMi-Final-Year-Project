@@ -13,18 +13,16 @@ Steps:
 
 FYP TASK TO DO:
 
-Funtionalities
+- Funtionalities
+1. Set up the session more properly and correctly.
+2. Student Login Process
 
-Set up the session more properly and correctly.
-Student Login Process
 
-
-CSS
-
-Set up the others POV (Phone, Table, Desktop).
-Header interrupt the overall display (Affect all pages).
-Put "-" on the event that had no StartDate and EndDate
-Content appear outside the container (ManageParticipants.php)
-Content appear very bad, dont like the horizontal scroll (ManageNews.php, GMiUpdatesPage.php)
+- CSS
+1. Set up the others POV (Phone, Table, Desktop).
+2. Header interrupt the overall display (Affect all pages).
+3. Put "-" on the event that had no StartDate and EndDate
+4. Content appear outside the container (ManageParticipants.php)
+5. Content appear very bad, dont like the horizontal scroll (ManageNews.php, GMiUpdatesPage.php)
 
    
