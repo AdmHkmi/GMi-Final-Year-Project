@@ -11,6 +11,14 @@ Steps:
 5. Open internet browser.
 6. Search for "localhost/Voting System".
 
+How to set up database
+1. Open XAMPP Control Panel
+2. Tap Start on MySQL
+3. Tap Admin on Admin
+4. Tap SQL tab
+5. Insert CreateDatabase.sql code
+
+
 FYP TASK TO DO:
 
 - Funtionalities
