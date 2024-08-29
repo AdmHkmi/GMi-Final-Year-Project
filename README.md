@@ -19,7 +19,7 @@ Steps:
 3. Tap Admin on MySQL
 4. Tap SQL tab
 5. Insert CreateDatabase.sql code
-
+6. Click Go button
 
 FYP TASK TO DO:
 
