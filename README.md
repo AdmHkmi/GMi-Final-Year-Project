@@ -25,6 +25,3 @@ FYP TASK TO DO:
 3. Put "-" on the event that had no StartDate and EndDate (Manage Events Page, GMi Updates Page)
 4. Content appear outside the container (Manage Participants Page)
 5. Content appear very bad, dont like the horizontal scroll (Manage News Page, GMi Updates Page)
-
-   
-test
