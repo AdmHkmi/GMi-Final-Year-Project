@@ -16,7 +16,7 @@ How to set up database
 Steps:
 1. Open XAMPP Control Panel
 2. Tap Start on MySQL
-3. Tap Admin on Admin
+3. Tap Admin on MySQL
 4. Tap SQL tab
 5. Insert CreateDatabase.sql code
 
