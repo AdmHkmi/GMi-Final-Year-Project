@@ -27,7 +27,7 @@ FYP TASK TO DO:
 1. Set up the session more properly and correctly.
 2. Student Login Process
 3. Put comment on all code files.
-
+4. Modify register process.
 
 - CSS
 1. Set up others POV (Phone, Table, Desktop).
