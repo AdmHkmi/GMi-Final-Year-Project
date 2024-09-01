@@ -25,8 +25,7 @@ FYP TASK TO DO:
 
 - Funtionalities
 1. Set up the session more properly and correctly.
-2. Student Login Process
-3. Put comment on all code files.
+2. Put comment on all code files.
 
 - CSS
 1. Manage CSS (Phone, Tablet, Desktop).
@@ -36,4 +35,4 @@ FYP TASK TO DO:
 1.3 "ManageParticipants.css --> Phone, Tablet, Desktop"
 1.3.1 Content appear outside the container
 2. Put "-" on the event that have no StartDate and EndDate (Manage Events Page)
-3. Content appear very bad, the horizontal scroll appear when the text is kinda short (Manage News Page, GMi Updates Page)
+3. Content visualize very bad, the horizontal scroll appear when the text is kinda short (Manage News Page, GMi Updates Page)
