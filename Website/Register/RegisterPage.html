@@ -1,0 +1,34 @@
+<html>
+    <title>Register Page</title>
+    <link rel="stylesheet" href="RegisterPage.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="../../index.html"><img src="../../Images/GMiLogo.png" class="GMiLogo"></a>
+        </div>
+    </header>
+    <div class="background-image"></div>
+    <main class="main">
+        <div class="welcome-message"><h2>WELCOME NEW MEMBERS!</h2></div>
+        <div class="Signup-container">
+            <form action="../Register/SignUpProcess.php" method="post">
+                <table>
+                    <tr><td><b>Full Name</b></td></tr>
+                    <tr><td><input type="text" id="StudentName" name="StudentName" placeholder="Jamalludin Bin Hasan"></td></tr>
+                    <tr><td><b>Student ID</b></td></tr>
+                    <tr><td><input type="text" id="StudentID" name="StudentID" placeholder="ABC12345678"></td></tr>
+                    <tr><td><b>Student Email (@student.gmi.edu.my)</b></td></tr>
+                    <tr><td><input type="email" id="StudentEmail" name="StudentEmail" placeholder="Jamal@student.gmi.edu.my"></td></tr>
+                    <tr><td><b>Password</b></td></tr>
+                    <tr><td><input type="password" id="StudentPassword" name="StudentPassword" placeholder="JamalSukaKFC"></td></tr>
+                    <tr><td><input type="checkbox" id="TandC" name="TandC" value="Agree"><label for="TandC"><font color="#000AFF">I agree to the Terms of Service</font></label></td></tr>
+                    <tr><td><button type="submit">Sign Up</button></td></tr>
+                    <tr><td>Have an account? <a href="../../index.html"><b>Sign In</b></a></td></tr>
+                </table>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
