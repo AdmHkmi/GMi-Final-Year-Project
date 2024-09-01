@@ -25,6 +25,7 @@ CREATE TABLE VSStudents (
     SRCVoteStatus INT DEFAULT 0,
     UserApproval BOOLEAN NOT NULL DEFAULT FALSE,
     NominationApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    VerificationToken VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (StudentID, StudentEmail)
 );
 
