@@ -18,7 +18,7 @@ Steps:
 2. Tap Start on MySQL
 3. Tap Admin on MySQL
 4. Tap SQL tab
-5. Insert CreateDatabase.sql code
+5. Insert CreateDatabase.sql file code
 6. Click Go button
 
 FYP TASK TO DO:
@@ -27,11 +27,13 @@ FYP TASK TO DO:
 1. Set up the session more properly and correctly.
 2. Student Login Process
 3. Put comment on all code files.
-4. Modify register process.
 
 - CSS
-1. Set up others POV (Phone, Table, Desktop).
-2. Header interrupt the overall display (Affect all pages).
-3. Put "-" on the event that had no StartDate and EndDate (Manage Events Page, GMi Updates Page)
-4. Content appear outside the container (Manage Participants Page)
-5. Content appear very bad, dont like the horizontal scroll (Manage News Page, GMi Updates Page)
+1. Manage CSS (Phone, Tablet, Desktop).
+1.1 "EditSRCDetailsPage.css --> Mobile"
+1.2 "ManageUsers.css --> Phone, Tablet, Desktop"
+1.2.1 Content appear outside the container
+1.3 "ManageParticipants.css --> Phone, Tablet, Desktop"
+1.3.1 Content appear outside the container
+2. Put "-" on the event that have no StartDate and EndDate (Manage Events Page)
+3. Content appear very bad, the horizontal scroll appear when the text is kinda short (Manage News Page, GMi Updates Page)
