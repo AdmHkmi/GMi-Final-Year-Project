@@ -1,12 +1,3 @@
-<?php
-session_start(); // Start the session to access session variables
-
-// Check if UserLoggedIn session variable is not set
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
-    header("Location: ../../../index.html"); // Redirect to login page
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
