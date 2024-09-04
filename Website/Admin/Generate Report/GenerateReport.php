@@ -15,7 +15,7 @@
             <!-- Back button -->
             <a href="../Home Page/AdminHomepage.php">
                 <button class="back-button">
-                    <i class='fas fa-arrow-left'></i> Back
+                    <i class='fas fa-arrow-left'></i> 
                 </button>
             </a>
         </div>
