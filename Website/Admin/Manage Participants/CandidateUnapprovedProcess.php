@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->commit();
 
         // Redirect back to ManageCandidates.php
-        echo "<script>window.location.href = 'ManageParticipants.php';</script>";
+        echo "<script>alert('Candidate unapproved successfully!');window.location.href = 'ManageParticipants.php';</script>";
     } catch (Exception $e) {
         // Rollback transaction in case of error
         $conn->rollback();
