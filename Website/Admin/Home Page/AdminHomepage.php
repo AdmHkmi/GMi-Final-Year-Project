@@ -57,6 +57,13 @@ if (!isset($_SESSION['AdminLoggedIn'])) {
                     MANAGE NEWS
                 </button>
             </a>
+            <!-- New Generate Report button -->
+            <a href="../Generate Report/GenerateReport.php">
+                <button class="option-button-item Generate-Report-Button">
+                    <img src="../../../Images/Generate Report Icon.png" width="45" height="45">
+                    GENERATE REPORT
+                </button>
+            </a>
         </div>
     </main>
     <footer>
