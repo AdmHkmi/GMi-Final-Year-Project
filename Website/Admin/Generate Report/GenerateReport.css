@@ -57,24 +57,23 @@ header {
     align-items: center;
 }
 
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .top-right-buttons .back-button {
     background-color: #24287E;
     color: #D9D9D9;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
 }
 
 .top-right-buttons .back-button i {
-    margin-right: 5px;
-}
-
-.top-right-buttons .back-button:hover {
-    background-color: #1E1F6E;
+    color: #D9D9D9;
 }
 
 .report-container {
