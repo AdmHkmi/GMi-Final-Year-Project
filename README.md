@@ -29,10 +29,17 @@ FYP TASK TO DO:
 
 - CSS
 1. Manage CSS (Phone, Tablet, Desktop).
+
 1.1 "EditSRCDetailsPage.css --> Mobile"
+
 1.2 "ManageUsers.css --> Phone, Tablet, Desktop"
+
 1.2.1 Content appear outside the container
+
 1.3 "ManageParticipants.css --> Phone, Tablet, Desktop"
+
 1.3.1 Content appear outside the container
+
 2. Put "-" on the event that have no StartDate and EndDate (Manage Events Page)
+
 3. Content visualize very bad, the horizontal scroll appear when the text is kinda short (Manage News Page, GMi Updates Page)
