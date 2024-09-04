@@ -98,6 +98,7 @@ body {
 .option-button {
     margin-top: 20px;
     display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
     justify-content: center;
     gap: 35px; /* Add gap between buttons */
 }
