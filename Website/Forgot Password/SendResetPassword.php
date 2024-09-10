@@ -41,7 +41,7 @@ if ($conn->affected_rows) {  // Changed $mysqli to $conn
         $mail->Port       = 587;                                    // TCP port to connect to
 
         // Recipients
-        $mail->setFrom("noreply@example.com", "Your Website");
+        $mail->setFrom("noreply@example.com", "GMi Voting System");
         $mail->addAddress($email);                                  // Add a recipient
 
         // Content
