@@ -32,13 +32,9 @@ FYP TASK TO DO:
 
 1.1 "EditSRCDetailsPage.css --> Mobile"
 
-1.2 "ManageUsers.css --> Phone, Tablet, Desktop"
+1.2 "ManageParticipants.css --> Phone, Tablet, Desktop"
 
 1.2.1 Content appear outside the container
-
-1.3 "ManageParticipants.css --> Phone, Tablet, Desktop"
-
-1.3.1 Content appear outside the container
 
 2. Put "-" on the event that have no StartDate and EndDate (Manage Events Page)
 
