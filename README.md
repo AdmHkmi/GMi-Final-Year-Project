@@ -30,7 +30,7 @@ FYP TASK TO DO:
 - CSS
 1. Manage CSS (Phone, Tablet, Desktop).
 
-1.1 "Edit SRC Details Page --> Mobile"
+1.1 "Edit SRC Details Page --> Phone"
 
 1.2 "Manage Participants Page --> Phone, Tablet, Desktop"
 
