@@ -34,8 +34,6 @@ FYP TASK TO DO:
 
 1.2 "Manage Participants Page --> Phone, Tablet, Desktop"
 
-1.2.1 Content appear outside the container
-
 1.3 "GMi Updates Page --> Phone"
 
 2. Put "-" on the event that have no StartDate and EndDate (Manage Events Page)
