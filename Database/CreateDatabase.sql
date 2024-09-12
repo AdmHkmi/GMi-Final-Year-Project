@@ -26,7 +26,10 @@ CREATE TABLE VSStudents (
     UserApproval BOOLEAN NOT NULL DEFAULT FALSE,
     NominationApproval BOOLEAN NOT NULL DEFAULT FALSE,
     VerificationToken VARCHAR(255) DEFAULT NULL,
-    PRIMARY KEY (StudentID, StudentEmail)
+    reset_token_hash VARCHAR(64) NULL DEFAULT NULL,
+    reset_token_expires_at DATETIME NULL DEFAULT NULL,
+    PRIMARY KEY (StudentID, StudentEmail),
+    UNIQUE (reset_token_hash)
 );
 
 -- Create the VSEvents table
