@@ -39,8 +39,11 @@ if ($events_result->num_rows > 0) {
             echo "<td>-</td>";
             echo "<td>" . ($event["IsActive"] ? "Shared" : "Not Shared") . "</td>";
         } else {
-            echo "<td>" . $event["StartDate"] . "</td>";
-            echo "<td>" . $event["EndDate"] . "</td>";
+            // Check for missing dates
+            $start_date_display = ($event["StartDate"] && $event["EndDate"]) ? $event["StartDate"] : "Not Announced Yet";
+            $end_date_display = ($event["StartDate"] && $event["EndDate"]) ? $event["EndDate"] : "Not Announced Yet";
+            echo "<td>" . $start_date_display . "</td>";
+            echo "<td>" . $end_date_display . "</td>";
             echo "<td>" . ($event["IsActive"] ? "Active" : "Inactive") . "</td>";
         }
         
