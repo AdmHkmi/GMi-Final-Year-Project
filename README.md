@@ -26,8 +26,3 @@ FYP TASK TO DO:
 - Funtionalities
 1. Set up the session more properly and correctly.
 2. Put comment on all code files.
-
-- CSS
-1. Manage CSS (Phone, Tablet, Desktop).
-
-1.1 "GMi Updates Page --> Phone"
