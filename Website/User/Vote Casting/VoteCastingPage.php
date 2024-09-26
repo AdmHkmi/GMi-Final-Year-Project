@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['CandidateID']) && $eve
                     while ($row = $result->fetch_assoc()) {
                         echo "<div class='candidate-card'>";
                         echo "<img src='../../../ProfilePicture/". htmlspecialchars($row["StudentProfilePicture"])."' alt='Profile Picture'>";
-                        echo "<h3>".htmlspecialchars($row["StudentName"])."</h3>";
+                        echo "<h3 style='text-transform: uppercase;'>".htmlspecialchars($row["StudentName"])."</h3>";
                         echo "<p>Student ID: ".htmlspecialchars($row["StudentID"])."</p>";
                         echo '<form id="form_'.$row["StudentID"].'" method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
                         echo '<input type="hidden" name="CandidateID" value="'.$row["StudentID"].'">';
