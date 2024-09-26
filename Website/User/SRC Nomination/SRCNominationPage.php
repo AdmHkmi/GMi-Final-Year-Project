@@ -80,10 +80,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['StudentID']) && $event
             $conn->begin_transaction();
 
             try {
-                // Proceed with the vote update
-                $insert_vote_sql = "INSERT INTO VSCandidateVote (StudentID, CandidateID) VALUES (?, ?)";
+                // Retrieve the candidate's name from VSStudents
+                $stmt_get_candidate_name = $conn->prepare("SELECT StudentName FROM VSStudents WHERE StudentID = ?");
+                $stmt_get_candidate_name->bind_param("s", $CandidateID);
+                $stmt_get_candidate_name->execute();
+                $stmt_get_candidate_name->bind_result($CandidateName);
+                $stmt_get_candidate_name->fetch();
+                $stmt_get_candidate_name->close();
+
+                // Proceed with the vote update, including the CandidateName
+                $insert_vote_sql = "INSERT INTO VSCandidateVote (StudentID, CandidateID, CandidateName) VALUES (?, ?, ?)";
                 $stmt_insert_vote = $conn->prepare($insert_vote_sql);
-                $stmt_insert_vote->bind_param("ss", $loggedInUser, $CandidateID);
+                $stmt_insert_vote->bind_param("sss", $loggedInUser, $CandidateID, $CandidateName);
                 $stmt_insert_vote->execute();
                 $stmt_insert_vote->close();
 
