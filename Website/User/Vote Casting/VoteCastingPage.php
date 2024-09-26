@@ -70,6 +70,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['CandidateID']) && $eve
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Retrieve the CandidateName from the VSStudents table
+    $stmt_get_name = $conn->prepare("SELECT StudentName FROM VSStudents WHERE StudentID = ?");
+    $stmt_get_name->bind_param("s", $CandidateID);
+    $stmt_get_name->execute();
+    $stmt_get_name->bind_result($CandidateName);
+    $stmt_get_name->fetch();
+    $stmt_get_name->close();
+
     // Check if the signed-in user has already voted for this candidate
     if ($loggedInUser) {
         $check_vote_sql = "SELECT COUNT(*) AS count FROM VSSRCVote WHERE StudentID = ? AND CandidateID = ?";
@@ -86,10 +94,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['CandidateID']) && $eve
             $conn->begin_transaction();
 
             try {
-                // Proceed with the vote update
-                $insert_vote_sql = "INSERT INTO VSSRCVote (StudentID, CandidateID) VALUES (?, ?)";
+                // Insert the vote with CandidateName
+                $insert_vote_sql = "INSERT INTO VSSRCVote (StudentID, CandidateID, CandidateName) VALUES (?, ?, ?)";
                 $stmt_insert_vote = $conn->prepare($insert_vote_sql);
-                $stmt_insert_vote->bind_param("ss", $loggedInUser, $CandidateID);
+                $stmt_insert_vote->bind_param("sss", $loggedInUser, $CandidateID, $CandidateName);
                 $stmt_insert_vote->execute();
                 $stmt_insert_vote->close();
 
@@ -139,6 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['CandidateID']) && $eve
     // Close connection
     $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
