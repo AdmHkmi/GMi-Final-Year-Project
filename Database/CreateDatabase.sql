@@ -10,21 +10,37 @@ CREATE TABLE VSAdmin (
     PRIMARY KEY (AdminUsername)
 );
 
--- Create the VSStudents table
+-- Create the VSStudents table first
 CREATE TABLE VSStudents (
     StudentID VARCHAR(255) NOT NULL,
-    -- Removed AUTO_INCREMENT from VoteID
-    VoteID INT,
     StudentEmail VARCHAR(255) NOT NULL,
     StudentPassword VARCHAR(255) NOT NULL,
     StudentName VARCHAR(255) NOT NULL,
     StudentProfilePicture VARCHAR(255),
     UserApproval BOOLEAN NOT NULL DEFAULT FALSE,
     VerificationToken VARCHAR(255) DEFAULT NULL,
-    reset_token_hash VARCHAR(64) NULL DEFAULT NULL,
-    reset_token_expires_at DATETIME NULL DEFAULT NULL,
+    ResetPasswordToken VARCHAR(64) NULL DEFAULT NULL,
+    ResetPasswordTokenExpired DATETIME NULL DEFAULT NULL,
     PRIMARY KEY (StudentID, StudentEmail),
-    UNIQUE (reset_token_hash)
+    UNIQUE (ResetPasswordToken)
+);
+
+-- Create the VSVote table after VSStudents
+CREATE TABLE VSVote (
+    StudentID VARCHAR(255) NOT NULL,
+    StudentEmail VARCHAR(255) NOT NULL,
+    StudentName VARCHAR(255) NOT NULL,
+    StudentProfilePicture VARCHAR(255),
+    Manifesto LONGTEXT,
+    TotalCandidateVote INT DEFAULT 0,
+    TotalSRCVote INT DEFAULT 0,
+    NominationVoteStatus INT DEFAULT 0,
+    SRCVoteStatus INT DEFAULT 0,
+    NominationApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    CandidateApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    SRCApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
 -- Create the VSEvents table
@@ -43,24 +59,6 @@ CREATE TABLE VSNews (
     NewsContent LONGTEXT NOT NULL,
     NewsImage VARCHAR(255),
     IsActive BOOLEAN DEFAULT FALSE
-);
-
--- Create the VSVote table 
-CREATE TABLE VSVote (
-    VoteID INT AUTO_INCREMENT PRIMARY KEY,
-    StudentID VARCHAR(255) NOT NULL,
-    StudentEmail VARCHAR(255) NOT NULL,
-    StudentName VARCHAR(255) NOT NULL,
-    StudentProfilePicture VARCHAR(255),
-    Manifesto LONGTEXT,
-    CandidateType ENUM('Candidate', 'SRC') NOT NULL,
-    TotalCandidateVote INT DEFAULT 0,
-    TotalSRCVote INT DEFAULT 0,
-    NominationVoteStatus INT DEFAULT 0,
-    SRCVoteStatus INT DEFAULT 0,
-    NominationApproval BOOLEAN NOT NULL DEFAULT FALSE,
-    VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
 -- Create the VSVoteHistory table 
