@@ -1,3 +1,4 @@
+-- Create the VotingSystem database
 CREATE DATABASE VotingSystem;
 
 -- Switch to the VotingSystem database
@@ -10,7 +11,7 @@ CREATE TABLE VSAdmin (
     PRIMARY KEY (AdminUsername)
 );
 
--- Create the VSStudents table first
+-- Create the VSStudents table
 CREATE TABLE VSStudents (
     StudentID VARCHAR(255) NOT NULL,
     StudentEmail VARCHAR(255) NOT NULL,
@@ -25,7 +26,7 @@ CREATE TABLE VSStudents (
     UNIQUE (ResetPasswordToken)
 );
 
--- Create the VSVote table after VSStudents
+-- Create the VSVote table
 CREATE TABLE VSVote (
     VoteID INT NOT NULL AUTO_INCREMENT, 
     StudentID VARCHAR(255) NOT NULL,
@@ -62,21 +63,21 @@ CREATE TABLE VSNews (
     IsActive BOOLEAN DEFAULT FALSE
 );
 
--- Create the VSVoteHistory table 
+-- Create the VSVoteHistory table with the new StudentID column
 CREATE TABLE VSVoteHistory (
     VoteHistoryID INT AUTO_INCREMENT PRIMARY KEY,
-    VoterID VARCHAR(255) NOT NULL,
+    StudentID VARCHAR(255) NOT NULL, -- Updated column name
     VoterName VARCHAR(255) NOT NULL,
     CandidateID VARCHAR(255) NOT NULL,
     CandidateName VARCHAR(255) NOT NULL,
-    VoteType VARCHAR(10) NOT NULL;
+    VoteType VARCHAR(10) NOT NULL,
     VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (VoterID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
+    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
--- Trigger to update StudentID, StudentEmail, StudentName, and StudentProfilePicture in VSVote
+-- Trigger to update StudentID, StudentEmail, StudentName, and StudentProfilePicture in VSVote and VSVoteHistory
 DELIMITER //
-CREATE TRIGGER update_related_studentinfo_in_vsvote
+CREATE TRIGGER trigger1
 AFTER UPDATE ON VSStudents
 FOR EACH ROW
 BEGIN
@@ -88,9 +89,9 @@ BEGIN
     WHERE StudentID = OLD.StudentID;
 
     UPDATE VSVoteHistory
-    SET StudentID = NEW.StudentID,
-        StudentName = NEW.StudentName
-    WHERE StudentID = OLD.StudentID;
+    SET StudentID = NEW.StudentID,  -- Update StudentID instead of VoterID
+        VoterName = NEW.StudentName
+    WHERE StudentID = OLD.StudentID; -- Reference the correct column
 END;
 //
 DELIMITER ;
