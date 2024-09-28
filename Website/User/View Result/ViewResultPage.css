@@ -1,0 +1,193 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.top-right-buttons .back-button {
+    background-color: #24287E;
+    color: #D9D9D9;
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9;
+}
+
+h2 {
+    color: #24287E;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 1200px; /* Adjust max-width based on your design */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Message-Container {
+    margin: 20px 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px; /* Adjust max-width as per your design */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+}
+
+.Candidate-Card {
+    width: 100%;
+    max-width: 600px; /* Adjust max-width based on your design */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.Candidate-Card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.Candidate-Card .candidate-info {
+    flex: 1;
+}
+
+.Candidate-Card .candidate-info h3 {
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.Candidate-Card .candidate-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .Candidate-Card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .Candidate-Card img {
+        margin: 0 auto 10px;
+    }
+
+    .Candidate-Card .candidate-info {
+        margin-left: 0;
+    }
+    
+    .main-content {
+        padding: 10px;
+    }
+
+    .Message-Container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Candidate-Card {
+        padding: 10px;
+    }
+
+    .Candidate-Card img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .Candidate-Card .candidate-info h3 {
+        font-size: 16px;
+    }
+
+    .Candidate-Card .candidate-info p {
+        font-size: 12px;
+    }
+
+    header {
+        padding: 10px 15px;
+    }
+
+    .top-right-buttons button {
+        font-size: 16px;
+    }
+}
