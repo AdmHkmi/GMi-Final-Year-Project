@@ -64,13 +64,13 @@ CREATE TABLE VSNews (
 -- Create the VSVoteHistory table 
 CREATE TABLE VSVoteHistory (
     VoteHistoryID INT AUTO_INCREMENT PRIMARY KEY,
-    StudentID VARCHAR(255) NOT NULL,
-    StudentName VARCHAR(255) NOT NULL,
+    VoterID VARCHAR(255) NOT NULL,
+    VoterName VARCHAR(255) NOT NULL,
     CandidateID VARCHAR(255) NOT NULL,
     CandidateName VARCHAR(255) NOT NULL,
     VoteType ENUM('Candidate', 'SRC') NOT NULL,
     VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
+    FOREIGN KEY (VoterID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
 -- Trigger to update StudentID, StudentEmail, StudentName, and StudentProfilePicture in VSVote
