@@ -27,6 +27,7 @@ CREATE TABLE VSStudents (
 
 -- Create the VSVote table after VSStudents
 CREATE TABLE VSVote (
+    VoteID INT NOT NULL AUTO_INCREMENT, 
     StudentID VARCHAR(255) NOT NULL,
     StudentEmail VARCHAR(255) NOT NULL,
     StudentName VARCHAR(255) NOT NULL,
@@ -40,6 +41,7 @@ CREATE TABLE VSVote (
     CandidateApproval BOOLEAN NOT NULL DEFAULT FALSE,
     SRCApproval BOOLEAN NOT NULL DEFAULT FALSE,
     VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`VoteID`),
     FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
