@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['StudentID'] = $userRow['StudentID'];
             $_SESSION['StudentEmail'] = $userRow['StudentEmail'];
             $_SESSION['role'] = 'user';
-            $_SESSION['SRCVoteStatus'] = $userRow['SRCVoteStatus']; // Store SRCVoteStatus in session
-            $_SESSION['NominationVoteStatus'] = $userRow['NominationVoteStatus']; // Store NominationVoteStatus in session
+            $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteStatus in session
+            $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteStatus in session
 
             // Set cookies for user login
             setcookie('StudentID', $userRow['StudentID'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
