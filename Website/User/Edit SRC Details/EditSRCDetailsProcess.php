@@ -74,12 +74,18 @@ if (isset($_SESSION['StudentID'])) {
             }
         }
 
-        // Prepare and execute SQL update statement for VSStudents table
-        $sql = "UPDATE VSVote SET StudentName=?, StudentProfilePicture=?, Manifesto=? WHERE StudentID=?";
+        // Prepare and execute SQL update statement for VSVote table (for Manifesto and profile picture)
+        $sql = "UPDATE VSVote SET StudentProfilePicture=?, Manifesto=? WHERE StudentID=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $StudentName, $uploadFile, $Manifesto, $loggedInUser);
+        $stmt->bind_param("sss", $uploadFile, $Manifesto, $loggedInUser);
 
         if ($stmt->execute()) {
+            // Prepare and execute SQL update statement for VSStudents table (for StudentName)
+            $sql2 = "UPDATE VSStudents SET StudentName=? WHERE StudentID=?";
+            $stmt2 = $conn->prepare($sql2);
+            $stmt2->bind_param("ss", $StudentName, $loggedInUser);
+            $stmt2->execute();
+            
             echo '<script>alert("Successfully updated."); window.location.href = "EditSRCDetailsPage.php";</script>';
             exit; // Exit after successful update
         } else {
@@ -87,12 +93,17 @@ if (isset($_SESSION['StudentID'])) {
         }
     }
 
-    // SQL query to fetch the details of the logged-in user from VSStudents table
-    $sql = "SELECT StudentProfilePicture, StudentID, StudentName, Manifesto FROM VSVote WHERE StudentID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $loggedInUser);
-    $stmt->execute();
-    $result = $stmt->get_result();
+// SQL query to fetch the details of the logged-in user from VSStudents table for StudentName and profile picture
+// and from VSVote table for Manifesto
+$sql = "SELECT S.StudentProfilePicture, S.StudentID, S.StudentName, V.Manifesto 
+        FROM VSVote V 
+        JOIN VSStudents S ON V.StudentID = S.StudentID 
+        WHERE V.StudentID = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $loggedInUser);
+$stmt->execute();
+$result = $stmt->get_result();
+
 
     // Check if there are results and display them
     if ($result->num_rows > 0) {
