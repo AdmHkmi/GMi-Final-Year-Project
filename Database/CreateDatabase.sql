@@ -89,12 +89,13 @@ BEGIN
     WHERE StudentID = OLD.StudentID;
 
     UPDATE VSVoteHistory
-    SET StudentID = NEW.StudentID,  -- Update StudentID instead of VoterID
+    SET VoterID = NEW.StudentID,  -- Update the correct column VoterID in VSVoteHistory
         VoterName = NEW.StudentName
-    WHERE StudentID = OLD.StudentID; -- Reference the correct column
+    WHERE VoterID = OLD.StudentID;
 END;
 //
 DELIMITER ;
+
 
 -- Insert data into the VSAdmin table
 INSERT INTO VSAdmin (AdminUsername, AdminPassword)
