@@ -26,5 +26,3 @@ FYP TASK TO DO:
 - Funtionalities
 1. Set up the session more properly and correctly.
 2. Put comment on all code files.
-3. Login
-4. Admin
