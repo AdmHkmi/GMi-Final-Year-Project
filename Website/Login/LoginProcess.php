@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare SQL statement to retrieve admin from the database with case-sensitive password check
     $sqlAdmin = "SELECT * FROM VSAdmin WHERE AdminUsername = ? AND BINARY AdminPassword = ?";
+
     $stmtAdmin = $conn->prepare($sqlAdmin);
     $stmtAdmin->bind_param("ss", $UsernameOrEmail, $password);
     $stmtAdmin->execute();
@@ -35,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare SQL statement to retrieve user from the database with case-sensitive password check
     $sqlUser = "SELECT * FROM VSStudents WHERE (StudentID = ? OR StudentEmail = ?) AND BINARY StudentPassword = ?";
+
     $stmtUser = $conn->prepare($sqlUser);
     $stmtUser->bind_param("sss", $UsernameOrEmail, $UsernameOrEmail, $password);
     $stmtUser->execute();
@@ -50,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = 'user';
             $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteStatus in session
             $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteStatus in session
+
 
             // Set cookies for user login
             setcookie('StudentID', $userRow['StudentID'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
