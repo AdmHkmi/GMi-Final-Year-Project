@@ -200,3 +200,84 @@ header {
     color: #24287E;
 }
 
+.VoteHistory {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    text-align: center;
+    color: #333;
+}
+
+.VoteHistory h2 {
+    margin-bottom: 15px;
+    color: #24287E;
+    font-size: 24px;
+}
+
+.VoteHistory table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.VoteHistory th,
+.VoteHistory td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.VoteHistory th {
+    background-color: #f2f2f2;
+    color: #24287E;
+}
+
+.VoteHistory tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.VoteHistory tr:hover {
+    background-color: #e2e2e2;
+}
+.VoteHistory p {
+    font-size: 18px; /* Adjust the font size as needed */
+    color: #24287E; /* Match the theme color */
+    margin-bottom: 15px; /* Add some space below the message */
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+@media (max-width: 768px) {
+    .VoteHistory {
+        padding: 15px;
+    }
+
+    .VoteHistory h2 {
+        font-size: 20px;
+    }
+
+    .VoteHistory table {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .VoteHistory {
+        padding: 10px;
+    }
+
+    .VoteHistory h2 {
+        font-size: 18px;
+    }
+
+    .VoteHistory table {
+        font-size: 12px;
+    }
+}

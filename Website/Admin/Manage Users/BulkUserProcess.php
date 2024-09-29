@@ -21,28 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_users']) && i
                 $sql = "UPDATE VSStudents SET UserApproval = 0 WHERE StudentID = '$userID'";
                 break;
             case 'Delete Selected':
-                // First delete from related tables
-                $sql = "DELETE FROM VSCandidateVote WHERE StudentID = '$userID'";
+                $sql = "DELETE FROM VSVote WHERE StudentID = '$userID'";
                 if (!$conn->query($sql)) {
-                    echo "Error deleting from VSCandidateVote: " . $conn->error;
+                    echo "Error deleting from VSVote: " . $conn->error;
                 }
 
-                $sql = "DELETE FROM VSSRCVote WHERE StudentID = '$userID'";
-                if (!$conn->query($sql)) {
-                    echo "Error deleting from VSSRCVote: " . $conn->error;
-                }
-
-                $sql = "DELETE FROM VSCurrentCandidate WHERE StudentID = '$userID'";
-                if (!$conn->query($sql)) {
-                    echo "Error deleting from VSCurrentCandidate: " . $conn->error;
-                }
-
-                $sql = "DELETE FROM VSCurrentSRC WHERE StudentID = '$userID'";
+                $sql = "DELETE FROM VSVoteHistory WHERE VoterID = '$userID'";
                 if (!$conn->query($sql)) {
                     echo "Error deleting from VSCurrentSRC: " . $conn->error;
                 }
 
-                // Then delete the user
                 $sql = "DELETE FROM VSStudents WHERE StudentID = '$userID'";
                 if (!$conn->query($sql)) {
                     echo "Error deleting from VSStudents: " . $conn->error;

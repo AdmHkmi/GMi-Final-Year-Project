@@ -28,21 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ResetEvent'])) {
         }
         
         // Reset VoteCount for all approved candidates
-        $reset_vote_count_sql = "UPDATE VSStudents SET TotalSRCVote = 0";
+        $reset_vote_count_sql = "UPDATE VSVote SET TotalSRCVote = 0, SRCVoteLimit = 0";
         if ($conn->query($reset_vote_count_sql) === TRUE) {
-            // Reset SRCVoteStatus for all users
-            $reset_src_vote_status_sql = "UPDATE VSStudents SET SRCVoteStatus = 0";
-            if ($conn->query($reset_src_vote_status_sql) === TRUE) {
-                // Delete records from SRCVote table
-                $delete_src_vote_sql = "DELETE FROM VSSRCVote";
-                if ($conn->query($delete_src_vote_sql) === TRUE) {
-                    echo '<script>alert("Event reset successfully."); window.location.href = "ManageEvents.php";</script>';
-                    exit; // Exit after successful update and deletion
-                } else {
-                    echo "Failed to delete SRC votes: " . $conn->error;
-                }
+            // Delete records from SRCVote table
+            $delete_src_vote_sql = "DELETE FROM VSVoteHistory WHERE VoteType='SRC'";
+            if ($conn->query($delete_src_vote_sql) === TRUE) {
+                echo '<script>alert("Event reset successfully."); window.location.href = "ManageEvents.php";</script>';
+                exit; // Exit after successful update and deletion
             } else {
-                echo "Failed to reset SRC vote status: " . $conn->error;
+                echo "Failed to delete SRC votes: " . $conn->error;
             }
         } else {
             echo "Failed to reset vote counts: " . $conn->error;

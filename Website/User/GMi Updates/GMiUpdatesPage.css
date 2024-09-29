@@ -134,7 +134,7 @@ header {
 
 .News-Container .news-item {
     display: flex;
-    width: 500px;
+    width: 1000px;
     height: 350px;
     flex-direction: column;
     align-items: center; /* Center items horizontally */

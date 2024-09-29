@@ -15,8 +15,8 @@ $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 include '../../Database/DatabaseConnection.php';
 
 $sql = "UPDATE VSStudents
-        SET reset_token_hash = ?,
-            reset_token_expires_at = ?
+        SET ResetPasswordToken = ?,
+            ResetPasswordTokenExpired = ?
         WHERE StudentEmail = ?";
 
 $stmt = $conn->prepare($sql); // Changed $mysqli to $conn

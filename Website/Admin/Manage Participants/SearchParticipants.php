@@ -5,19 +5,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $searchTerm = htmlspecialchars($_POST["search"]);
 
     // Prepare the SQL query to search by StudentName or StudentID
-    $sql = "SELECT StudentProfilePicture, StudentName, StudentEmail, StudentID, 
-                    TotalCandidateVote, 
-                    (SELECT COUNT(*) FROM VSCurrentCandidate WHERE StudentID = VSStudents.StudentID) AS CandidateStatus,
-                    TotalSRCVote,
-                    (SELECT COUNT(*) FROM VSCurrentSRC WHERE StudentID = VSStudents.StudentID) AS SRCStatus
-            FROM VSStudents 
-            WHERE UserApproval = 1 AND (StudentName LIKE ? OR StudentID LIKE ?)
-            ORDER BY TotalCandidateVote DESC, TotalSRCVote DESC";
+    $sql = "SELECT VSStudents.StudentProfilePicture, 
+                   VSStudents.StudentName, 
+                   VSStudents.StudentEmail, 
+                   VSStudents.StudentID, 
+                   VSVote.TotalCandidateVote, 
+                   VSVote.TotalSRCVote, 
+                   VSVote.CandidateApproval AS CandidateStatus, 
+                   VSVote.SRCApproval AS SRCStatus
+            FROM VSStudents
+            JOIN VSVote ON VSStudents.StudentID = VSVote.StudentID
+            WHERE (VSStudents.StudentName LIKE ? OR VSStudents.StudentID LIKE ?)
+            AND VSStudents.UserApproval = 1
+            ORDER BY VSVote.TotalCandidateVote DESC, VSVote.TotalSRCVote DESC";
 
+    // Prepare the statement
     $stmt = $conn->prepare($sql);
-    $searchTermLike = "%$searchTerm%";
+
+    // Prepare the search term for the LIKE operator
+    $searchTermLike = "%" . $searchTerm . "%";
+
+    // Bind the parameters to the SQL query
     $stmt->bind_param("ss", $searchTermLike, $searchTermLike);
+
+    // Execute the statement
     $stmt->execute();
+
+    // Get the result
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
@@ -57,12 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Action buttons
             echo "<div class='action-buttons'>";
             echo "<form action='CandidateApprovedProcess.php' method='post'>";
-            echo "<input type='hidden' name='candidate_name' value='" . htmlspecialchars($row["StudentID"]) . "'>";
+            echo "<input type='hidden' name='StudentID' value='" . htmlspecialchars($row["StudentID"]) . "'>";
             echo "<button type='submit' class='Approve-Button'>Approve Candidate</button>";
             echo "</form>";
 
             echo "<form action='CandidateUnapprovedProcess.php' method='post'>";
-            echo "<input type='hidden' name='candidate_name' value='" . htmlspecialchars($row["StudentID"]) . "'>";
+            echo "<input type='hidden' name='StudentID' value='" . htmlspecialchars($row["StudentID"]) . "'>";
             echo "<button type='submit' class='Unapprove-Button'>Unapprove Candidate</button>";
             echo "</form>";
 
@@ -84,6 +98,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "<p>No results found for \"$searchTerm\".</p>";
     }
+
+    // Close the statement
+    $stmt->close();
 }
+
+// Close the database connection
 $conn->close();
 ?>

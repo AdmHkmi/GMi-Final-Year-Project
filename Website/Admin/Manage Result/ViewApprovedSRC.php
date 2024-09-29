@@ -1,7 +1,7 @@
 <?php
 include '../../../Database/DatabaseConnection.php';
 
-$sql = "SELECT StudentProfilePicture, StudentName, StudentEmail, StudentID FROM VSCurrentSRC";
+$sql = "SELECT StudentProfilePicture, StudentName, StudentEmail, StudentID FROM VSVote WHERE SRCApproval = 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

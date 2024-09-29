@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ResetEvent'])) {
         }
         
         // Reset VoteCount and NominationVoteStatus for all users in svuser table
-        $reset_users_sql = "UPDATE VSStudents SET TotalCandidateVote = 0, NominationVoteStatus = 0 , NominationApproval = 0";
+        $reset_users_sql = "UPDATE VSVote SET TotalCandidateVote = 0, NominationVoteLimit = 0";
         if ($conn->query($reset_users_sql) === TRUE) {
             // Delete records from CandidateVote table
-            $delete_candidate_vote_sql = "DELETE FROM VSCandidateVote";
+            $delete_candidate_vote_sql = "DELETE FROM VSVoteHistory WHERE VoteType = 'Candidate'";
             if ($conn->query($delete_candidate_vote_sql) === TRUE) {
                 echo '<script>alert("Event reset successfully."); window.location.href = "ManageEvents.php";</script>';
                 exit; // Exit after successful update and deletion

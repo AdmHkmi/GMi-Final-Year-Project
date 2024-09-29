@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $StudentID = $_POST['StudentID'];
     $StudentEmail = $_POST['StudentEmail'];
     $StudentPassword = $_POST['StudentPassword'];
-    $TandC = isset($_POST['TandC']) ? 1 : 0;
 
     // Check if any required fields are empty
     if (empty($StudentName) || empty($StudentID) || empty($StudentEmail) || empty($StudentPassword)) {
@@ -42,35 +41,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert the user into the database with UserApproval set to false
-    $sql = "INSERT INTO VSStudents (StudentName, StudentID, StudentEmail, StudentPassword, TandC, StudentProfilePicture, UserApproval) 
-            VALUES (?, ?, ?, ?, ?, 'Default.jpg', false)";
+    $sql = "INSERT INTO VSStudents (StudentName, StudentID, StudentEmail, StudentPassword, StudentProfilePicture, UserApproval) 
+            VALUES (?, ?, ?, ?, 'Default.jpg', false)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword, $TandC);
+    $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword);  // Bind four parameters
 
     if ($stmt->execute()) {
         // Generate a unique token for verification
         $token = bin2hex(random_bytes(16));
 
         // Store the token in the database
-        $sqlToken = "UPDATE VSStudents SET verificationToken = ? WHERE StudentEmail = ?";
+        $sqlToken = "UPDATE VSStudents SET VerificationToken = ? WHERE StudentEmail = ?";
         $stmtToken = $conn->prepare($sqlToken);
         $stmtToken->bind_param("ss", $token, $StudentEmail);
         $stmtToken->execute();
+
+        // Insert related data into VSVote
+        $profilePicture = 'Default.jpg'; // Define as a variable
+        $sqlVote = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture) 
+                    VALUES (?, ?, ?, ?)"; 
+        $stmtVote = $conn->prepare($sqlVote);
+        $stmtVote->bind_param("ssss", $StudentID, $StudentEmail, $StudentName, $profilePicture); // Use the variable here
+
+        if (!$stmtVote->execute()) {
+            echo "Error inserting into VSVote: " . $conn->error;
+        }
 
         // Send verification email
         $mail = new PHPMailer(true);
 
         try {
-            //Server settings
+            // Server settings
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                     // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
             $mail->Username   = 'adamhakimi6670i@gmail.com';               // SMTP username
             $mail->Password   = 'iwtuokefcymlmjzz';                  // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
             $mail->Port       = 587;                                    // TCP port to connect to
 
-            //Recipients
+            // Recipients
             $mail->setFrom('adamhakimi6670i@gmail.com', 'GMi Voting System');
             $mail->addAddress($StudentEmail, $StudentName);             // Add a recipient
 
@@ -87,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $stmtToken->close();
+        $stmtVote->close(); // Close the vote statement
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

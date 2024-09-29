@@ -1,62 +1,37 @@
 <?php
 include '../../../Database/DatabaseConnection.php';
 
-// Get the StudentID from POST request
-$studentID = $_POST['StudentID'];
+// Check if the form is submitted and if the candidate's StudentID is provided
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['StudentID'])) {
+    $studentID = $_POST['StudentID']; // Retrieve the StudentID from the form
 
-// Check if the student already exists in VSCurrentSRC
-$checkSql = "SELECT COUNT(*) FROM VSCurrentSRC WHERE StudentID = ?";
-$checkStmt = $conn->prepare($checkSql);
-$checkStmt->bind_param("s", $studentID);
-$checkStmt->execute();
-$checkStmt->bind_result($count);
-$checkStmt->fetch();
-$checkStmt->close();
+    // Prepare the SQL query to update SRCApproval to TRUE
+    $sql = "UPDATE VSVote SET SRCApproval = TRUE WHERE StudentID = ?";
 
-if ($count > 0) {
-    // Student already exists in VSCurrentSRC
-    echo "<script>alert('The desired user already approved'); window.location.href = 'ManageParticipants.php';</script>";
-    $conn->close();
-    exit();
-}
+    // Prepare and bind the statement
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("s", $studentID); // "s" indicates the parameter is a string
 
-// Prepare the SQL statement to fetch student data from VSStudents
-$sql = "SELECT StudentID, StudentEmail, StudentName, StudentProfilePicture, Manifesto 
-        FROM VSStudents 
-        WHERE StudentID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $studentID);
-$stmt->execute();
-$result = $stmt->get_result();
+        // Execute the statement
+        if ($stmt->execute()) {
+            // If the update is successful, redirect back to the candidate list or a success page
+            echo '<script>alert("SRC approved successfully!"); window.location.href = "ManageParticipants.php";</script>';
+        } else {
+            // If the update fails, display an error
+            echo '<script>alert("Error approving candidate: ' . $conn->error . '"); window.location.href = "ManageParticipants.php";</script>';
+        }
 
-if ($result->num_rows > 0) {
-    // Fetch the data
-    $row = $result->fetch_assoc();
-    
-    // Prepare the SQL statement to insert data into VSCurrentSRC
-    $insertSql = "INSERT INTO VSCurrentSRC (StudentID, StudentEmail, StudentName, StudentProfilePicture, Manifesto)
-                  VALUES (?, ?, ?, ?, ?)";
-    $insertStmt = $conn->prepare($insertSql);
-    $insertStmt->bind_param("sssss", 
-        $row['StudentID'], 
-        $row['StudentEmail'], 
-        $row['StudentName'], 
-        $row['StudentProfilePicture'], 
-        $row['Manifesto']
-    );
-
-    if ($insertStmt->execute()) {
-        // Redirect to ManageParticipants.php on success
-        echo "<script>alert('SRC approved successfully!'); window.location.href = 'ManageParticipants.php';</script>";
+        // Close the statement
+        $stmt->close();
     } else {
-        echo "Error: " . $insertStmt->error;
+        // If the statement preparation fails, display an error
+        echo '<script>alert("Error preparing query: ' . $conn->error . '"); window.location.href = "ManageParticipants.php";</script>';
     }
-
-    $insertStmt->close();
 } else {
-    echo "Student not found.";
+    // If the form is not submitted correctly, redirect to the candidate list
+    echo '<script>alert("Invalid request!"); window.location.href = "ManageParticipants.php";</script>';
 }
 
-$stmt->close();
+// Close the database connection
 $conn->close();
 ?>

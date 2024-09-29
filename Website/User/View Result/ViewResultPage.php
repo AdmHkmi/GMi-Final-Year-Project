@@ -96,7 +96,7 @@ $show_default_message = !$nomination_isActive && !$src_isActive;
                     die("Connection failed: " . $conn_nomination_display->connect_error);
                 }
                 
-                $sql_nomination = "SELECT StudentProfilePicture, StudentName, StudentID FROM VSCurrentCandidate";
+                $sql_nomination = "SELECT StudentProfilePicture, StudentName, StudentID FROM VSVote WHERE CandidateApproval = 1";
                 $result_nomination = $conn_nomination_display->query($sql_nomination);
                 if ($result_nomination->num_rows > 0) {
                     while ($row = $result_nomination->fetch_assoc()) {
@@ -135,7 +135,7 @@ $show_default_message = !$nomination_isActive && !$src_isActive;
                     die("Connection failed: " . $conn_src_display->connect_error);
                 }
                 
-                $sql_src = "SELECT StudentProfilePicture, StudentName, StudentID FROM VSCurrentSRC";
+                $sql_src = "SELECT StudentProfilePicture, StudentName, StudentID FROM VSVote WHERE SRCApproval = 1";
                 $result_src = $conn_src_display->query($sql_src);
                 if ($result_src->num_rows > 0) {
                     while ($row = $result_src->fetch_assoc()) {

@@ -3,7 +3,7 @@ include '../../../Database/DatabaseConnection.php';
 
 
 // Fetch approved SRC candidates
-$sql = "SELECT StudentProfilePicture, StudentEmail, StudentID, StudentName FROM VSCurrentCandidate";
+$sql = "SELECT StudentProfilePicture, StudentEmail, StudentID, StudentName FROM VSVote WHERE CandidateApproval = 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

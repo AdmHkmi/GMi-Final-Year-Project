@@ -7,8 +7,8 @@ $search = isset($_POST['search']) ? $conn->real_escape_string($_POST['search']) 
 
 // Prepare SQL query to search candidates
 $sql = "SELECT StudentProfilePicture, StudentEmail, StudentID, StudentName
-        FROM VSCurrentCandidate
-        WHERE StudentName LIKE ? OR StudentID LIKE ?";
+        FROM VSVote
+        WHERE StudentName LIKE ? OR StudentID LIKE ? AND CandidateApproval = 1";
 $stmt = $conn->prepare($sql);
 
 // Bind parameters

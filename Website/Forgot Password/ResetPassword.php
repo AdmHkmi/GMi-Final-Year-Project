@@ -7,7 +7,7 @@ $token_hash = hash("sha256", $token);
 include '../../Database/DatabaseConnection.php';
 
 $sql = "SELECT * FROM VSStudents
-        WHERE reset_token_hash = ?";
+        WHERE ResetPasswordToken = ?";
 
 $stmt = $conn->prepare($sql);
 
@@ -23,7 +23,7 @@ if ($user === null) {
     die("token not found");
 }
 
-if (strtotime($user["reset_token_expires_at"]) <= time()) {
+if (strtotime($user["ResetPasswordTokenExpired"]) <= time()) {
     die("token has expired");
 }
 

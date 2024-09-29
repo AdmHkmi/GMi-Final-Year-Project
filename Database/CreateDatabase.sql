@@ -1,3 +1,4 @@
+-- Create the VotingSystem database
 CREATE DATABASE VotingSystem;
 
 -- Switch to the VotingSystem database
@@ -17,19 +18,31 @@ CREATE TABLE VSStudents (
     StudentPassword VARCHAR(255) NOT NULL,
     StudentName VARCHAR(255) NOT NULL,
     StudentProfilePicture VARCHAR(255),
+    UserApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    VerificationToken VARCHAR(255) DEFAULT NULL,
+    ResetPasswordToken VARCHAR(64) NULL DEFAULT NULL,
+    ResetPasswordTokenExpired DATETIME NULL DEFAULT NULL,
+    PRIMARY KEY (StudentID, StudentEmail),
+    UNIQUE (ResetPasswordToken)
+);
+
+-- Create the VSVote table
+CREATE TABLE VSVote (
+    VoteID INT NOT NULL AUTO_INCREMENT, 
+    StudentID VARCHAR(255) NOT NULL,
+    StudentEmail VARCHAR(255) NOT NULL,
+    StudentName VARCHAR(255) NOT NULL,
+    StudentProfilePicture VARCHAR(255),
     Manifesto LONGTEXT,
     TotalCandidateVote INT DEFAULT 0,
     TotalSRCVote INT DEFAULT 0,
-    TandC BOOLEAN NOT NULL DEFAULT FALSE,
-    NominationVoteStatus INT DEFAULT 0,
-    SRCVoteStatus INT DEFAULT 0,
-    UserApproval BOOLEAN NOT NULL DEFAULT FALSE,
-    NominationApproval BOOLEAN NOT NULL DEFAULT FALSE,
-    VerificationToken VARCHAR(255) DEFAULT NULL,
-    reset_token_hash VARCHAR(64) NULL DEFAULT NULL,
-    reset_token_expires_at DATETIME NULL DEFAULT NULL,
-    PRIMARY KEY (StudentID, StudentEmail),
-    UNIQUE (reset_token_hash)
+    NominationVoteLimit INT DEFAULT 0,
+    SRCVoteLimit INT DEFAULT 0,
+    CandidateApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    SRCApproval BOOLEAN NOT NULL DEFAULT FALSE,
+    VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`VoteID`),
+    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
 -- Create the VSEvents table
@@ -41,29 +54,6 @@ CREATE TABLE VSEvents (
     EndDate DATETIME
 );
 
--- Create the VSApprovedCandidates table
-CREATE TABLE VSCurrentCandidate (
-    CandidateID INT NOT NULL AUTO_INCREMENT,
-    StudentID VARCHAR(255) NOT NULL,
-    StudentEmail VARCHAR(255) NOT NULL,
-    StudentName VARCHAR(255) NOT NULL,
-    StudentProfilePicture VARCHAR(255),
-    PRIMARY KEY (CandidateID),
-    FOREIGN KEY (StudentID, StudentEmail) REFERENCES VSStudents(StudentID, StudentEmail) ON UPDATE CASCADE
-);
-
--- Create the VSApprovedSRC table
-CREATE TABLE VSCurrentSRC (
-    SRCID INT NOT NULL AUTO_INCREMENT,
-    StudentID VARCHAR(255) NOT NULL,
-    StudentEmail VARCHAR(255) NOT NULL,
-    StudentName VARCHAR(255) NOT NULL,
-    StudentProfilePicture VARCHAR(255),
-    Manifesto LONGTEXT,
-    PRIMARY KEY (SRCID),
-    FOREIGN KEY (StudentID, StudentEmail) REFERENCES VSStudents(StudentID, StudentEmail) ON UPDATE CASCADE
-);
-
 -- Create the VSNews table
 CREATE TABLE VSNews (
     NewsID INT AUTO_INCREMENT PRIMARY KEY,
@@ -73,86 +63,44 @@ CREATE TABLE VSNews (
     IsActive BOOLEAN DEFAULT FALSE
 );
 
--- Create the VSCandidateVote table
-CREATE TABLE VSCandidateVote (
-    VoteID INT AUTO_INCREMENT PRIMARY KEY,
-    StudentID VARCHAR(255) NOT NULL,
-    StudentName VARCHAR(255) NOT NULL,
+-- Create the VSVoteHistory table with the new StudentID column
+CREATE TABLE VSVoteHistory (
+    VoteHistoryID INT AUTO_INCREMENT PRIMARY KEY,
+    VoterID VARCHAR(255) NOT NULL, -- Updated column name
+    VoterName VARCHAR(255) NOT NULL,
     CandidateID VARCHAR(255) NOT NULL,
     CandidateName VARCHAR(255) NOT NULL,
+    VoteType VARCHAR(10) NOT NULL,
     VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
+    FOREIGN KEY (VoterID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
 );
 
--- Create the VSSRCVote table
-CREATE TABLE VSSRCVote (
-    VoteID INT AUTO_INCREMENT PRIMARY KEY,
-    StudentID VARCHAR(255) NOT NULL,
-    StudentName VARCHAR(255) NOT NULL,
-    CandidateID VARCHAR(255) NOT NULL,
-    CandidateName VARCHAR(255) NOT NULL,
-    VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (StudentID) REFERENCES VSStudents(StudentID) ON UPDATE CASCADE
-);
-
--- Trigger to update StudentID in related tables
+-- Trigger to update StudentID, StudentEmail, StudentName, and StudentProfilePicture in VSVote and VSVoteHistory
 DELIMITER //
-CREATE TRIGGER update_related_studentid
+CREATE TRIGGER trigger1
 AFTER UPDATE ON VSStudents
 FOR EACH ROW
 BEGIN
-    UPDATE VSCurrentCandidate SET StudentID = NEW.StudentID WHERE StudentEmail = NEW.StudentEmail;
-    UPDATE VSCurrentSRC SET StudentID = NEW.StudentID WHERE StudentEmail = NEW.StudentEmail;
-    UPDATE VSCandidateVote SET StudentID = NEW.StudentID WHERE StudentID = OLD.StudentID;
-    UPDATE VSSRCVote SET StudentID = NEW.StudentID WHERE StudentID = OLD.StudentID;
+    UPDATE VSVote
+    SET StudentID = NEW.StudentID,
+        StudentEmail = NEW.StudentEmail,
+        StudentName = NEW.StudentName,
+        StudentProfilePicture = NEW.StudentProfilePicture
+    WHERE StudentID = OLD.StudentID;
+
+    UPDATE VSVoteHistory
+    SET VoterID = NEW.StudentID,  -- Update the correct column VoterID in VSVoteHistory
+        VoterName = NEW.StudentName
+    WHERE VoterID = OLD.StudentID;
 END;
 //
-
--- Trigger to update StudentEmail in related tables
-CREATE TRIGGER update_related_studentemail
-AFTER UPDATE ON VSStudents
-FOR EACH ROW
-BEGIN
-    UPDATE VSCurrentCandidate SET StudentEmail = NEW.StudentEmail WHERE StudentID = NEW.StudentID;
-    UPDATE VSCurrentSRC SET StudentEmail = NEW.StudentEmail WHERE StudentID = NEW.StudentID;
-END;
-//
-
--- Trigger to update StudentName in related tables
-CREATE TRIGGER update_related_studentname
-AFTER UPDATE ON VSStudents
-FOR EACH ROW
-BEGIN
-    UPDATE VSCurrentCandidate SET StudentName = NEW.StudentName WHERE StudentID = NEW.StudentID;
-    UPDATE VSCurrentSRC SET StudentName = NEW.StudentName WHERE StudentID = NEW.StudentID;
-    UPDATE VSCandidateVote SET StudentName = NEW.StudentName WHERE StudentID = NEW.StudentID;
-    UPDATE VSSRCVote SET StudentName = NEW.StudentName WHERE StudentID = NEW.StudentID;
-END;
-//
-
--- Trigger to update StudentProfilePicture in related tables
-CREATE TRIGGER update_related_studentprofilepicture
-AFTER UPDATE ON VSStudents
-FOR EACH ROW
-BEGIN
-    UPDATE VSCurrentCandidate SET StudentProfilePicture = NEW.StudentProfilePicture WHERE StudentID = NEW.StudentID;
-    UPDATE VSCurrentSRC SET StudentProfilePicture = NEW.StudentProfilePicture WHERE StudentID = NEW.StudentID;
-END;
-//
-
--- Trigger to update StudentProfilePicture in related tables
-CREATE TRIGGER update_related_manifesto
-AFTER UPDATE ON VSStudents
-FOR EACH ROW
-BEGIN
-    UPDATE VSCurrentSRC SET Manifesto = NEW.Manifesto WHERE StudentID = NEW.StudentID;
-END;
-//
-
 DELIMITER ;
 
+
+-- Insert data into the VSAdmin table
 INSERT INTO VSAdmin (AdminUsername, AdminPassword)
 VALUES ('GMiAdmin1991', 'SmartVotingGMi1991');
 
+-- Insert data into the VSEvents table
 INSERT INTO VSEvents (EventName)
 VALUES ('Nomination Vote'), ('SRC Vote'), ('Nomination Result'), ('SRC Result');

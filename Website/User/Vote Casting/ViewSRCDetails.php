@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Kuala_Lumpur'); // Adjust as per your timezone
 $StudentID = $_GET['StudentID'];
 
 
-$sql = "SELECT StudentID, StudentProfilePicture, StudentName, Manifesto FROM VSStudents WHERE StudentID = ?";
+$sql = "SELECT StudentID, StudentProfilePicture, StudentName, Manifesto FROM VSVote WHERE StudentID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $StudentID);
 $stmt->execute();

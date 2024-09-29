@@ -2,14 +2,18 @@
 include '../../../Database/DatabaseConnection.php';
 
 // Query to get all candidates and SRC data
-$sql = "SELECT StudentProfilePicture, StudentName, StudentEmail, StudentID, 
-                TotalCandidateVote, 
-                (SELECT COUNT(*) FROM VSCurrentCandidate WHERE StudentID = VSStudents.StudentID) AS CandidateStatus,
-                TotalSRCVote,
-                (SELECT COUNT(*) FROM VSCurrentSRC WHERE StudentID = VSStudents.StudentID) AS SRCStatus
-        FROM VSStudents 
-        WHERE UserApproval = 1
-        ORDER BY TotalCandidateVote DESC, TotalSRCVote DESC";
+$sql = "SELECT VSStudents.StudentProfilePicture, 
+               VSStudents.StudentName, 
+               VSStudents.StudentEmail, 
+               VSStudents.StudentID, 
+               VSVote.TotalCandidateVote, 
+               VSVote.TotalSRCVote, 
+               VSVote.CandidateApproval AS CandidateStatus, 
+               VSVote.SRCApproval AS SRCStatus
+        FROM VSStudents
+        JOIN VSVote ON VSStudents.StudentID = VSVote.StudentID
+        WHERE VSStudents.UserApproval = 1
+        ORDER BY VSVote.TotalCandidateVote DESC, VSVote.TotalSRCVote DESC";
 
 $result = $conn->query($sql);
 
@@ -19,7 +23,7 @@ if ($result->num_rows > 0) {
         echo "<div class='participant-card'>"; // Start participant card
 
         // Display profile picture
-        echo "<img src='../../../ProfilePicture/" . $row["StudentProfilePicture"] . "' alt='Profile Picture' class='profile-picture'>";
+        echo "<img src='../../../ProfilePicture/" . htmlspecialchars($row["StudentProfilePicture"]) . "' alt='Profile Picture' class='profile-picture'>";
 
         // Display name and other details
         echo "<div class='participant-info'>";
@@ -31,7 +35,7 @@ if ($result->num_rows > 0) {
 
         // Candidate Status
         echo "<p>Candidate Status: ";
-        if ($row["CandidateStatus"] > 0) {
+        if ($row["CandidateStatus"] == 1) {
             echo "<span class='active'>Candidate Active</span>";
         } else {
             echo "<span class='inactive'>Candidate Inactive</span>";
@@ -40,7 +44,7 @@ if ($result->num_rows > 0) {
 
         // SRC Status
         echo "<p>SRC Status: ";
-        if ($row["SRCStatus"] > 0) {
+        if ($row["SRCStatus"] == 1) {
             echo "<span class='active'>SRC Active</span>";
         } else {
             echo "<span class='inactive'>SRC Inactive</span>";
@@ -49,25 +53,31 @@ if ($result->num_rows > 0) {
 
         // Action buttons
         echo "<div class='action-buttons'>";
+        
+        // Approve Candidate button
         echo "<form action='CandidateApprovedProcess.php' method='post'>";
-        echo "<input type='hidden' name='candidate_name' value='" . htmlspecialchars($row["StudentID"]) . "'>";
+        echo "<input type='hidden' name='StudentID' value='" . htmlspecialchars($row["StudentID"]) . "'>";
         echo "<button type='submit' class='Approve-Button'>Approve Candidate</button>";
         echo "</form>";
 
+        // Unapprove Candidate button
         echo "<form action='CandidateUnapprovedProcess.php' method='post'>";
-        echo "<input type='hidden' name='candidate_name' value='" . htmlspecialchars($row["StudentID"]) . "'>";
+        echo "<input type='hidden' name='StudentID' value='" . htmlspecialchars($row["StudentID"]) . "'>";
         echo "<button type='submit' class='Unapprove-Button'>Unapprove Candidate</button>";
         echo "</form>";
 
+        // Approve SRC button
         echo "<form action='SRCApprovedProcess.php' method='post'>";
         echo "<input type='hidden' name='StudentID' value='" . htmlspecialchars($row["StudentID"]) . "'>";
         echo "<button type='submit' class='Approve-Button'>Approve SRC</button>";
         echo "</form>";
 
+        // Unapprove SRC button
         echo "<form action='SRCUnapprovedProcess.php' method='post'>";
         echo "<input type='hidden' name='StudentID' value='" . htmlspecialchars($row["StudentID"]) . "'>";
         echo "<button type='submit' class='Unapprove-Button'>Unapprove SRC</button>";
         echo "</form>";
+
         echo "</div>"; // Close action buttons
 
         echo "</div>"; // Close participant info

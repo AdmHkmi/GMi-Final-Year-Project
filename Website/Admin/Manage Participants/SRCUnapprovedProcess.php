@@ -1,21 +1,37 @@
 <?php
 include '../../../Database/DatabaseConnection.php';
 
-// Get the StudentID from POST request
-$studentID = $_POST['StudentID'];
+// Check if the form is submitted and if the candidate's StudentID is provided
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['StudentID'])) {
+    $studentID = $_POST['StudentID']; // Retrieve the StudentID from the form
 
-// Prepare the SQL statement to delete data from VSCurrentSRC
-$sql = "DELETE FROM VSCurrentSRC WHERE StudentID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $studentID);
+    // Prepare the SQL query to update SRCApproval to FALSE
+    $sql = "UPDATE VSVote SET SRCApproval = FALSE WHERE StudentID = ?";
 
-if ($stmt->execute()) {
-    // Redirect to ManageParticipants.php on success
-    echo "<script>alert('SRC unapproved successfully!'); window.location.href = 'ManageParticipants.php';</script>";
+    // Prepare and bind the statement
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("s", $studentID); // "s" indicates the parameter is a string
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // If the update is successful, redirect back to the candidate list or a success page
+            echo '<script>alert("Candidate unapproved successfully!"); window.location.href = "ManageParticipants.php";</script>';
+        } else {
+            // If the update fails, display an error
+            echo '<script>alert("Error unapproving candidate: ' . $conn->error . '"); window.location.href = "ManageParticipants.php";</script>';
+        }
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        // If the statement preparation fails, display an error
+        echo '<script>alert("Error preparing query: ' . $conn->error . '"); window.location.href = "ManageParticipants.php";</script>';
+    }
 } else {
-    echo "Error: " . $stmt->error;
+    // If the form is not submitted correctly, redirect to the candidate list
+    echo '<script>alert("Invalid request!"); window.location.href = "ManageParticipants.php";</script>';
 }
 
-$stmt->close();
+// Close the database connection
 $conn->close();
 ?>

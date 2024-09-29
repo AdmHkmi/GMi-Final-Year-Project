@@ -2,10 +2,10 @@
 // Database connection details
 include '../../../Database/DatabaseConnection.php';
 
-// SQL to delete all entries from VSApprovedSRC table
-$sql_delete_src = "DELETE FROM VSCurrentSRC";
+// SQL to update SRCApproval to 0 for all candidates in the VSVote table
+$sql_reset_src_approval = "UPDATE VSVote SET SRCApproval = 0";
 
-if ($conn->query($sql_delete_src) === TRUE) {
+if ($conn->query($sql_reset_src_approval) === TRUE) {
     echo '<script>alert("All approved SRC entries have been deleted."); window.location.href = "ManageResult.php";</script>';
 } else {
     echo "Error deleting from VSApprovedSRC: " . $conn->error;

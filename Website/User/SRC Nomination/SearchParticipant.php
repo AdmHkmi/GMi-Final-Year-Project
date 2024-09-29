@@ -1,8 +1,10 @@
 <?php
 include '../../../Database/DatabaseConnection.php';
 
+// Initialize search variable
 $search = isset($_POST['search']) ? $_POST['search'] : '';
 
+// Prepare the SQL statement to prevent SQL injection
 $sql = "SELECT StudentID, StudentProfilePicture, StudentName FROM VSStudents 
         WHERE (StudentName LIKE ? OR StudentID LIKE ?) AND UserApproval = 1";
 
@@ -22,7 +24,7 @@ if ($result->num_rows > 0) {
         echo "<img src='../../../ProfilePicture/". htmlspecialchars($row["StudentProfilePicture"])."' width='100' height='100' alt='Profile Picture'>";
         echo "<h3>".htmlspecialchars($row["StudentName"])."</h3>";
         echo "<p>Student ID: ".htmlspecialchars($row["StudentID"])."</p>";
-        echo '<form id="form_'.$row["StudentID"].'" method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
+        echo '<form id="form_'.$row["StudentID"].'" method="post" action="SRCNominationPage.php">'; // Change action to SRCNominationPage.php
         echo '<input type="hidden" name="StudentID" value="'.$row["StudentID"].'">'; // Ensure the name attribute matches with SRCNominationPage.php
         echo '<button id="vote_button_'.$row["StudentID"].'" type="button" onclick="confirmVote(\''.$row["StudentID"].'\')" class="vote-button">Vote</button>'; // Ensure the ID and class match with SRCNominationPage.php
         echo '</form>';

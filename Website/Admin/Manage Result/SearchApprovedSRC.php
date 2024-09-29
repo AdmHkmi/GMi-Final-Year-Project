@@ -6,8 +6,8 @@ $search = isset($_POST['search']) ? $conn->real_escape_string($_POST['search']) 
 
 // Prepare SQL query to search SRC
 $sql = "SELECT StudentProfilePicture, StudentName, StudentEmail, StudentID
-        FROM VSCurrentSRC
-        WHERE StudentName LIKE ? OR StudentID LIKE ?";
+        FROM VSVote
+        WHERE (StudentName LIKE ? OR StudentID LIKE ?) AND SRCApproval = 1";
 $stmt = $conn->prepare($sql);
 
 // Bind parameters
