@@ -1,0 +1,283 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.top-right-buttons .back-button {
+    background-color: #24287E;
+    color: #D9D9D9;
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9;
+}
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.manage-news,
+.add-news {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Center Containers */
+.Manage-News-Container,
+.Add-News-Container {
+    background-color: rgb(226, 226, 226, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 30px auto; /* Center horizontally with auto margins */
+    width: 80%; /* Adjust width as needed */
+    max-width: 1200px; /* Adjust max-width as needed */
+}
+
+.news-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-item {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+.news-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly lift the item */
+    background-color: #f1f1f1; /* Change background color on hover */
+}
+
+.news-item h3 {
+    margin: 0 0 10px;
+    color: #24287E;
+}
+
+.news-item p {
+    margin: 10px 0;
+    max-height: 150px; /* Set a maximum height for the content */
+    overflow-y: auto; /* Add vertical scrollbar if needed */
+    padding-right: 10px; /* Add some padding to avoid scrollbar overlapping content */
+    box-sizing: border-box; /* Ensure padding is included in height */
+}
+
+.news-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    height: 100px;
+    overflow: hidden;
+}
+
+.news-image img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+}
+
+.news-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.news-actions form,
+.news-actions button {
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.news-actions form button {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.news-actions button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.news-actions form button:hover {
+    background-color: #e63939;
+}
+
+.news-actions button:hover {
+    background-color: #45a049;
+}
+
+form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    margin-bottom: 5px;
+    color: #24287E;
+}
+
+form .form-group input,
+form .form-group textarea,
+form .form-group select {
+    padding: 10px; /* Increased padding for comfort */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px; /* Consistent font size */
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition for focus effects */
+}
+
+form .form-group input:focus,
+form .form-group textarea:focus,
+form .form-group select:focus {
+    border-color: #24287E;
+    box-shadow: 0 0 5px rgba(36, 40, 126, 0.5); /* Add subtle shadow on focus */
+}
+
+form .form-group button {
+    padding: 10px;
+    background-color: #24287E;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form .form-group button:hover {
+    background-color: #1a1d5e;
+}
+
+.edit-news {
+    padding: 10px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.news-item textarea {
+    resize: none; /* Prevent resizing */
+    height: 100px; /* Fixed height */
+    width: 95%; /* Full width for better responsiveness */
+    padding: 10px; /* Add some padding for comfort */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    background-color: #f9f9f9; /* Light background color */
+    color: #333; /* Text color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: border-color 0.3s; /* Smooth transition on focus */
+}
+
+.news-item textarea:focus {
+    border-color: #24287E; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    main {
+        width: 95%; /* Adjust width for smaller screens */
+        padding: 10px;
+    }
+    
+    .news-item {
+        padding: 15px; /* Decrease padding for smaller screens */
+    }
+
+    .news-actions button, 
+    .news-actions form button {
+        font-size: 14px; /* Smaller button font size */
+        padding: 5px 8px; /* Smaller padding for buttons */
+    }
+}
