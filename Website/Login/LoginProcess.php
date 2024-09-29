@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $UsernameOrEmail = trim($_POST["UsernameOrEmail"]);
     $password = $_POST["password"];
 
-    // Prepare SQL statement to retrieve admin from the database
-    $sqlAdmin = "SELECT * FROM VSAdmin WHERE AdminUsername = ? AND AdminPassword = ?";
+    // Prepare SQL statement to retrieve admin from the database with case-sensitive checks for both username and password
+    $sqlAdmin = "SELECT * FROM VSAdmin WHERE BINARY AdminUsername = ? AND BINARY AdminPassword = ?";
     $stmtAdmin = $conn->prepare($sqlAdmin);
     $stmtAdmin->bind_param("ss", $UsernameOrEmail, $password);
     $stmtAdmin->execute();
@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit; // Ensure that subsequent code is not executed after redirection
     }
 
-    // Prepare SQL statement to retrieve user from the database
-    $sqlUser = "SELECT * FROM VSStudents WHERE (StudentID = ? OR StudentEmail = ?) AND StudentPassword = ?";
+    // Prepare SQL statement to retrieve user from the database with case-sensitive checks for both ID/Email and password
+    $sqlUser = "SELECT * FROM VSStudents WHERE (BINARY StudentID = ? OR BINARY StudentEmail = ?) AND BINARY StudentPassword = ?";
     $stmtUser = $conn->prepare($sqlUser);
     $stmtUser->bind_param("sss", $UsernameOrEmail, $UsernameOrEmail, $password);
     $stmtUser->execute();
@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['StudentID'] = $userRow['StudentID'];
             $_SESSION['StudentEmail'] = $userRow['StudentEmail'];
             $_SESSION['role'] = 'user';
-            $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteStatus in session
-            $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteStatus in session
+            $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteLimit in session
+            $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteLimit in session
 
             // Set cookies for user login
             setcookie('StudentID', $userRow['StudentID'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
