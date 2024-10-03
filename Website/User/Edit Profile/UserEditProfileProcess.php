@@ -47,7 +47,7 @@ if (isset($_SESSION['StudentID'])) {
         } else {
             // Process the profile update (existing logic)
             $StudentName = $_POST['StudentName'];
-            $StudentID = $_POST['StudentID'];
+            $StudentID = strtoupper($_POST['StudentID']); // Convert to uppercase
             $StudentEmail = $_POST['StudentEmail'];
             $StudentPassword = $_POST['StudentPassword'];
             $profilePicture = $_FILES['ProfilePicture'];
@@ -146,6 +146,14 @@ if (isset($_SESSION['StudentID'])) {
             }
 
             if ($stmt->execute()) {
+                // Check if StudentID or StudentPassword was updated
+                if ($StudentID !== $loggedInUser || !empty($StudentPassword)) {
+                    // Log the user out since their StudentID or password has changed
+                    session_destroy(); // Destroy the session
+                    echo '<script>alert("Your Student ID or password has been changed. Please log in again."); window.location.href = "../../../index.html";</script>';
+                    exit; // Exit after successful update
+                }
+
                 echo '<script>alert("Successfully updated."); window.location.href = "UserProfilePage.php";</script>';
                 exit; // Exit after successful update
             } else {
@@ -211,7 +219,9 @@ if (isset($_SESSION['StudentID'])) {
         echo "No data found for the logged-in user.";
     }
 } else {
-    echo "User not logged in.";
+    // Redirect to index.html if the user is not logged in
+    header("Location: ../../../index.html");
+    exit; // Exit after redirecting
 }
 
 $conn->close();
