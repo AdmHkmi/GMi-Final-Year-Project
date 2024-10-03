@@ -10,7 +10,7 @@ include '../../Database/DatabaseConnection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get values from form
     $StudentName = $_POST['StudentName'];
-    $StudentID = $_POST['StudentID'];
+    $StudentID = strtoupper($_POST['StudentID']); // Convert to uppercase
     $StudentEmail = $_POST['StudentEmail'];
     $StudentPassword = $_POST['StudentPassword'];
 
