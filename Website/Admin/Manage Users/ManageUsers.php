@@ -12,6 +12,7 @@
             <a href="../Home Page/AdminHomepage.php"><img src="../../../Images/GMiLogo.png" class="GMiLogo" alt="GMi Logo"></a>
         </div>
         <div class="top-right-buttons">
+            <a href="AddUser.php"><button class="add-user">Add User</button></a> 
             <button class="back-button" onclick="scrollToTop()"><i class='fas fa-arrow-up'></i></button>
             <a href="../Home Page/AdminHomepage.php"><button class="back-button"><i class='fas fa-arrow-left'></i></button></a>
         </div>
