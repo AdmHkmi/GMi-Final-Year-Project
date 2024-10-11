@@ -60,8 +60,6 @@ header {
 .top-right-buttons button {
     font-size: 18px;
     margin-left: 10px;
-    background: none;
-    border: none;
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
@@ -74,6 +72,11 @@ header {
 
 .top-right-buttons .back-button i {
     color: #D9D9D9;
+}
+
+.top-right-buttons .add-user {
+    background-color: rgb(18, 146, 18);
+    color: #fcfcfc;
 }
 
 /* Main Content Styles */

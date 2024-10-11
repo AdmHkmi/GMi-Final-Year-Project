@@ -3,14 +3,14 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require '../../phpmailer/vendor/autoload.php'; // Path to Composer's autoload.php
-
 include '../../Database/DatabaseConnection.php';
+include 'EmailUserVerification.php'; // Include the email function file
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get values from form
     $StudentName = $_POST['StudentName'];
-    $StudentID = $_POST['StudentID'];
+    $StudentID = strtoupper($_POST['StudentID']); // Convert to uppercase
     $StudentEmail = $_POST['StudentEmail'];
     $StudentPassword = $_POST['StudentPassword'];
 
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO VSStudents (StudentName, StudentID, StudentEmail, StudentPassword, StudentProfilePicture, UserApproval) 
             VALUES (?, ?, ?, ?, 'Default.jpg', false)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword);  // Bind four parameters
+    $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword);
 
     if ($stmt->execute()) {
         // Generate a unique token for verification
@@ -57,47 +57,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtToken->execute();
 
         // Insert related data into VSVote
-        $profilePicture = 'Default.jpg'; // Define as a variable
+        $profilePicture = 'Default.jpg';
         $sqlVote = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture) 
-                    VALUES (?, ?, ?, ?)"; 
+                    VALUES (?, ?, ?, ?)";
         $stmtVote = $conn->prepare($sqlVote);
-        $stmtVote->bind_param("ssss", $StudentID, $StudentEmail, $StudentName, $profilePicture); // Use the variable here
+        $stmtVote->bind_param("ssss", $StudentID, $StudentEmail, $StudentName, $profilePicture);
 
         if (!$stmtVote->execute()) {
             echo "Error inserting into VSVote: " . $conn->error;
         }
 
         // Send verification email
-        $mail = new PHPMailer(true);
+        $emailResult = sendVerificationEmail($StudentName, $StudentEmail, $token);
 
-        try {
-            // Server settings
-            $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     // Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'adamhakimi6670i@gmail.com';               // SMTP username
-            $mail->Password   = 'iwtuokefcymlmjzz';                  // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
-            $mail->Port       = 587;                                    // TCP port to connect to
-
-            // Recipients
-            $mail->setFrom('adamhakimi6670i@gmail.com', 'GMi Voting System');
-            $mail->addAddress($StudentEmail, $StudentName);             // Add a recipient
-
-            // Content
-            $mail->isHTML(true);                                        // Set email format to HTML
-            $mail->Subject = 'Account Verification';
-            $mail->Body    = "Dear $StudentName,<br><br>Thank you for registering. Please click the link below to verify your account:<br><br>
-            <a href='http://localhost/Voting System/Website/Register/UserVerification.php?email=$StudentEmail&token=$token'>Click me to verify</a><br><br>
-            Best regards,<br>GMi Voting System";
-            $mail->send();
+        if ($emailResult === true) {
             echo '<script>alert("Registration successful! Please check your email for verification."); window.location.href = "../../index.html";</script>';
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        } else {
+            echo $emailResult;  // Output the error message from the email function
         }
 
         $stmtToken->close();
-        $stmtVote->close(); // Close the vote statement
+        $stmtVote->close();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
