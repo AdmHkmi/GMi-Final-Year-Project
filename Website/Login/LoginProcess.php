@@ -1,5 +1,12 @@
 <?php
-session_start(); // Start the session
+session_start(); // Start or resume the session
+
+// Check if a session is already active and destroy it before starting a new one
+if (isset($_SESSION['role'])) {
+    session_unset(); // Unset all session variables
+    session_destroy(); // Destroy the current session
+    session_start(); // Start a new session
+}
 
 include '../../Database/DatabaseConnection.php';
 
@@ -50,9 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['StudentID'] = $userRow['StudentID'];
             $_SESSION['StudentEmail'] = $userRow['StudentEmail'];
             $_SESSION['role'] = 'user';
-            $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteStatus in session
-            $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteStatus in session
-
+            $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteLimit in session
+            $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteLimit in session
 
             // Set cookies for user login
             setcookie('StudentID', $userRow['StudentID'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
