@@ -8,9 +8,9 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // Start the bulk actions form
     echo "<form action='BulkUserProcess.php' method='post'>";
-    echo "<input type='submit' class='Approve-Button' name='bulk_action' value='Approve Selected' onclick=\"return confirm('Are you sure you want to approve the desired user?')\">";
-    echo "<input type='submit' class='Unapprove-Button' name='bulk_action' value='Unapprove Selected' onclick=\"return confirm('Are you sure you want to unapprove the desired user?')\">";
-    echo "<input type='submit' class='Delete-Button' name='bulk_action' value='Delete Selected' onclick=\"return confirm('Are you sure you want to delete the desired user?')\">";
+    echo "<input type='submit' class='Approve-Button' name='bulk_action' value='Approve Selected' style='background-color: green; color: white;' onclick=\"return confirm('Are you sure you want to approve the desired user?')\">";
+    echo "<input type='submit' class='Unapprove-Button' name='bulk_action' value='Unapprove Selected' style='background-color: orange; color: white;' onclick=\"return confirm('Are you sure you want to unapprove the desired user?')\">";
+    echo "<input type='submit' class='Delete-Button' name='bulk_action' value='Delete Selected' style='background-color: red; color: white;' onclick=\"return confirm('Are you sure you want to delete the desired user?')\">";
     echo "<br><br><br>";
     echo "<table border='1' align='center'>";
     echo "<tr>";
@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         $studentID = htmlspecialchars($row["StudentID"]);
         echo "<tr>";
         echo "<td align='center'><input type='checkbox' name='selected_users[]' value='$studentID'></td>";
-        echo "<td align='center'><div class 'studentpfp'></div><img src='../../../ProfilePicture/" . htmlspecialchars($row["StudentProfilePicture"]) . "' alt='Profile Picture' style='width: 100px; height: 100px;'></td>";
+        echo "<td align='center'><div class='studentpfp'></div><img src='../../../ProfilePicture/" . htmlspecialchars($row["StudentProfilePicture"]) . "' alt='Profile Picture' style='width: 100px; height: 100px;'></td>";
         echo "<td>" . htmlspecialchars($row["StudentName"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["StudentEmail"]) . "</td>";
         echo "<td>" . htmlspecialchars($row["StudentID"]) . "</td>";
