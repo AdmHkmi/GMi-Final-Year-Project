@@ -1,0 +1,200 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.top-right-buttons .back-button {
+    background-color: #24287E;
+    color: #D9D9D9;
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9;
+}
+
+.top-right-buttons .add-user {
+    background-color: rgb(18, 146, 18);
+    color: #fcfcfc;
+}
+
+/* Main Content Styles */
+main {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Form Controls */
+input[type="text"], input[type="submit"], button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+input[type="text"] {
+    width: 200px;
+    margin-right: 10px;
+}
+
+input[type="submit"], button {
+    cursor: pointer;
+    color: white;
+    background-color: #24287E;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #1d1a6d;
+}
+
+input[type="submit"]:active, button:active {
+    background-color: #141c4a;
+}
+
+/* Responsive Main Content Container */
+.Manage-Users-Container {
+    background-color: rgb(226, 226, 226, 0.5); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 30px auto;
+    width: 90%; /* Adjust for mobile */
+    max-width: 1200px;
+    overflow-x: auto; /* Allow horizontal scroll on small screens */
+}
+
+/* Table Styles for Responsiveness */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed; /* Ensures even distribution of table cells */
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd; /* Lighter border for a softer look */
+    word-wrap: break-word; /* Wrap content for smaller screens */
+}
+
+table td {
+    padding: 12px;
+    text-align: center;
+    word-wrap: break-word; /* Wrap content for smaller screens */
+    background-color: #ffffff;
+}
+
+table th {
+    background-color: #24287E;
+    color: white;
+    font-weight: bold;
+}
+
+.instructions {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e7f3fe;
+    border: 1px solid #2196F3;
+    color: #2196F3;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #24287E;
+    margin-bottom: 20px; /* Spacing below headings */
+}
+
+.header-section h2 {
+    background-color: #24287E; 
+    color: white; 
+    padding: 15px; 
+    margin: 20px 0; 
+    text-align: center; 
+    border-radius: 4px;
+}
+
+/* Ensuring responsiveness for small screens */
+@media (max-width: 768px) {
+    .Manage-Users-Container {
+        width: 95%; /* Slightly narrower for mobile */
+        padding: 15px; /* Reduce padding */
+    }
+    table th, table td {
+        font-size: 14px; /* Smaller font size */
+        padding: 10px; /* Reduce padding */
+    }
+}
+
+/* Better layout for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Manage-Users-Container {
+        width: 85%;
+        padding: 20px;
+    }
+    table th, table td {
+        font-size: 16px;
+    }
+}
