@@ -9,10 +9,10 @@ include 'EmailUserVerification.php'; // Include the email function file
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get values from form
-    $StudentName = $_POST['StudentName'];
-    $StudentID = strtoupper($_POST['StudentID']); // Convert to uppercase
-    $StudentEmail = $_POST['StudentEmail'];
-    $StudentPassword = $_POST['StudentPassword'];
+    $StudentName = trim($_POST['StudentName']);
+    $StudentID = strtoupper(trim($_POST['StudentID'])); // Convert to uppercase
+    $StudentEmail = trim($_POST['StudentEmail']);
+    $StudentPassword = trim($_POST['StudentPassword']);
 
     // Check if any required fields are empty
     if (empty($StudentName) || empty($StudentID) || empty($StudentEmail) || empty($StudentPassword)) {
@@ -26,6 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script>alert("Please use a GMI student email (@student.gmi.edu.my) to register."); window.location.href = "RegisterPage.html";</script>';
         exit;
     }
+
+    // Hash the password before storing it
+    $hashedPassword = password_hash($StudentPassword, PASSWORD_DEFAULT);
 
     // Check if the StudentID or StudentEmail already exists
     $checkIDSql = "SELECT StudentID FROM VSStudents WHERE StudentID = ? OR StudentEmail = ?";
@@ -44,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO VSStudents (StudentName, StudentID, StudentEmail, StudentPassword, StudentProfilePicture, UserApproval) 
             VALUES (?, ?, ?, ?, 'Default.jpg', false)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword);
+    $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $hashedPassword);
 
     if ($stmt->execute()) {
         // Generate a unique token for verification
