@@ -51,9 +51,9 @@ if ($events_result->num_rows > 0) {
         
         // Conditionally display the delete button based on event type
         if ($event["EventName"] != "Nomination Vote" && $event["EventName"] != "SRC Vote" && $event["EventName"] != "Nomination Result" && $event["EventName"] != "SRC Result") {
-            echo "<form method='post' action='DeleteEventProcess.php' style='display:inline;' onsubmit='return confirm(\"Are you sure you want to delete this event?\");'>";
+            echo "<form method='post' action='DeleteEventProcess.php' class='inline-form' onsubmit='return confirm(\"Are you sure you want to delete this event?\");'>";
             echo "<input type='hidden' name='deleteEventID' value='" . $event["EventID"] . "'>";
-            echo "<button style='font-size: 16px; margin-left: 10px; background-color: #24287E; color: white; border: none; cursor: pointer; padding: 10px 15px; border-radius: 5px;' type='submit'>Delete</button>";
+            echo "<button class='button delete-button' type='submit'>Delete</button>";
             echo "</form>";
         }
 
@@ -67,14 +67,14 @@ if ($events_result->num_rows > 0) {
             } else {
                 echo "ResetEventProcess.php";
             }
-            echo "' style='display:inline;' onsubmit='return confirm(\"Are you sure you want to reset this event?\");'>";
+            echo "' class='inline-form' onsubmit='return confirm(\"Are you sure you want to reset this event?\");'>";
             echo "<input type='hidden' name='ResetEvent' value='" . $event["EventID"] . "'>";
-            echo "<button style='font-size: 16px; margin-left: 10px; background-color: #24287E; color: white; border: none; cursor: pointer; padding: 10px 15px; border-radius: 5px;' type='submit'>Reset</button>";
+            echo "<button class='button reset-button' type='submit'>Reset</button>";
             echo "</form>";
         }
 
         // Display Edit button for each event
-        echo "<button onclick='toggleEditRow(" . $event["EventID"] . ")' style='font-size: 16px; margin-left: 10px; background-color: #24287E; color: white; border: none; cursor: pointer; padding: 10px 15px; border-radius: 5px;'>Edit</button>";
+        echo "<button onclick='toggleEditRow(" . $event["EventID"] . ")' class='button edit-button'>Edit</button>";
 
         echo "</td>";
         echo "</tr>";
@@ -86,11 +86,11 @@ if ($events_result->num_rows > 0) {
             echo "<form method='post' action='EditEventProcess.php'>";
             echo "<input type='hidden' name='EventID' value='" . $event["EventID"] . "'>";
             echo "<label for='IsActive-" . $event["EventID"] . "'>Status:</label>";
-            echo "<select id='IsActive-" . $event["EventID"] . "' name='IsActive' style='background-color: rgba(169, 169, 204, 0.87); width: calc(100% - 16px); padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; color: #333;'>";
+            echo "<select id='IsActive-" . $event["EventID"] . "' name='IsActive' class='select-status'>";
             echo "<option value='1'" . ($event["IsActive"] == 1 ? " selected" : "") . ">Shared</option>";
             echo "<option value='0'" . ($event["IsActive"] == 0 ? " selected" : "") . ">Not Shared</option>";
             echo "</select><br><br>";
-            echo "<button style='font-size: 16px; margin-left: 10px; background-color: #24287E; color: white; border: none; cursor: pointer; padding: 10px 15px; border-radius: 5px;' type='submit' onclick=\"return confirm('Are you sure you want to save this changes?')\">Save Changes</button>";
+            echo "<button class='button save-button' type='submit' onclick=\"return confirm('Are you sure you want to save this changes?')\">Save Changes</button>";
             echo "</form>";
             echo "</td>";
             echo "</tr>";
@@ -104,7 +104,7 @@ if ($events_result->num_rows > 0) {
             echo "<input type='datetime-local' id='StartDate-" . $event["EventID"] . "' name='StartDate' value='" . str_replace(" ", "T", $event["StartDate"]) . "' required><br><br>";
             echo "<label for='EndDate-" . $event["EventID"] . "'>End Date:</label>";
             echo "<input type='datetime-local' id='EndDate-" . $event["EventID"] . "' name='EndDate' value='" . str_replace(" ", "T", $event["EndDate"]) . "' required><br><br>";
-            echo "<button style='font-size: 16px; margin-left: 10px; background-color: #24287E; color: white; border: none; cursor: pointer; padding: 10px 15px; border-radius: 5px;' type='submit' onclick=\"return confirm('Are you sure you want to save this changes?')\">Save Changes</button>";
+            echo "<button class='button save-button' type='submit' onclick=\"return confirm('Are you sure you want to save this changes?')\">Save Changes</button>";
             echo "</form>";
             echo "</td>";
             echo "</tr>";
@@ -115,12 +115,12 @@ if ($events_result->num_rows > 0) {
             echo "<form method='post' action='EditEventProcess.php'>";
             echo "<input type='hidden' name='EventID' value='" . $event["EventID"] . "'>";
             echo "<label for='EventName-" . $event["EventID"] . "'>Event Name:</label>";
-            echo "<input style='background-color: rgba(169, 169, 204, 0.87); width: calc(100% - 16px); padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; color: #333;' type='text' id='EventName-" . $event["EventID"] . "' name='EventName' value='" . htmlspecialchars($event["EventName"]) . "' required><br><br>";
+            echo "<input class='input-text' type='text' id='EventName-" . $event["EventID"] . "' name='EventName' value='" . htmlspecialchars($event["EventName"]) . "' required><br><br>";
             echo "<label for='StartDate-" . $event["EventID"] . "'>Start Date:</label>";
             echo "<input type='datetime-local' id='StartDate-" . $event["EventID"] . "' name='StartDate' value='" . str_replace(" ", "T", $event["StartDate"]) . "' required><br><br>";
             echo "<label for='EndDate-" . $event["EventID"] . "'>End Date:</label>";
             echo "<input type='datetime-local' id='EndDate-" . $event["EventID"] . "' name='EndDate' value='" . str_replace(" ", "T", $event["EndDate"]) . "' required><br><br>";
-            echo "<button style='font-size: 16px; margin-left: 10px; background-color: #24287E; color: white; border: none; cursor: pointer; padding: 10px 15px; border-radius: 5px;' type='submit' onclick=\"return confirm('Are you sure you want to save this changes?')\">Save Changes</button>";
+            echo "<button class='button save-button' type='submit' onclick=\"return confirm('Are you sure you want to save this changes?')\">Save Changes</button>";
             echo "</form>";
             echo "</td>";
             echo "</tr>";
