@@ -77,10 +77,10 @@ header {
 }
 
 .Container {
-    background-color: #ffffff; /* Solid white background for better contrast */
+    background-color: rgb(226, 226, 226, 0.5); /* Solid white background for better contrast */
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 1200px;
     margin-top: 80px; /* Adjust as per your header height */
