@@ -5,7 +5,7 @@ include '../../../Database/DatabaseConnection.php';
 // Check if the session variable is set
 if (isset($_SESSION['StudentID'])) {
     // Get the logged-in username from the session
-    $loggedInUser = $_SESSION['StudentID']; // Assuming the username is stored in a session variable
+    $loggedInUser = $_SESSION['StudentID'];
 
     // Check if the form was submitted for profile update or resetting the profile picture
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -53,7 +53,7 @@ if (isset($_SESSION['StudentID'])) {
             $profilePicture = $_FILES['ProfilePicture'];
 
             // Validate input (you can add more specific validation as needed)
-            if (empty($StudentName) || empty($StudentID) || empty($StudentEmail) || empty($StudentPassword)) {
+            if (empty($StudentName) || empty($StudentID) || empty($StudentEmail)) {
                 echo '<script>alert("Please fill in all required fields."); window.location.href = "UserProfilePage.php";</script>';
                 exit; // Exit script if any field is empty
             }
@@ -131,18 +131,28 @@ if (isset($_SESSION['StudentID'])) {
                 // Move the uploaded file to the desired directory
                 if (move_uploaded_file($fileTmpName, $uploadFile)) {
                     // Update the user's profile in the database with the new image
-                    $sql = "UPDATE VSStudents SET StudentName=?, StudentID=?, StudentEmail=?, StudentPassword=?, StudentProfilePicture=? WHERE StudentID=?";
+                    $sql = "UPDATE VSStudents SET StudentName=?, StudentID=?, StudentEmail=?, StudentProfilePicture=? WHERE StudentID=?";
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("ssssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword, $newFileName, $loggedInUser);
+                    $stmt->bind_param("sssss", $StudentName, $StudentID, $StudentEmail, $newFileName, $loggedInUser);
                 } else {
                     echo "Error uploading profile picture.";
                     exit;
                 }
             } else {
                 // Update the user's profile in the database without changing the image
-                $sql = "UPDATE VSStudents SET StudentName=?, StudentID=?, StudentEmail=?, StudentPassword=? WHERE StudentID=?";
+                $sql = "UPDATE VSStudents SET StudentName=?, StudentID=?, StudentEmail=? WHERE StudentID=?";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sssss", $StudentName, $StudentID, $StudentEmail, $StudentPassword, $loggedInUser);
+                $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $loggedInUser);
+            }
+
+            // Hash the password only if it's not empty
+            if (!empty($StudentPassword)) {
+                $hashedPassword = password_hash($StudentPassword, PASSWORD_DEFAULT);
+                $sqlUpdatePassword = "UPDATE VSStudents SET StudentPassword = ? WHERE StudentID = ?";
+                $stmtPassword = $conn->prepare($sqlUpdatePassword);
+                $stmtPassword->bind_param("ss", $hashedPassword, $loggedInUser);
+                $stmtPassword->execute();
+                $stmtPassword->close();
             }
 
             if ($stmt->execute()) {
@@ -173,7 +183,7 @@ if (isset($_SESSION['StudentID'])) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo '<div class="Profile-Container">
-                    <form action="UserProfilePage.php" method="post" enctype="multipart/form-data" onsubmit="return confirm(\'Are you sure you want to update your profile?\')">
+                    <form action="UserEditProfileProcess.php" method="post" enctype="multipart/form-data" onsubmit="return confirm(\'Are you sure you want to update your profile?\')">
                         <table>
                             <tr>
                                 <td><center><b>Profile Picture</b></center></td>
@@ -202,7 +212,8 @@ if (isset($_SESSION['StudentID'])) {
                                 </td>
                                 <td>
                                     <b>Password</b><br>
-                                    <input type="text" id="StudentPassword" name="StudentPassword" value="' . htmlspecialchars($row["StudentPassword"]) . '"><br><br>
+                                    <input type="password" id="StudentPassword" name="StudentPassword" placeholder="New password / leave blank)." oninput="updatePassword()">
+                                    <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password
                                 </td>
                             </tr>
                             <tr>
@@ -226,3 +237,15 @@ if (isset($_SESSION['StudentID'])) {
 
 $conn->close();
 ?>
+
+<script>
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("StudentPassword");
+    var showPasswordCheckbox = document.getElementById("showPassword");
+    if (showPasswordCheckbox.checked) {
+        passwordField.type = "text"; // Show password
+    } else {
+        passwordField.type = "password"; // Hide password
+    }
+}
+</script>
