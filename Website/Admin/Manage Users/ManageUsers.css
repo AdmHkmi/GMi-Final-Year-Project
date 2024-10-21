@@ -85,6 +85,25 @@ main {
     padding: 20px;
 }
 
+.Approve-Button {
+    background-color: green;
+    color: white;
+}
+
+.Unapprove-Button {
+    background-color: orange;
+    color: white;
+}
+
+.Delete-Button {
+    background-color: red;
+    color: white;
+}
+
+.Approve-Button:hover, .Unapprove-Button:hover, .Delete-Button:hover {
+    opacity: 0.9; /* Slightly change opacity on hover for effect */
+}
+
 /* Form Controls */
 input[type="text"], input[type="submit"], button {
     padding: 10px;
