@@ -41,36 +41,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit; // Ensure that subsequent code is not executed after redirection
     }
 
-    // Prepare SQL statement to retrieve user from the database with case-sensitive password check
-    $sqlUser = "SELECT * FROM VSStudents WHERE (StudentID = ? OR StudentEmail = ?) AND BINARY StudentPassword = ?";
+    // Prepare SQL statement to retrieve user from the database
+    $sqlUser = "SELECT * FROM VSStudents WHERE (StudentID = ? OR StudentEmail = ?)";
 
     $stmtUser = $conn->prepare($sqlUser);
-    $stmtUser->bind_param("sss", $UsernameOrEmail, $UsernameOrEmail, $password);
+    $stmtUser->bind_param("ss", $UsernameOrEmail, $UsernameOrEmail);
     $stmtUser->execute();
     $resultUser = $stmtUser->get_result();
 
     // Check if a row is returned for user
     if ($resultUser->num_rows > 0) {
         $userRow = $resultUser->fetch_assoc();
-        if ($userRow['UserApproval'] == 1) {
-            // Store user details in session
-            $_SESSION['StudentID'] = $userRow['StudentID'];
-            $_SESSION['StudentEmail'] = $userRow['StudentEmail'];
-            $_SESSION['role'] = 'user';
-            $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteLimit in session
-            $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteLimit in session
+        
+        // Verify the password using password_verify (assuming passwords are hashed)
+        if (password_verify($password, $userRow['StudentPassword'])) {
+            if ($userRow['UserApproval'] == 1) {
+                // Store user details in session
+                $_SESSION['StudentID'] = $userRow['StudentID'];
+                $_SESSION['StudentEmail'] = $userRow['StudentEmail'];
+                $_SESSION['role'] = 'user';
+                $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteLimit in session
+                $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteLimit in session
 
-            // Set cookies for user login
-            setcookie('StudentID', $userRow['StudentID'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
-            setcookie('StudentEmail', $userRow['StudentEmail'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
-            setcookie('role', 'user', time() + (86400 * 30), "/");
+                // Set cookies for user login
+                setcookie('StudentID', $userRow['StudentID'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
+                setcookie('StudentEmail', $userRow['StudentEmail'], time() + (86400 * 30), "/"); // Cookie lasts for 30 days
+                setcookie('role', 'user', time() + (86400 * 30), "/");
 
-            // Redirect to the user homepage upon successful login
-            header("Location: ../User/Home Page/UserHomepage.php");
-            exit; // Ensure that subsequent code is not executed after redirection
+                // Redirect to the user homepage upon successful login
+                header("Location: ../User/Home Page/UserHomepage.php");
+                exit; // Ensure that subsequent code is not executed after redirection
+            } else {
+                // Handle user approval pending case
+                echo '<script>alert("Your account is in the process of approval, please try again later!"); window.location.href = "../../index.html";</script>';
+            }
         } else {
-            // Handle user approval pending case
-            echo '<script>alert("Your account is in the process of approval, please try again later!"); window.location.href = "../../index.html";</script>';
+            // Handle password mismatch
+            echo '<script>alert("Invalid username or password. Please try again."); window.location.href = "../../index.html";</script>';
         }
     } else {
         // Handle authentication failure by showing a popup message
@@ -79,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Close the statement for user
     $stmtUser->close();
-
     // Close the statement for admin
     $stmtAdmin->close();
 }
