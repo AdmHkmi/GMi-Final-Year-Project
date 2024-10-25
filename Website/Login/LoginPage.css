@@ -5,7 +5,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #f0f0f0, #d9d9d9); /* Added a gradient background */
+    animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 header {
@@ -27,6 +33,11 @@ header {
 
 .GMiLogo, .MaraLogo {
     height: 80px;
+    transition: transform 0.3s; /* Add transition for scaling effect */
+}
+
+.GMiLogo:hover, .MaraLogo:hover {
+    transform: scale(1.1); /* Scale logos on hover */
 }
 
 .background-image {
@@ -51,13 +62,20 @@ main {
 }
 
 .login-container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
     padding: 40px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     text-align: center;
     max-width: 400px;
     width: 100%;
     margin: 20px;
+    border-radius: 10px; /* Rounded corners for a softer look */
+    animation: slideIn 0.5s ease; /* Slide-in animation */
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .login-container h2 {
@@ -68,13 +86,20 @@ main {
 
 .login-container input[type="text"],
 .login-container input[type="password"] {
-    background-color: rgba(169, 169, 204, 0.87);    
+    background-color: rgba(169, 169, 204, 0.87);
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    transition: border-color 0.3s; /* Smooth border color transition */
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: rgb(21, 101, 178); /* Change border color on focus */
+    outline: none; /* Remove default outline */
 }
 
 .login-container button {
@@ -82,18 +107,24 @@ main {
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: none; /* Remove border */
     border-radius: 5px;
     font-size: 16px;
     color: white;
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s, transform 0.2s; /* Transition for background color and scaling */
 }
 
 .login-container button:hover {
     background-color: rgb(21, 101, 178);
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.login-container button:active {
+    transform: translateY(0); /* Reset on click */
 }
 
 /* Responsive Design */
-
 @media (max-width: 768px) {
     header {
         flex-direction: column;
