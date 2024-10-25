@@ -9,16 +9,24 @@
 </head>
 <body>
     <div class="background-image"></div> <!-- Background image for the page -->
-    <header>
-        <!-- Logo section with a link back to the Admin Homepage -->
-        <div class="logo-container">
-            <a href="../Home Page/AdminHomepage.php"><img src="../../../Images/GMiLogo.png" class="GMiLogo" alt="GMi Logo"></a>
-        </div>
-        <!-- Top-right buttons (a back button to return to the Manage Users page) -->
-        <div class="top-right-buttons">
-            <a href="ManageUsers.php"><button class="back-button"><i class='fas fa-arrow-left'></i></button></a>
-        </div>
-    </header>
+    <header class="header">
+    <div class="logo-container">
+        <a href="../Home Page/AdminHomepage.php">
+            <img src="../../../Images/GMiLogo.png" class="GMiLogo" alt="GMi Logo"> <!-- Logo -->
+        </a>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../Manage Events/ManageEvents.php">Manage Events</a></li>
+            <li><a href="ManageUsers.php">Manage Users</a></li>
+            <li><a href="../Manage Participants/ManageParticipants.php">Manage Participants</a></li>
+            <li><a href="../Manage Result/ManageResult.php">Manage Results</a></li>
+            <li><a href="../Manage News/ManageNews.php">Manage News</a></li>
+            <li><a href="../Generate Report/GenerateReport.php">Generate Report</a></li>
+        </ul>
+    </nav>
+    <div class="top-right-buttons"> <!-- Button linking to Add User Page --><a href="ManageUsers.php"><button class="back-button"><i class='fas fa-arrow-left'></i></button></a> </div>
+</header>
     <main>
         <!-- Container for adding new user information -->
         <div class="add-user-container">
