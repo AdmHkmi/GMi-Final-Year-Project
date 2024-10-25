@@ -59,10 +59,32 @@ header {
 }
 
 .logo-container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1; /* Allow logo to take space on the left */
+}
+
+.navbar {
+    flex: 2; /* Allow navbar to take more space */
+}
+
+.navbar ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove padding */
+    display: flex; /* Display links in a row */
+    justify-content: space-around; /* Evenly distribute links */
+}
+
+.navbar li {
+    margin: 0 10px; /* Space between links */
+}
+
+.navbar a {
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Text color */
+    font-weight: bold; /* Bold text */
+}
+
+.navbar a:hover {
+    color: #007BFF; /* Change color on hover */
 }
 
 .GMiLogo {
