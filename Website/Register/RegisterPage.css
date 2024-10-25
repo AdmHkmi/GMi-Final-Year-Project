@@ -7,7 +7,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #f0f0f0, #d9d9d9); /* Added a gradient background */
+    animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 header {
@@ -28,6 +34,11 @@ header {
 
 .GMiLogo {
     height: 80px;
+    transition: transform 0.3s; /* Add transition for scaling effect */
+}
+
+.GMiLogo:hover {
+    transform: scale(1.1); /* Scale logo on hover */
 }
 
 .background-image {
@@ -57,16 +68,23 @@ header {
     font-size: 24px;
     color: #333;
     margin-top: 20px;
+    animation: slideIn 0.5s ease; /* Slide-in animation */
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .Signup-container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
     padding: 40px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     text-align: left;
     max-width: 400px;
     width: 100%;
     margin-top: 20px;
+    border-radius: 10px; /* Rounded corners for a softer look */
 }
 
 .Signup-container table {
@@ -76,14 +94,22 @@ header {
 .Signup-container input[type="text"],
 .Signup-container input[type="email"],
 .Signup-container input[type="password"] {
-    background-color: rgba(169, 169, 204, 0.87);    
+    background-color: rgba(169, 169, 204, 0.87);
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc; /* Slightly thicker border */
     border-radius: 5px;
     font-size: 16px;
     color: #333;
+    transition: border-color 0.3s; /* Smooth border color transition */
+}
+
+.Signup-container input[type="text"]:focus,
+.Signup-container input[type="email"]:focus,
+.Signup-container input[type="password"]:focus {
+    border-color: rgb(21, 101, 178); /* Change border color on focus */
+    outline: none; /* Remove default outline */
 }
 
 .Signup-container button {
@@ -91,15 +117,21 @@ header {
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: none; /* Remove border */
     border-radius: 5px;
     font-size: 16px;
     color: white;
-    cursor: pointer;
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s, transform 0.2s; /* Transition for background color and scaling */
 }
 
 .Signup-container button:hover {
     background-color: rgb(21, 101, 178);
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.Signup-container button:active {
+    transform: translateY(0); /* Reset on click */
 }
 
 /* Responsive Design */
