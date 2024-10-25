@@ -1,0 +1,211 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+}
+
+body:hover {
+    background-color: #e0e0e0;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease;
+    animation: slideDown 0.7s ease;
+}
+
+@keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+}
+
+.logo-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.GMiLogo:hover {
+    transform: scale(1.1);
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #24287E;
+    color: #D9D9D9;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.top-right-buttons button:hover {
+    background-color: #1a1f6d;
+    transform: translateY(-3px);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 120px;
+    animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.add-user-container {
+    background-color: rgba(226, 226, 226, 0.5); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    text-align: center;
+    margin: 10px 10px 10px;
+    animation: fadeInUp 1s ease forwards 0.7s;
+}
+
+.add-user-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.add-user-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.add-user-container input[type="text"],
+.add-user-container input[type="email"],
+.add-user-container input[type="password"],
+.add-user-container input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.add-user-container input[type="text"]:focus,
+.add-user-container input[type="email"]:focus,
+.add-user-container input[type="password"]:focus {
+    border-color: #24287E;
+}
+
+.add-user-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.add-user-container label[for="userApproval"] {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.add-user-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #24287E;
+    color: #D9D9D9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-user-container button:hover {
+    background-color: #1a1f6d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-section h2 {
+    background-color: #24287E; 
+    color: white; 
+    padding: 15px; 
+    margin: 20px 0; 
+    text-align: center; 
+    border-radius: 4px;
+    animation: fadeIn 1.5s ease;
+}
+
+@media (max-width: 768px) {
+    .add-user-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .add-user-container h2 {
+        font-size: 22px;
+    }
+
+    .add-user-container input {
+        font-size: 13px;
+    }
+}
