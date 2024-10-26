@@ -139,13 +139,17 @@ body:hover {
     to { opacity: 1; transform: translateX(0); }
 }
 
+p {
+    animation: fadeInUp ease forwards 1s; /* Fade in with slight delay */
+}
+
 .option-button {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 35px;
-    animation: fadeInUp 1s ease forwards 1s; /* Fade in with slight delay */
+    animation: fadeInUp ease forwards 1s; /* Fade in with slight delay */
 }
 
 .option-button-item {
