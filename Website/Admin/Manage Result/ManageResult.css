@@ -90,6 +90,11 @@ header {
 .GMiLogo {
     height: 50px;
     max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.GMiLogo:hover {
+    transform: scale(1.1);
 }
 
 .top-right-buttons {
