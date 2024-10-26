@@ -121,7 +121,6 @@ header {
 h1 {
     text-align: center;
     color: #24287E;
-    margin-top: 100px;
     font-size: 28px;
     animation: slideDown 0.7s ease;
 }
