@@ -33,6 +33,7 @@
         <div class="side-by-side-container">
         <div class="Container">
         <div class="header-section"><h2>SRC Result</h2></div>
+        <p>View all approved candidates. Click "Share" to share results with students or "Unshare" if you prefer not to. To change your decisions, click "Reset."</p>
             <center>
                 <h2>List of Approved Candidates</h2>
                 <div class="button-group">
@@ -81,6 +82,7 @@
         </div>
         <div class="Container">
         <div class="header-section"><h2>SRC Result</h2></div>
+        <p>View all approved SRCs. Click "Share" to share results with students or "Unshare" if you prefer not to. To change your decisions, click "Reset."</p>
             <center>
                 <h2>List of Approved SRC</h2>
                 <div class="button-group">
