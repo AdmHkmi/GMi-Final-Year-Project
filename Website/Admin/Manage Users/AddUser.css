@@ -28,7 +28,6 @@ body:hover {
     height: 100%;
     z-index: -1;
     opacity: 0.8;
-    animation: fadeIn 1.5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -125,7 +124,7 @@ main {
     align-items: center;
     width: 100%;
     margin-top: 120px;
-    animation: fadeInUp 1s ease forwards 0.5s;
+    animation: fadeInUp ease forwards 0.5s;
 }
 
 @keyframes fadeInUp {
@@ -141,7 +140,6 @@ main {
     width: 400px;
     text-align: center;
     margin: 10px 10px 10px;
-    animation: fadeInUp 1s ease forwards 0.7s;
 }
 
 .add-user-container h2 {
@@ -214,7 +212,6 @@ main {
     margin: 20px 0; 
     text-align: center; 
     border-radius: 4px;
-    animation: fadeIn 1.5s ease;
 }
 
 @media (max-width: 768px) {
