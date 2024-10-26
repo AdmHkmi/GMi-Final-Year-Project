@@ -31,11 +31,6 @@ body:hover {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.8; }
-}
-
 header {
     position: fixed;
     top: 0;
@@ -51,11 +46,6 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s ease;
     animation: slideDown 0.7s ease;
-}
-
-@keyframes slideDown {
-    from { top: -100px; }
-    to { top: 0; }
 }
 
 .logo-container {
@@ -127,13 +117,12 @@ header {
     color: #D9D9D9; 
 }
 
-
 h1 {
     text-align: center;
     color: #24287E;
     margin-top: 90px;
     font-size: 28px;
-    animation: fadeInDown 1s ease;
+    animation: fadeInDown 1s ease; /* Keep only one animation */
 }
 
 .instructions {
@@ -148,7 +137,7 @@ h1 {
     font-size: 16px; 
     line-height: 1.6;
     text-align: center;
-    animation: fadeInLeft 1s ease forwards 0.9s;
+    animation: fadeIn 1s ease; /* Keep only one animation */
 }
 
 main {
@@ -158,12 +147,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;  
-    animation: fadeInUp 1s ease forwards 0.5s;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+    animation: fadeInUp 1s ease; /* Keep only one animation */
 }
 
 .search-form {
@@ -310,10 +294,10 @@ button:hover {
     margin: 20px 0;
     text-align: center;
     border-radius: 4px;
-    animation: fadeIn 1.5s ease;
+    animation: fadeIn ease; /* Keep only one animation */
 }
 
-.Manage-Participants-Container{
+.Manage-Participants-Container {
     background-color: rgba(226, 226, 226, 0.5); 
     padding: 30px;
     border-radius: 10px;
@@ -323,8 +307,24 @@ button:hover {
     margin-top: 30px;
     margin-bottom: 30px;
     box-sizing: border-box;
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards 0.5s;
+    opacity: 1; /* Change initial opacity to 1 */
+    animation: fadeInUp ease forwards; /* Add 'forwards' to retain final styles */
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
+}
+
+@keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @media screen and (max-width: 1000px) {
