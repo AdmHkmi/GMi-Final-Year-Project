@@ -96,27 +96,36 @@ header {
     transform: scale(1.1);
 }
 
-.top-right-buttons {
-    display: flex;
-    align-items: center;
-}
-
 .top-right-buttons button {
     font-size: 18px;
     margin-left: 10px;
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
-    border: none;
-    background-color: #24287E;
-    color: #D9D9D9;
+    border: none; /* Ensure no border */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .top-right-buttons button:hover {
-    background-color: #1a1f6d;
     transform: translateY(-3px);
+    background-color: #ddd; /* Match this to the same hover color as in ManageUsers.css */
 }
+
+.top-right-buttons .back-button {
+    background-color: #24287E; /* Match this to the same color as in ManageUsers.css */
+    color: #D9D9D9; /* Ensure text color matches */
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9; /* Ensure icon color matches */
+}
+
+.top-right-buttons .add-user {
+    background-color: rgb(18, 146, 18); /* Match this to the same color as in ManageUsers.css */
+    color: #fcfcfc; /* Ensure text color matches */
+}
+
+
 
 main {
     display: flex;
