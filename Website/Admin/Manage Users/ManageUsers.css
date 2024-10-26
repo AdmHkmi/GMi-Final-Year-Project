@@ -31,10 +31,7 @@ body:hover {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.8; }
-}
+
 
 header {
     position: fixed;
@@ -51,11 +48,6 @@ header {
     background-color: rgba(255, 255, 255);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     animation: slideDown 0.7s ease;
-}
-
-@keyframes slideDown {
-    from { top: -100px; }
-    to { top: 0; }
 }
 
 .logo-container {
@@ -137,11 +129,6 @@ main {
     animation: fadeInUp 1s ease forwards 0.5s;
 }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .Approve-Button, .Unapprove-Button, .Delete-Button {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -194,18 +181,6 @@ input[type="submit"]:active, button:active {
     background-color: #141c4a;
 }
 
-.Manage-Users-Container {
-    background-color: rgba(226, 226, 226, 0.5); 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    margin: 30px auto;
-    width: 90%; 
-    max-width: 1200px;
-    overflow-x: auto;
-    animation: fadeInUp 1s ease forwards 0.7s;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -250,12 +225,7 @@ table tr:hover {
     font-size: 16px; 
     line-height: 1.6;
     text-align: center;
-    animation: fadeInLeft 1s ease forwards 0.9s;
-}
-
-@keyframes fadeInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+    animation: fadeIn 1.5s ease;
 }
 
 h1 {
@@ -263,7 +233,7 @@ h1 {
     color: #24287E;
     margin-top: 5px;
     font-size: 28px;
-    animation: fadeInDown 1s ease;
+    animation: fadeIn 1.5s ease;
 }
 
 .header-section h2 {
@@ -273,18 +243,47 @@ h1 {
     margin: 20px 0; 
     text-align: center; 
     border-radius: 4px;
-    animation: fadeIn 1.5s ease;
 }
 
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
+.Manage-Users-Container {
+    background-color: rgba(226, 226, 226, 0.5); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 30px auto;
+    width: 90%; 
+    max-width: 1200px;
+    overflow-x: auto;
+    animation: slideIn 0.5s ease forwards; /* Apply slideIn animation */
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
+}
+
+@keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
 @media (max-width: 768px) {
     .Manage-Users-Container {
         width: 95%; 
         padding: 15px;
+        animation: fadeInUp 1s ease forwards 0.5s;
     }
     table th, table td {
         font-size: 14px; 
@@ -300,6 +299,7 @@ h1 {
     .Manage-Users-Container {
         width: 85%;
         padding: 20px;
+        animation: fadeInUp 1s ease forwards 0.5s;
     }
     table th, table td {
         font-size: 16px;
