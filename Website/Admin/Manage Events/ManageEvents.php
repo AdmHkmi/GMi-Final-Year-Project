@@ -65,7 +65,6 @@ $events_result = $conn->query($fetch_events_sql);
     <div class="instructions">
         <p>Welcome to the Manage Events page! Here, you can view existing events, add new events, edit events, or delete events as needed.</p>
     </div>
-
     <div class="container">
         <div class="header-section">
             <h2>Add New Event</h2>
@@ -87,6 +86,7 @@ $events_result = $conn->query($fetch_events_sql);
             <h2>Main Events</h2> <!-- Section header for main events -->
         </div>
         <p>Main events play a vital role in the voting process. In this section, you'll find important events as listed below. The status of these events is key: if they're inactive, students can't cast their votes, and the voting process stops. Additionally, if the 'Nomination Result' or 'SRC Result' is inactive, students won't be able to see the results, but when they're active, everyone can view them.</p>
+        <div class="warning">REMEMBER!!! Everytime you reset "Nomination Vote" or "SRC Vote", it will reset the Candidate Vote Count and Student Vote Limit.</div>
         <table>
             <tr>
                 <th>Event Name</th>
