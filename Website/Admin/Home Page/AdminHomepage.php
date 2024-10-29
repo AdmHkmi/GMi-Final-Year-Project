@@ -18,7 +18,7 @@ if (!isset($_SESSION['AdminLoggedIn'])) {
     <header class="header">
         <div class="logo-container"><a href="AdminHomepage.php"><img src="../../../Images/GMiLogo.png" class="GMiLogo" alt="GMi Logo"></a></div>
         <div class="top-right-buttons">
-            <a href="../Edit Profile/AdminProfilePage.php"><button class="user-button"><i class='fas fa-user-alt'></i></button></a>
+            <a href="../View Profile/AdminViewProfilePage.php"><button class="user-button"><i class='fas fa-user-alt'></i></button></a>
             <button class="bars-button" id="barsButton"><i class="fa fa-bars"></i></button>
         </div>
     </header>
