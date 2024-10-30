@@ -1,0 +1,375 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease;
+}
+
+body:hover {
+    background-color: #e0e0e0;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease;
+    animation: slideDown 0.7s ease;
+}
+
+.logo-container {
+    flex: 1; 
+}
+
+.navbar {
+    flex: 2; 
+}
+
+.navbar ul {
+    list-style-type: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: space-around;
+}
+
+.navbar li {
+    margin: 0 10px; 
+}
+
+.navbar a {
+    text-decoration: none; 
+    color: #000; 
+    font-weight: bold; 
+}
+
+.navbar a:hover {
+    color: #007BFF; 
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.GMiLogo:hover {
+    transform: scale(1.1);
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.top-right-buttons button:hover {
+    transform: translateY(-3px); 
+    background-color: #ddd; 
+}
+
+.top-right-buttons .back-button {
+    background-color: #24287E;
+    color: #D9D9D9; 
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9; 
+}
+
+h1 {
+    text-align: center;
+    color: #24287E;
+    margin-top: 90px;
+    font-size: 28px;
+    animation: fadeInDown 1s ease; /* Keep only one animation */
+}
+
+.instructions {
+    margin: 20px auto;
+    padding: 20px; 
+    max-width: 800px; 
+    background-color: #e7f3fe; 
+    border: 1px solid #2196F3; 
+    color: #0645AD; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-size: 16px; 
+    line-height: 1.6;
+    text-align: center;
+    animation: fadeIn 1s ease; /* Keep only one animation */
+}
+
+main {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    animation: fadeInUp 1s ease; /* Keep only one animation */
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-label {
+    font-size: 16px;
+    color: #24287E;
+    margin-right: 10px;
+}
+
+.search-input {
+    width: 250px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    border-color: #24287E;
+    outline: none;
+}
+
+.search-button {
+    background-color: #24287E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.search-button:hover {
+    background-color: #1f206b;
+    transform: scale(1.05);
+}
+
+.participants-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 20px;
+    transition: all 0.5s ease;
+}
+
+.participant-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.participant-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.participant-info h3 {
+    font-size: 20px;
+    color: #24287E;
+    margin-bottom: 10px;
+}
+
+.participant-info p {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.active {
+    color: green;
+    font-weight: bold;
+}
+
+.inactive {
+    color: red;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.action-buttons form {
+    display: inline-block;
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.Approve-Button {
+    background-color: #24287E; 
+}
+
+.Unapprove-Button {
+    background-color: #1b68cc; 
+}
+
+.View-SRC-Details-Button {
+    background-color: #00bb4e; 
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.header-section h2 {
+    background-color: #24287E;
+    color: white;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: center;
+    border-radius: 4px;
+    animation: fadeIn ease; /* Keep only one animation */
+}
+
+.Manage-Participants-Container {
+    background-color: rgba(226, 226, 226, 0.5); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    opacity: 1; /* Change initial opacity to 1 */
+    animation: fadeInUp ease forwards; /* Add 'forwards' to retain final styles */
+}
+
+.notification-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 20px; /* Optional: space below buttons */
+}
+
+.notify-button{
+    background-color: #24287E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.notify-button hover{
+    background-color: #1f206b;
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
+}
+
+@keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 1000px) {
+    .participants-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .participants-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-input {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .search-button {
+        width: 100%;
+    }
+}
