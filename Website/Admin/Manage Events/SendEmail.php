@@ -27,8 +27,8 @@ if (isset($_POST['EventID'])) {
         $endDate = $event['EndDate'];
         $isActive = $event['isActive'];
 
-        // Fetch all students with a valid email from VSStudents table
-        $studentQuery = "SELECT StudentEmail FROM VSStudents WHERE StudentEmail IS NOT NULL";
+        // Fetch all students with a valid email and userapproval = 1 from VSStudents table
+        $studentQuery = "SELECT StudentEmail FROM VSStudents WHERE StudentEmail IS NOT NULL AND userapproval = 1";
         $studentResult = $conn->query($studentQuery);
 
         // Initialize PHPMailer
