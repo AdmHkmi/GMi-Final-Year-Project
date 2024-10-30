@@ -45,10 +45,10 @@
 
             <!-- Add Notify Candidate and Notify SRC buttons -->
              <div class="notification-buttons">
-             <form action="SendEmailCandidate.php" method="post" class="notification-form">
+             <form action="SendEmailCandidate.php" method="post" class="notification-form" onsubmit="return confirm('Are you sure you want to notify the approved candidates?');">
                 <button type="submit" class="notify-button">Notify Candidate</button>
             </form>
-            <form action="SendEmailSRC.php" method="post" class="notification-form">
+            <form action="SendEmailSRC.php" method="post" class="notification-form" onsubmit="return confirm('Are you sure you want to notify the approved SRCs?');">
                 <button type="submit" class="notify-button">Notify SRC</button>
             </form>
             </div>
