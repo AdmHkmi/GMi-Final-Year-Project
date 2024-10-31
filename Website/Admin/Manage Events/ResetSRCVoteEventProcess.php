@@ -32,6 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ResetEvent'])) {
             // Prepare SQL statement to delete SRC vote history
             $delete_src_vote_sql = "DELETE FROM VSVoteHistory WHERE VoteType='SRC'";
             if ($conn->query($delete_src_vote_sql) === TRUE) {
+                // Delete all files in the specified directory
+                $directory = '../../../Images/QRCode';
+                if (is_dir($directory)) {
+                    $files = glob($directory . '/*'); // Get all files in the directory
+                    foreach ($files as $file) {
+                        if (is_file($file)) {
+                            unlink($file); // Delete the file
+                        }
+                    }
+                }
+
                 // On success, alert the user and redirect to ManageEvents page
                 echo '<script>alert("Event reset successfully."); window.location.href = "ManageEvents.php";</script>';
                 exit; // Exit to prevent further script execution
