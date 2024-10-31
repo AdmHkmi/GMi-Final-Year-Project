@@ -7,8 +7,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #f0f0f0, #d9d9d9); /* Added a gradient background */
-    animation: fadeIn 1s ease; /* Fade-in animation */
+    background: linear-gradient(135deg, #f0f0f0, #d9d9d9);
+    animation: fadeIn 1s ease;
 }
 
 @keyframes fadeIn {
@@ -34,11 +34,11 @@ header {
 
 .GMiLogo {
     height: 80px;
-    transition: transform 0.3s; /* Add transition for scaling effect */
+    transition: transform 0.3s;
 }
 
 .GMiLogo:hover {
-    transform: scale(1.1); /* Scale logo on hover */
+    transform: scale(1.1);
 }
 
 .background-image {
@@ -68,7 +68,7 @@ header {
     font-size: 24px;
     color: #333;
     margin-top: 20px;
-    animation: slideIn 0.5s ease; /* Slide-in animation */
+    animation: slideIn 0.5s ease;
 }
 
 @keyframes slideIn {
@@ -77,14 +77,14 @@ header {
 }
 
 .Signup-container {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 40px;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
     text-align: left;
-    max-width: 400px;
+    max-width: 500px; 
     width: 100%;
     margin-top: 20px;
-    border-radius: 10px; /* Rounded corners for a softer look */
+    border-radius: 10px;
 }
 
 .Signup-container table {
@@ -96,45 +96,43 @@ header {
 .Signup-container input[type="password"] {
     background-color: rgba(169, 169, 204, 0.87);
     width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #ccc; /* Slightly thicker border */
+    padding: 12px;
+    margin: 12px 0;
+    border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     color: #333;
-    transition: border-color 0.3s; /* Smooth border color transition */
+    transition: border-color 0.3s;
 }
 
 .Signup-container input[type="text"]:focus,
 .Signup-container input[type="email"]:focus,
 .Signup-container input[type="password"]:focus {
-    border-color: rgb(21, 101, 178); /* Change border color on focus */
-    outline: none; /* Remove default outline */
+    border-color: rgb(21, 101, 178);
+    outline: none;
 }
 
 .Signup-container button {
     background-color: rgb(36, 40, 104);
     width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border: none; /* Remove border */
+    padding: 12px;
+    margin: 12px 0;
+    border: none;
     border-radius: 5px;
     font-size: 16px;
     color: white;
-    cursor: pointer; /* Change cursor to pointer */
-    transition: background-color 0.3s, transform 0.2s; /* Transition for background color and scaling */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .Signup-container button:hover {
     background-color: rgb(21, 101, 178);
-    transform: translateY(-2px); /* Lift effect on hover */
+    transform: translateY(-2px);
 }
 
 .Signup-container button:active {
-    transform: translateY(0); /* Reset on click */
+    transform: translateY(0);
 }
-
-/* Responsive Design */
 
 @media (max-width: 768px) {
     .GMiLogo {
@@ -142,15 +140,17 @@ header {
     }
 
     .Signup-container {
-        padding: 20px;
-        margin-top: 10px;
+        max-width: 450px; 
+        padding: 30px;
+        margin-top: 15px;
     }
 
     .Signup-container input[type="text"],
     .Signup-container input[type="email"],
     .Signup-container input[type="password"],
     .Signup-container button {
-        font-size: 14px;
+        font-size: 15px;
+        padding: 12px;
     }
 
     .welcome-message {
@@ -164,14 +164,17 @@ header {
     }
 
     .Signup-container {
-        padding: 15px;
+        max-width: 380px; 
+        padding: 25px;
+        margin-top: 10px;
     }
 
     .Signup-container input[type="text"],
     .Signup-container input[type="email"],
     .Signup-container input[type="password"],
     .Signup-container button {
-        font-size: 12px;
+        font-size: 14px;
+        padding: 10px;
     }
 
     .welcome-message {
