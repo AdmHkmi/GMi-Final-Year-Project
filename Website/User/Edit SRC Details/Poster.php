@@ -37,7 +37,7 @@ if (isset($_SESSION['StudentID'])) {
 
     // Use the student ID as part of the filename
     $studentID = $_SESSION['StudentID'];
-    $codeContents = "http://localhost/Voting System/Website/User/Vote Casting/VoteCastingPage.php?search=" . urlencode($studentID);
+    $codeContents = "http://localhost/Voting System/Website/User/Vote Casting/ViewSRCDetails.php?StudentID=" . urlencode($studentID);
     $fileName = $studentID . '_' . md5($codeContents) . '.png';
 
     $pngAbsoluteFilePath = $tempDir . $fileName;
