@@ -224,6 +224,75 @@ main {
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 14px; 
+        overflow-x: hidden; 
+    }
+
+    .logo-container {
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+    }
+
+    .top-right-buttons {
+        display: flex; 
+        align-items: center; 
+        margin-left: 10px; 
+    }
+
+    .navbar {
+        overflow-x: auto; 
+        white-space: nowrap;
+        margin-top: 5px; 
+    }
+
+    .navbar ul {
+        display: inline-flex; 
+        padding: 0; 
+    }
+
+    .navbar li {
+        margin: 0 5px; 
+    }
+
+    .navbar a {
+        padding: 10px 15px; 
+    }
+
+    main {
+        width: 100%;
+        padding: 20px 20px 20px; 
+        margin-top: 5px; 
+        animation: fadeInUp 1s ease forwards 0.5s; 
+    }
+
+    .Manage-Users-Container {
+        width: 95%; 
+        padding: 15px; 
+        animation: slideIn 0.5s ease forwards; 
+        margin: 15px auto; 
+    }
+
+    table th, table td {
+        font-size: 14px; 
+        padding: 8px; 
+    }
+
+    .instructions {
+        padding: 15px; 
+        font-size: 14px; 
+    }
+
+    .Manage-Users-Container img {
+        max-width: 100%; 
+        height: auto; 
+        border-radius: 8px; 
+        margin: 10px 0; 
+        display: block; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    }
+
     .add-user-container {
         width: 90%;
         padding: 20px;
