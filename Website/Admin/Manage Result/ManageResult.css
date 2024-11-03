@@ -58,32 +58,32 @@ header {
 }
 
 .navbar {
-    flex: 2; /* Allow navbar to take more space */
+    flex: 2; 
 }
 
 .navbar ul {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove padding */
-    display: flex; /* Display links in a row */
-    justify-content: space-around; /* Evenly distribute links */
+    list-style-type: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: space-around; 
 }
 
 .navbar li {
-    margin: 0 10px; /* Space between links */
+    margin: 0 10px; 
 }
 
 .navbar a {
-    text-decoration: none; /* Remove underline */
-    color: #000; /* Text color */
-    font-weight: bold; /* Bold text */
+    text-decoration: none; 
+    color: #000; 
+    font-weight: bold; 
 }
 
 .navbar a:hover {
-    color: #007BFF; /* Change color on hover */
+    color: #007BFF; 
 }
 
 .logo-container {
-    flex: 1; /* Allow logo to take space on the left */
+    flex: 1; 
 }
 
 
@@ -127,18 +127,16 @@ header {
     color: #D9D9D9;
 }
 
-/* Container for side-by-side sections */
 .side-by-side-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Space between the two containers */
+    gap: 20px; 
     width: 100%;
-    max-width: 1200px; /* Adjust as needed */
+    max-width: 1200px; 
     margin: auto;
     animation: slideDown 0.7s ease;
 }
 
-/* Container for Buttons - Horizontal Layout */
 .button-group {
 display: flex;
 justify-content: center;
@@ -151,10 +149,9 @@ margin-right: 10px;
 }
 
 .button-group form:last-child {
-margin-right: 0; /* Remove margin for the last button */
+margin-right: 0; 
 }
 
-/* Button Styles */
 .Reset_Candidate_Button, .Share_Nomination_Result_Button, .Unshare_Nomination_Result_Button,
 .Reset_SRC_Button, .Share_SRC_Result_Button, .Unshare_SRC_Result_Button {
 padding: 10px 20px;
@@ -166,20 +163,18 @@ margin: 10px;
 color: white;
 }
 
-/* Button Background Colors */
 .Reset_Candidate_Button, .Reset_SRC_Button {
-background-color: #f44336; /* Red */
+background-color: #f44336;
 }
 
 .Share_Nomination_Result_Button, .Share_SRC_Result_Button {
-background-color: #4CAF50; /* Green */
+background-color: #4CAF50; 
 }
 
 .Unshare_Nomination_Result_Button, .Unshare_SRC_Result_Button {
-background-color: #FF9800; /* Orange */
+background-color: #FF9800; 
 }
 
-/* Hover effects */
 .Reset_Candidate_Button:hover, .Reset_SRC_Button:hover {
 background-color: #d32f2f;
 box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
@@ -198,7 +193,6 @@ box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
 transform: scale(1.05);
 }
 
-/* Active effects */
 .Reset_Candidate_Button:active, .Reset_SRC_Button:active {
 background-color: #c62828;
 box-shadow: 0 2px 5px rgba(211, 47, 47, 0.5);
@@ -217,7 +211,6 @@ box-shadow: 0 2px 5px rgba(255, 152, 0, 0.5);
 transform: scale(1.02);
 }
 
-/* Form Controls */
 input[type="text"], input[type="submit"], button {
 padding: 10px;
 border-radius: 5px;
@@ -244,7 +237,6 @@ input[type="submit"]:active, button:active {
 background-color: #141c4a;
 }
 
-/* Table Styles */
 table {
 width: 100%;
 border-collapse: collapse;
@@ -258,8 +250,8 @@ border: 1px solid #ddd;
 }
 
 table th {
-background-color: #24287E; /* Dark Blue */
-color: white; /* White font color */
+background-color: #24287E; 
+color: white; 
 font-weight: bold;
 }
 
@@ -275,7 +267,6 @@ table tr:hover {
 background-color: #f1f1f1;
 }
 
-/* Action Buttons */
 table .Approve-Button, table .Unapprove-Button, table .Delete-Button {
 border: none;
 border-radius: 5px;
@@ -289,18 +280,17 @@ display: inline-block;
 }
 
 table .Approve-Button {
-background-color: #4CAF50; /* Green */
+background-color: #4CAF50; 
 }
 
 table .Unapprove-Button {
-background-color: #FF9800; /* Orange */
+background-color: #FF9800; 
 }
 
 table .Delete-Button {
-background-color: #f44336; /* Red */
+background-color: #f44336; 
 }
 
-/* Hover effects */
 table .Approve-Button:hover {
 background-color: #45a049;
 box-shadow: 0 4px 8px rgba(0, 128, 0, 0.3);
@@ -319,7 +309,6 @@ box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
 transform: scale(1.05);
 }
 
-/* Active effects */
 table .Approve-Button:active {
 background-color: #388e3c;
 box-shadow: 0 2px 5px rgba(0, 128, 0, 0.5);
@@ -338,14 +327,13 @@ box-shadow: 0 2px 5px rgba(211, 47, 47, 0.5);
 transform: scale(1.02);
 }
 
-/* Adjust Candidate Card */
 .Candidate-Card {
     width: 100%;
-    max-width: 600px; /* Adjust max-width based on your design */
+    max-width: 600px; 
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0; /* Added margin for spacing between cards */
+    margin: 20px 0; 
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -388,15 +376,15 @@ h1 {
 }
 
 .instructions {
-    padding: 20px; /* Increased padding for a better layout */
-    background-color: #e7f3fe; /* Light blue background */
-    border: 1px solid #2196F3; /* Thicker border for emphasis */
-    color: #0d47a1; /* Darker text color for better contrast */
-    border-radius: 8px; /* Slightly larger border radius */
-    max-width: 800px; /* Maintain max width */
-    text-align: center; /* Centered text */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    margin: 20px auto; /* Add margin for spacing */
+    padding: 20px; 
+    background-color: #e7f3fe;
+    border: 1px solid #2196F3;
+    color: #0d47a1; 
+    border-radius: 8px; 
+    max-width: 800px; 
+    text-align: center; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    margin: 20px auto; 
     animation: slideDown 0.7s ease;
 }
 
@@ -411,7 +399,6 @@ h1 {
     animation: fadeInUp 1s ease forwards 0.7s;
 }
 
-/* Animation styles */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -432,12 +419,10 @@ h1 {
     }
 }
 
-/* Animation for containers */
 .animate-fade-in {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Styles for Mobile Phones */
 @media (max-width: 767px) {
     body {
         font-size: 14px; 
@@ -493,34 +478,34 @@ h1 {
     }
     
     .header-section h2 {
-        font-size: 1.5em; /* Adjust heading size for smaller screens */
+        font-size: 1.5em; 
     }
 
     .header-section {
-        padding: 10px; /* Reduce padding for header section */
+        padding: 10px; 
     }
 
     .Candidate-Card {
-        flex-direction: column; /* Stack card content vertically */
-        padding: 10px; /* Reduce padding */
-        width: 100%; /* Full width */
-        margin: 10px 0; /* Adjust margin */
-        text-align: left; /* Align text to the left */
+        flex-direction: column; 
+        padding: 10px; 
+        width: 100%; 
+        margin: 10px 0; 
+        text-align: left; 
     }
 
     .Candidate-Card img {
-        width: 80px; /* Smaller image size */
-        height: 80px; /* Maintain aspect ratio */
+        width: 80px; 
+        height: 80px; 
     }
 
     h1 {
-        font-size: 24px; /* Keep existing font size */
-        margin-top: 10px; /* Reduce top margin to bring h1 closer to the header */
+        font-size: 24px; 
+        margin-top: 10px; 
     }
 
     .instructions {
-        font-size: 14px; /* Smaller text */
-        padding: 15px; /* Reduce padding */
+        font-size: 14px; 
+        padding: 15px; 
     }
 
     .table-container {
@@ -531,86 +516,80 @@ h1 {
     }
 
     .Container {
-        padding: 10px; /* Reduce padding for container */
+        padding: 10px; 
     }
 
     .button-group {
         display: flex; 
-        flex-direction: column; /* Stack buttons vertically */
-        align-items: stretch; /* Stretch buttons to full width */
-        margin-top: 10px; /* Space above the buttons */
+        flex-direction: column; 
+        align-items: stretch; 
+        margin-top: 10px; 
     }
 
-    /* Adjust button sizes */
     .Reset_Candidate_Button, 
     .Share_Nomination_Result_Button, 
     .Unshare_Nomination_Result_Button,
     .Reset_SRC_Button, 
     .Share_SRC_Result_Button, 
     .Unshare_SRC_Result_Button {
-        font-size: 14px; /* Smaller button text */
-        padding: 8px 16px; /* Reduce padding */
+        font-size: 14px; 
+        padding: 8px 16px; 
     }
 
-    /* Table styles for smaller screens */
     table th, table td {
-        padding: 8px; /* Reduce table cell padding */
+        padding: 8px; 
     }
     
-    /* Change layout for side-by-side container */
     .side-by-side-container {
-        flex-direction: column; /* Stack items vertically */
-         width: 100%; /* Ensure full width */
+        flex-direction: column; 
+         width: 100%; 
     }
 }
 
-/* Styles for Tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
     .header-section h2 {
-        font-size: 1.75em; /* Adjust heading size for tablets */
+        font-size: 1.75em; 
     }
 
     .navbar ul {
-        justify-content: space-around; /* Space out navbar items */
+        justify-content: space-around; 
     }
 
     .Candidate-Card {
-        max-width: 90%; /* Limit card width */
-        margin: 15px auto; /* Center cards */
+        max-width: 90%; 
+        margin: 15px auto; 
     }
 
     .Candidate-Card img {
-        width: 90px; /* Slightly smaller image size */
-        height: 90px; /* Maintain aspect ratio */
+        width: 90px; 
+        height: 90px; 
     }
 
     h1 {
-        font-size: 24px; /* Keep existing font size */
-        margin-top: 10px; /* Reduce top margin to bring h1 closer to the header */
+        font-size: 24px; 
+        margin-top: 10px; 
     }
 
     .instructions {
-        font-size: 16px; /* Standard text size */
-        padding: 18px; /* Adjust padding */
+        font-size: 16px; 
+        padding: 18px; 
     }
 
     .Container {
-        padding: 15px; /* Slightly larger padding for tablets */
+        padding: 15px; 
     }
 
-    /* Button styles for tablets */
     .Reset_Candidate_Button, 
     .Share_Nomination_Result_Button, 
     .Unshare_Nomination_Result_Button,
     .Reset_SRC_Button, 
     .Share_SRC_Result_Button, 
     .Unshare_SRC_Result_Button {
-        font-size: 15px; /* Adjust button text size */
-        padding: 9px 18px; /* Adjust padding */
+        font-size: 15px; 
+        padding: 9px 18px; 
     }
 
-    /* Table styles for tablets */
     table th, table td {
-        padding: 10px; /* Standard padding for table cells */
+        padding: 10px; 
     }
 }
