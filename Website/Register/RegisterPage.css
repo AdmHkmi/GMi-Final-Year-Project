@@ -139,10 +139,20 @@ header {
         height: 60px;
     }
 
+    .welcome-message {
+        font-size: 20px;
+        margin: 10px 0; 
+        text-align: center; 
+    }
+
     .Signup-container {
         max-width: 450px; 
-        padding: 30px;
-        margin-top: 15px;
+        padding: 20px; 
+        margin-top: 10px; 
+        background-color: #f9f9f9;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
     }
 
     .Signup-container input[type="text"],
@@ -151,10 +161,28 @@ header {
     .Signup-container button {
         font-size: 15px;
         padding: 12px;
+        margin-bottom: 15px; 
+        border-radius: 8px; 
+        border: 1px solid #ccc; 
+        transition: border-color 0.3s ease; 
     }
 
-    .welcome-message {
-        font-size: 20px;
+    .Signup-container input[type="text"]:focus,
+    .Signup-container input[type="email"]:focus,
+    .Signup-container input[type="password"]:focus {
+        border-color: #007bff; 
+        outline: none; 
+    }
+
+    .Signup-container button {
+        background-color: rgb(36, 40, 104); 
+        color: white; 
+        border: none; 
+        cursor: pointer; 
+    }
+
+    .Signup-container button:hover {
+        background-color: #0056b3; 
     }
 }
 
@@ -163,10 +191,15 @@ header {
         height: 50px;
     }
 
+    .welcome-message {
+        font-size: 18px;
+        margin: 5px 0; 
+    }
+
     .Signup-container {
         max-width: 380px; 
-        padding: 25px;
-        margin-top: 10px;
+        padding: 15px; 
+        margin-top: 5px; 
     }
 
     .Signup-container input[type="text"],
@@ -176,8 +209,6 @@ header {
         font-size: 14px;
         padding: 10px;
     }
-
-    .welcome-message {
-        font-size: 18px;
-    }
 }
+
+
