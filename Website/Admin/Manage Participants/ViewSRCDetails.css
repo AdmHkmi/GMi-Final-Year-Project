@@ -215,3 +215,125 @@ header:hover {
         opacity: 1;
     }
 }
+
+@media (max-width: 767px) {
+    body {
+        font-size: 14px; 
+        overflow-x: hidden; 
+    }
+
+    header {
+        padding: 10px; 
+        position: relative; 
+        display: flex;  
+        align-items: center; 
+        justify-content: space-between; 
+    }
+
+    .logo-container {
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+    }
+
+    .top-right-buttons {
+        display: flex; 
+        align-items: center; 
+        margin-left: 10px; 
+    }
+
+    .navbar {
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        white-space: nowrap;
+        margin-top: 5px; 
+    }
+
+    .navbar ul {
+        display: inline-flex; 
+        padding: 0; 
+        margin: 0; 
+    }
+
+    .navbar li {
+        margin: 0 5px; 
+    }
+
+    .navbar a {
+        padding: 10px 15px; 
+    }
+
+    main {
+        width: 100%;
+        padding: 20px; 
+        margin-top: 5px; 
+        animation: fadeInUp 1s ease forwards 0.5s; 
+    }
+
+    .CandidateDetails {
+        margin-top: 60px; 
+        padding: 15px; 
+    }
+
+    .candidate-details-container {
+        width: 90%; 
+        max-width: 350px; 
+        padding: 15px; 
+        margin: 10px auto; 
+    }
+
+    .candidate-details-container table {
+        font-size: 0.9em; 
+    }
+
+    .candidate-details-container th,
+    .candidate-details-container td {
+        padding: 10px; 
+    }
+
+    .candidate-details-container td img {
+        width: 80px; 
+        height: 80px; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {
+        padding: 20px; 
+    }
+
+    header {
+        padding: 15px 30px; 
+    }
+
+    .navbar ul {
+        justify-content: space-between; 
+    }
+
+    .top-right-buttons {
+        margin-top: 0; 
+    }
+
+    .CandidateDetails {
+        margin-top: 80px; 
+    }
+
+    .candidate-details-container {
+        padding: 25px; 
+        margin: 15px; 
+    }
+
+    .candidate-details-container table {
+        font-size: 1em; 
+    }
+
+    .candidate-details-container th,
+    .candidate-details-container td {
+        padding: 12px; 
+    }
+
+    .candidate-details-container td img {
+        width: 90px; 
+        height: 90px; 
+    }
+}
