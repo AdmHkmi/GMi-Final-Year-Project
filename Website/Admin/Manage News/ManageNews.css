@@ -41,32 +41,32 @@ header {
 }
 
 .navbar {
-    flex: 2; /* Allow navbar to take more space */
+    flex: 2; 
 }
 
 .navbar ul {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove padding */
-    display: flex; /* Display links in a row */
-    justify-content: space-around; /* Evenly distribute links */
+    list-style-type: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: space-around;
 }
 
 .navbar li {
-    margin: 0 10px; /* Space between links */
+    margin: 0 10px; 
 }
 
 .navbar a {
-    text-decoration: none; /* Remove underline */
-    color: #000; /* Text color */
-    font-weight: bold; /* Bold text */
+    text-decoration: none; 
+    color: #000; 
+    font-weight: bold; 
 }
 
 .navbar a:hover {
-    color: #007BFF; /* Change color on hover */
+    color: #007BFF; 
 }
 
 .logo-container {
-    flex: 1; /* Allow logo to take space on the left */
+    flex: 1; 
 }
 
 
@@ -138,7 +138,6 @@ h2 {
     padding: 20px;
 }
 
-/* Center Containers */
 .Manage-News-Container,
 .Add-News-Container {
     background-color: rgba(226, 226, 226, 0.5); 
@@ -179,12 +178,12 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+    transition: background-color 0.3s, box-shadow 0.3s; 
 }
 
 .news-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly lift the item */
-    background-color: #f1f1f1; /* Change background color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f1f1f1; 
 }
 
 .news-item h3 {
@@ -194,10 +193,10 @@ h2 {
 
 .news-item p {
     margin: 10px 0;
-    max-height: 150px; /* Set a maximum height for the content */
-    overflow-y: auto; /* Add vertical scrollbar if needed */
-    padding-right: 10px; /* Add some padding to avoid scrollbar overlapping content */
-    box-sizing: border-box; /* Ensure padding is included in height */
+    max-height: 150px; 
+    overflow-y: auto;
+    padding-right: 10px; 
+    box-sizing: border-box; 
 }
 
 .news-image {
@@ -263,20 +262,20 @@ form .form-group label {
 form .form-group input,
 form .form-group textarea,
 form .form-group select {
-    padding: 10px; /* Increased padding for comfort */
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 16px; /* Consistent font size */
+    font-size: 16px; 
     width: 100%;
     box-sizing: border-box;
-    transition: border-color 0.3s, box-shadow 0.3s; /* Transition for focus effects */
+    transition: border-color 0.3s, box-shadow 0.3s; 
 }
 
 form .form-group input:focus,
 form .form-group textarea:focus,
 form .form-group select:focus {
     border-color: #24287E;
-    box-shadow: 0 0 5px rgba(36, 40, 126, 0.5); /* Add subtle shadow on focus */
+    box-shadow: 0 0 5px rgba(36, 40, 126, 0.5); 
 }
 
 form .form-group button {
@@ -295,22 +294,22 @@ form .form-group button:hover {
 }
 
 .news-item textarea {
-    resize: none; /* Prevent resizing */
-    height: 100px; /* Fixed height */
-    width: 95%; /* Full width for better responsiveness */
-    padding: 10px; /* Add some padding for comfort */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    background-color: #f9f9f9; /* Light background color */
-    color: #333; /* Text color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: border-color 0.3s; /* Smooth transition on focus */
+    resize: none; 
+    height: 100px; 
+    width: 95%; 
+    padding: 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    background-color: #f9f9f9; 
+    color: #333; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s; 
 }
 
 .news-item textarea:focus {
-    border-color: #24287E; /* Change border color on focus */
-    outline: none; /* Remove default outline */
+    border-color: #24287E; 
+    outline: none; 
 }
 
 h1 {
@@ -322,15 +321,15 @@ h1 {
 }
 
 .instructions {
-    padding: 20px; /* Increased padding for a better layout */
-    background-color: #e7f3fe; /* Light blue background */
-    border: 1px solid #2196F3; /* Thicker border for emphasis */
-    color: #0d47a1; /* Darker text color for better contrast */
-    border-radius: 8px; /* Slightly larger border radius */
-    max-width: 800px; /* Maintain max width */
-    text-align: center; /* Centered text */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    margin: 20px auto; /* Add margin for spacing */
+    padding: 20px; 
+    background-color: #e7f3fe; 
+    border: 1px solid #2196F3; 
+    color: #0d47a1; 
+    border-radius: 8px; 
+    max-width: 800px; 
+    text-align: center; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    margin: 20px auto; 
     animation: slideDown 0.7s ease;
 }
 
@@ -354,20 +353,72 @@ h1 {
     }
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px; 
+        overflow-x: hidden; 
+    }
+
+    header {
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 10px; 
+        position: relative; 
+    }
+
+    .logo-container {
+        flex: 1; 
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+    }
+
+    .top-right-buttons {
+        display: flex; 
+        align-items: center; 
+        margin-left: 10px;
+    }
+
+    .navbar {
+        overflow-x: auto; 
+        white-space: nowrap;
+        width: 100%; 
+        margin-top: 10px; 
+    }
+
+    .navbar ul {
+        display: inline-flex; 
+        padding: 0; 
+    }
+
+    .navbar li {
+        margin: 0 5px; 
+    }
+
+    .navbar a {
+        padding: 10px 15px; 
+    }
+    
     main {
-        width: 95%; /* Adjust width for smaller screens */
-        padding: 10px;
+        width: 95%; 
+        padding: 0px;
     }
     
     .news-item {
-        padding: 15px; /* Decrease padding for smaller screens */
+        padding: 15px; 
     }
 
     .news-actions button, 
     .news-actions form button {
-        font-size: 14px; /* Smaller button font size */
-        padding: 5px 8px; /* Smaller padding for buttons */
+        font-size: 14px; 
+        padding: 5px 8px; 
+    }
+
+    h1 {
+        margin-top: 1px; 
+        margin-bottom: 1px; 
     }
 }
+
