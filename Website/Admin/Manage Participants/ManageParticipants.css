@@ -122,7 +122,7 @@ h1 {
     color: #24287E;
     margin-top: 90px;
     font-size: 28px;
-    animation: fadeInDown 1s ease; /* Keep only one animation */
+    animation: fadeInDown 1s ease; 
 }
 
 .instructions {
@@ -137,7 +137,7 @@ h1 {
     font-size: 16px; 
     line-height: 1.6;
     text-align: center;
-    animation: fadeIn 1s ease; /* Keep only one animation */
+    animation: fadeIn 1s ease; 
 }
 
 main {
@@ -147,7 +147,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;  
-    animation: fadeInUp 1s ease; /* Keep only one animation */
+    animation: fadeInUp 1s ease; 
 }
 
 .search-form {
@@ -294,7 +294,7 @@ button:hover {
     margin: 20px 0;
     text-align: center;
     border-radius: 4px;
-    animation: fadeIn ease; /* Keep only one animation */
+    animation: fadeIn ease; 
 }
 
 .Manage-Participants-Container {
@@ -307,15 +307,15 @@ button:hover {
     margin-top: 30px;
     margin-bottom: 30px;
     box-sizing: border-box;
-    opacity: 1; /* Change initial opacity to 1 */
-    animation: fadeInUp ease forwards; /* Add 'forwards' to retain final styles */
+    opacity: 1; 
+    animation: fadeInUp ease forwards; 
 }
 
 .notification-buttons {
     display: flex;
-    justify-content: center; /* Center the buttons */
-    gap: 10px; /* Space between buttons */
-    margin-bottom: 20px; /* Optional: space below buttons */
+    justify-content: center; 
+    gap: 10px; 
+    margin-bottom: 20px;
 }
 
 .notify-button{
@@ -349,27 +349,119 @@ button:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@media screen and (max-width: 1000px) {
-    .participants-grid {
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; 
+        overflow-x: hidden; 
     }
-}
 
-@media screen and (max-width: 600px) {
+    header {
+        padding: 10px; 
+        position: relative; 
+        display: flex;  
+        align-items: center; 
+        justify-content: space-between; 
+    }
+
+    .logo-container {
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+    }
+
+    .top-right-buttons {
+        display: flex; 
+        align-items: center; 
+        margin-left: 10px; 
+    }
+
+    .navbar {
+        overflow-x: auto; 
+        overflow-y: hidden; 
+        white-space: nowrap;
+        margin-top: 5px; 
+    }
+
+    .navbar ul {
+        display: inline-flex; 
+        padding: 0; 
+        margin: 0; 
+    }
+
+    .navbar li {
+        margin: 0 5px; 
+    }
+
+    .navbar a {
+        padding: 10px 15px; 
+    }
+
+    main {
+        width: 100%;
+        padding: 20px; 
+        margin-top: 5px; 
+        animation: fadeInUp 1s ease forwards 0.5s; 
+    }
+    
+    .search-form {
+        flex-direction: column; 
+        align-items: stretch; 
+    }
+
+    .search-input {
+        width: 94%; 
+        margin: 10px 0; 
+    }
+    
     .participants-grid {
         grid-template-columns: 1fr; 
+        padding: 10px; 
+        max-height: 400px; 
+        overflow-y: auto; 
+        overflow-x: hidden; 
     }
 
-    .search-form {
-        flex-direction: column;
+    .participant-card {
+        padding: 15px; 
     }
-    
-    .search-input {
-        margin-bottom: 10px;
-        width: 100%;
+
+    h1 {
+        font-size: 24px; 
+        margin-top: 60px; 
     }
-    
-    .search-button {
-        width: 100%;
+
+    .instructions {
+        padding: 15px; 
+        font-size: 14px; 
+    }
+
+    .Manage-Participants-Container {
+        padding: 20px; 
+        width: 100%; 
+        margin-top: 20px; 
+    }
+
+    button {
+        font-size: 12px; 
+        padding: 8px; 
+    }
+
+    .top-right-buttons {
+        flex-direction: row; 
+        align-items: center; 
+    }
+
+    .notification-buttons {
+        flex-direction: column; 
+    }
+
+    .notify-button {
+        width: 100%; 
+        margin: 5px 0; 
+    }
+
+    .GMiLogo {
+        height: 40px; 
     }
 }
+
