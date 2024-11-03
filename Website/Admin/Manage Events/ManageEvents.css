@@ -58,32 +58,32 @@ header {
 }
 
 .navbar {
-    flex: 2; /* Allow navbar to take more space */
+    flex: 2; 
 }
 
 .navbar ul {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove padding */
-    display: flex; /* Display links in a row */
-    justify-content: space-around; /* Evenly distribute links */
+    list-style-type: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: space-around;
 }
 
 .navbar li {
-    margin: 0 10px; /* Space between links */
+    margin: 0 10px; 
 }
 
 .navbar a {
-    text-decoration: none; /* Remove underline */
-    color: #000; /* Text color */
-    font-weight: bold; /* Bold text */
+    text-decoration: none; 
+    color: #000; 
+    font-weight: bold; 
 }
 
 .navbar a:hover {
-    color: #007BFF; /* Change color on hover */
+    color: #007BFF; 
 }
 
 .logo-container {
-    flex: 1; /* Allow logo to take space on the left */
+    flex: 1; 
 }
 
 .GMiLogo {
@@ -350,3 +350,92 @@ button:hover {
     width: 200px;
 }
 
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; 
+        overflow-x: hidden; 
+    }
+
+    header {
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 10px; 
+        position: relative; 
+    }
+
+    .logo-container {
+        flex: 1; 
+        display: flex; 
+        align-items: center; 
+        justify-content: flex-start; 
+    }
+
+    .top-right-buttons {
+        display: flex; 
+        align-items: center; 
+        margin-left: 10px;
+    }
+
+    .navbar {
+        overflow-x: auto; 
+        white-space: nowrap;
+        width: 100%; 
+        margin-top: 10px; 
+    }
+
+    .navbar ul {
+        display: inline-flex; 
+        padding: 0; 
+    }
+
+    .navbar li {
+        margin: 0 5px; 
+    }
+
+    .navbar a {
+        padding: 10px 15px; 
+    }
+
+    .Container {
+        margin: 10px;
+        padding: 15px; 
+    }
+
+    table {
+        width: 100%; 
+        border-collapse: collapse; 
+        margin-top: 10px; 
+        overflow-x: auto; 
+        display: block; 
+        max-width: 100%; 
+    }
+
+    table th, table td {
+        padding: 10px; 
+        border: 1px solid #ddd; 
+        text-align: center; 
+    }
+
+    table th {
+        background-color: #24287E; 
+        color: white; 
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .back-button {
+        order: 1;
+    }
+
+    h1 {
+        margin-top: 20px;
+    }
+}
