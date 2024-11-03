@@ -103,6 +103,7 @@
                         echo "<input type='submit' class='Delete-Button' name='bulk_action' value='Delete Selected' style='background-color: red; color: white;' onclick=\"return confirm('Are you sure you want to delete the desired user?')\">";
                         echo "<br><br><br>";
                         // Table to display the users
+                        echo "<div class='table-container'>";
                         echo "<table border='1' align='center'>";
                         echo "<tr>";
                         echo "<th>Select/Deselect all<br><input type='checkbox' id='select-all'></th>";
@@ -131,6 +132,7 @@
                             echo "</tr>";
                         }
                         echo "</table>";
+                        echo "</div";
                         echo "</form>";
                     } else {
                         // Display appropriate message if no users found
