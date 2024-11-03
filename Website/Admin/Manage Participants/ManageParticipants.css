@@ -465,3 +465,16 @@ button:hover {
     }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+    .participants-grid {
+        display: flex;
+        flex-direction: column; /* Stack cards vertically */
+        max-height: 600px; /* Set a maximum height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+        padding: 20px; 
+        border: 1px solid #ddd; /* Optional: border for visibility */
+        border-radius: 10px; /* Rounded corners for the grid */
+    }
+
+}
+
