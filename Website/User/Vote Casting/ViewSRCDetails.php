@@ -7,7 +7,8 @@ if (!isset($_SESSION['StudentID'])) {
     echo "<script>
         alert('Session isn\\'t set up, please sign in first.');
         window.location.href = '../../../index.html'; // Adjust the path if necessary
-    </script>";    exit();
+    </script>";
+    exit();
 }
 
 include '../../../Database/DatabaseConnection.php';
@@ -40,6 +41,32 @@ if ($result->num_rows > 0) {
 }
 
 $stmt->close();
+
+// Initialize variables for vote limit check
+$hide_src_container = false;
+$vote_message = "";
+
+// Check SRCVoteLimit of the signed-in user
+if ($loggedInUser) {
+    // Retrieve SRCVoteLimit for the logged-in user
+    $stmt_src_status = $conn->prepare("SELECT SRCVoteLimit FROM VSVote WHERE StudentID = ?");
+    $stmt_src_status->bind_param("s", $loggedInUser);
+    $stmt_src_status->execute();
+    $stmt_src_status->bind_result($SRCVoteLimit);
+    $stmt_src_status->fetch();
+    $stmt_src_status->close();
+
+    // Check if SRCVoteLimit equals 2 to hide the SRC Container
+    if ($SRCVoteLimit >= 2) {
+        $hide_src_container = true;
+        $vote_message = "You have already cast all of your votes. Thank you for your participation.";
+    }
+}
+
+// Check if the event is active
+$event_sql = "SELECT * FROM VSEvents WHERE EventName = 'SRC Vote' AND NOW() BETWEEN StartDate AND EndDate";
+$event_result = $conn->query($event_sql);
+$event_active = ($event_result->num_rows > 0);
 
 // Check if the user has already voted for this candidate
 $voted = false;
@@ -116,10 +143,26 @@ $conn->close();
             <tr>
                 <td colspan="2">
                     <!-- Form for voting -->
-                    <form id="vote_form" method="post" action="VoteCastingPage.php">
-                        <input type="hidden" name="StudentID" value="<?php echo $StudentID; ?>">
-                        <button id="vote_button" type="button" onclick="confirmVote('<?php echo $StudentID; ?>')" class="vote-button">Vote</button>
-                    </form>
+                    <?php if ($event_active && !$hide_src_container && !$voted): ?>
+                        <form id="vote_form" method="post" action="VoteCastingPage.php">
+                            <input type="hidden" name="StudentID" value="<?php echo $StudentID; ?>">
+                            <button id="vote_button" type="button" onclick="confirmVote('<?php echo $StudentID; ?>')" class="vote-button">Vote</button>
+                        </form>
+                    <?php else: ?>
+                        <p>
+                            <?php
+                            if (!$event_active) {
+                                echo "Voting is currently closed. Please check back later.";
+                            } elseif ($voted) {
+                                echo "You have already voted for this candidate.";
+                            } elseif ($hide_src_container) {
+                                echo $vote_message; // Show vote message if limit is reached
+                            } else {
+                                echo "You have reached the maximum vote limit.";
+                            }
+                            ?>
+                        </p>
+                    <?php endif; ?>
                 </td>
             </tr>
         </table>
