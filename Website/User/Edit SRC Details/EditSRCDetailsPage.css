@@ -1,0 +1,193 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.top-right-buttons .back-button {
+    background-color: #24287E;
+    color: #D9D9D9;
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9;
+}
+
+.Profile-Container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-picture {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-picture img {
+    height: 250px;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.profile-details {
+    flex: 2;
+    margin-left: 20px;
+}
+
+.profile-details label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.profile-details input[type="text"],
+textarea {
+    width: 100%;  /* Use 100% width for responsiveness */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.profile-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #24287E;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-footer button:hover {
+    background-color: #1f1f6a; /* Darker shade on hover */
+}
+
+.profile-details textarea {
+    resize: none;  
+    width: 100%;  
+    height: 200px; /* Fixed height */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column; /* Stack the profile picture and details */
+        align-items: center; /* Center align items */
+    }
+
+    .profile-details {
+        margin-left: 0; /* Remove left margin */
+        width: 100%; /* Make it full width */
+        text-align: center; /* Center text */
+    }
+
+    .profile-picture img {
+        height: 150px; /* Smaller image for mobile */
+        width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Profile-Container {
+        padding: 10px; /* Reduced padding on smaller devices */
+    }
+
+    .profile-details input[type="text"],
+    textarea {
+        width: calc(100% - 20px); /* Adjust input width for padding */
+    }
+
+    .profile-footer button {
+        width: 100%; /* Make button full width */
+    }
+}
