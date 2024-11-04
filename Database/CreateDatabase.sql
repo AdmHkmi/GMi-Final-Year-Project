@@ -34,6 +34,8 @@ CREATE TABLE VSVote (
     StudentName VARCHAR(255) NOT NULL,
     StudentProfilePicture VARCHAR(255),
     Manifesto LONGTEXT,
+    QRCode VARCHAR(255),
+    Poster VARCHAR(255), 
     TotalCandidateVote INT DEFAULT 0,
     TotalSRCVote INT DEFAULT 0,
     NominationVoteLimit INT DEFAULT 0,
