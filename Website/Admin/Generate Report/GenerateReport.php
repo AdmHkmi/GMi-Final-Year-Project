@@ -73,7 +73,7 @@ include '../../../Database/DatabaseConnection.php';
     </div>
     <nav class="navbar">
         <ul>
-            <li><a href="ManageEvents.php">Manage Events</a></li>
+            <li><a href="../Manage Events/ManageEvents.php">Manage Events</a></li>
             <li><a href="../Manage Users/ManageUsers.php">Manage Users</a></li>
             <li><a href="../Manage Participants/ManageParticipants.php">Manage Participants</a></li>
             <li><a href="../Manage Result/ManageResult.php">Manage Results</a></li>
