@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>SRC E-Voting GMi Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add this line -->
     <link rel="stylesheet" href="UserHomepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
