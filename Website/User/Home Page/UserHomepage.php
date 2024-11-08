@@ -21,7 +21,7 @@
         <p>This site is packed with many exciting features designed to streamline and simplify the election process.</p>
     </div>
     <main>
-        <center><p>Please select an option:</p></center>
+        <center><p class="text">Please select an option:</p></center>
         <div class="option-button">
             <a href="../SRC Nomination/SRCNominationPage.php">
                 <button class="option-button-item SRC-Nomination-Button">
@@ -47,7 +47,15 @@
                     GMi UPDATES
                 </button>
             </a>
-            <?php include 'SRCEditDetailsButton.php'; ?>
+            <?php include 'CheckCandidateApproval.php'; ?>
+            <?php if ($showEditButton) {
+                echo '<a href="../Edit SRC Details/EditSRCDetailsPage.php">
+                <button class="option-button-item Edit-SRC-Details-Button">
+                <img src="../../../Images/Edit SRC Details Icon.png" width="45" height="45">
+                EDIT SRC DETAILS
+                </button>
+                </a>';
+                }?>
         </div>
     </main>
     <footer>
