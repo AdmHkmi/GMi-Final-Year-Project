@@ -139,6 +139,10 @@ body:hover {
     to { opacity: 1; transform: translateX(0); }
 }
 
+.text {
+    animation: fadeInUp ease forwards 1s;
+}
+
 .option-button {
     margin-top: 20px;
     display: flex;
