@@ -39,18 +39,51 @@ header {
     z-index: 1000;
     background-color: rgba(255, 255, 255);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.7s ease;
+}
+
+@keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+}
+
+.navbar {
+    flex: 2; 
+}
+
+.navbar ul {
+    list-style-type: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: space-around;
+}
+
+.navbar li {
+    margin: 0 10px; 
+}
+
+.navbar a {
+    text-decoration: none; 
+    color: #000; 
+    font-weight: bold; 
+}
+
+.navbar a:hover {
+    color: #007BFF; 
 }
 
 .logo-container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1; 
 }
 
 .GMiLogo {
     height: 50px;
     max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.GMiLogo:hover {
+    transform: scale(1.1);
 }
 
 .top-right-buttons {
@@ -66,6 +99,12 @@ header {
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.top-right-buttons button:hover {
+    transform: translateY(-3px);
+    background-color: #ddd;
 }
 
 .top-right-buttons .back-button {
@@ -142,6 +181,11 @@ h2 {
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
+
+    .text{
+        padding-top: 90px;
+        }
+        
     .Candidate-Card {
         flex-direction: column;
         align-items: flex-start;
@@ -166,6 +210,52 @@ h2 {
 }
 
 @media screen and (max-width: 480px) {
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .top-right-buttons {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+
+    .navbar {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar ul {
+        display: inline-flex;
+        padding: 0;
+    }
+
+    .navbar li {
+        margin: 0 5px;
+    }
+
+    .navbar a {
+        padding: 10px 15px;
+    }
+
+    .text{
+    padding-top: 90px;
+    }
+
     .Candidate-Card {
         padding: 10px;
     }
