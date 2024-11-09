@@ -1,3 +1,13 @@
+<?php
+// Start the session at the beginning of the file
+session_start();
+
+// Check if the session is not set for AdminLoggedIn
+if (!isset($_SESSION['AdminLoggedIn'])) {
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
