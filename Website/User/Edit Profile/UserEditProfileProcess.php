@@ -231,7 +231,7 @@ if (isset($_SESSION['StudentID'])) {
     }
 } else {
     // Redirect to index.html if the user is not logged in
-    header("Location: ../../../index.html");
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
     exit; // Exit after redirecting
 }
 
