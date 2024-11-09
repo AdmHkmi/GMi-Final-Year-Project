@@ -2,6 +2,11 @@
 session_start(); // Start the session
 include '../../../Database/DatabaseConnection.php';
 include '../Home Page/CheckCandidateApproval.php';
+if (!isset($_SESSION['StudentID'])) {
+    // Use JavaScript to show an alert and redirect
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+    exit; // Ensure no further code is executed
+}
 
 // Set PHP timezone to match your server's timezone
 date_default_timezone_set('Asia/Kuala_Lumpur'); // Adjust as per your timezone
