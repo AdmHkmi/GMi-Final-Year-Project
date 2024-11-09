@@ -1,6 +1,13 @@
 <?php
 // Start the session
 session_start();
+
+// Check if AdminLoggedIn session variable is not set
+if (!isset($_SESSION['AdminLoggedIn'])) {
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+    exit();
+}
+
 // Set the timezone for date and time operations
 date_default_timezone_set('Asia/Kuala_Lumpur'); 
 // Include the database connection file
