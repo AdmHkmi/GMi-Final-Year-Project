@@ -3,7 +3,7 @@ session_start(); // Start the session to access session variables
 
 // Check if AdminLoggedIn session variable is not set
 if (!isset($_SESSION['AdminLoggedIn'])) {
-    header("Location: ../../../index.html"); // Redirect to login page
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
     exit();
 }
 ?>
