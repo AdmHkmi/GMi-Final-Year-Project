@@ -14,6 +14,7 @@ $vote_message = "";
 $loggedInUser = isset($_SESSION['StudentID']) ? $_SESSION['StudentID'] : null;
 $nomination_vote_limit = 3; // Set the nomination vote limit
 $current_vote_count = 0;
+$search_query = "";
 
 // Check the user's current vote count
 $conn_vote_check = new mysqli($servername, $username, $password, $dbname);
@@ -31,6 +32,11 @@ if ($row = $result_vote_count->fetch_assoc()) {
 }
 $stmt_vote_count->close();
 $conn_vote_check->close();
+
+// Handle search request
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+    $search_query = trim($_POST['search']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,9 +60,11 @@ $conn_vote_check->close();
 
         // Function to disable vote button after voting
         function disableVoteButton(CandidateID) {
-            var voteButton = document.getElementById('vote_button_' + CandidateID);
-            voteButton.disabled = true;
-            voteButton.classList.add('disabled');
+            var voteButtons = document.querySelectorAll('.vote-button[data-id="' + CandidateID + '"]');
+            voteButtons.forEach(button => {
+                button.disabled = true;
+                button.classList.add('disabled');
+            });
         }
     </script>
 </head>
@@ -96,10 +104,9 @@ $conn_vote_check->close();
             <div class="Search">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <label for="search">Search:</label>
-                    <input type="text" id="search" name="search" placeholder="Enter Name or StudentID">
+                    <input type="text" id="search" name="search" placeholder="Enter Name or StudentID" value="<?php echo htmlspecialchars($search_query); ?>">
                     <button type="submit">Search</button>
                 </form>
-                <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) { include 'SearchParticipant.php'; } ?>
             </div>
             <div class="SRC-Container">
                 <?php
@@ -110,48 +117,56 @@ $conn_vote_check->close();
                 }
 
                 $sql = "SELECT StudentID, StudentProfilePicture, StudentName FROM VSStudents WHERE UserApproval = 1";
-                $result = $conn_display->query($sql);
+                if (!empty($search_query)) {
+                    $sql .= " AND (StudentName LIKE ? OR StudentID LIKE ?)";
+                }
+                
+                $stmt = $conn_display->prepare($sql);
+                if (!empty($search_query)) {
+                    $search_term = '%' . $search_query . '%';
+                    $stmt->bind_param("ss", $search_term, $search_term);
+                }
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                $voted_candidates = [];
+                $voted_candidates_sql = "SELECT CandidateID FROM VSVoteHistory WHERE VoterID = ? AND VoteType = 'Candidate'";
+                $stmt_voted_candidates = $conn_display->prepare($voted_candidates_sql);
+                $stmt_voted_candidates->bind_param("s", $loggedInUser);
+                $stmt_voted_candidates->execute();
+                $result_voted_candidates = $stmt_voted_candidates->get_result();
+                while ($row = $result_voted_candidates->fetch_assoc()) {
+                    $voted_candidates[] = $row['CandidateID'];
+                }
+
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $disabled_class = in_array($row["StudentID"], $voted_candidates) ? 'disabled' : '';
+                        $button_disabled = in_array($row["StudentID"], $voted_candidates) ? 'disabled' : '';
                         echo "<div class='candidate-card'>";
                         echo "<img src='../../../ProfilePicture/" . htmlspecialchars($row["StudentProfilePicture"]) . "' alt='Profile Picture'>";
                         echo "<h3 style='text-transform: uppercase;'>" . htmlspecialchars($row["StudentName"]) . "</h3>";
                         echo "<p>Student ID: " . htmlspecialchars($row["StudentID"]) . "</p>";
                         echo '<form id="form_' . $row["StudentID"] . '" method="post" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">';
                         echo '<input type="hidden" name="StudentID" value="' . $row["StudentID"] . '">';
-                        echo '<button id="vote_button_' . $row["StudentID"] . '" type="button" onclick="confirmVote(\'' . $row["StudentID"] . '\')" class="vote-button">Vote</button>';
+                        echo '<button id="vote_button_' . $row["StudentID"] . '" class="vote-button ' . $disabled_class . '" data-id="' . $row["StudentID"] . '" type="button" onclick="confirmVote(\'' . $row["StudentID"] . '\')" ' . $button_disabled . '>Vote</button>';
                         echo '</form>';
                         echo "</div>";
                     }
                 } else {
                     echo "<p>No candidates available</p>";
                 }
+                $stmt_voted_candidates->close();
                 $conn_display->close();
                 ?>
             </div>
             <script>
-    <?php
-    // PHP-generated JavaScript to disable buttons for already voted candidates
-    $conn_disable = new mysqli($servername, $username, $password, $dbname);
-    if ($conn_disable->connect_error) {
-        die("Connection failed: " . $conn_disable->connect_error);
-    }
-
-    $voted_candidates_sql = "SELECT CandidateID FROM VSVoteHistory WHERE VoterID = ? AND VoteType = 'Candidate'";
-    $stmt_voted_candidates = $conn_disable->prepare($voted_candidates_sql);
-    $stmt_voted_candidates->bind_param("s", $loggedInUser);
-    $stmt_voted_candidates->execute();
-    $result_voted_candidates = $stmt_voted_candidates->get_result();
-
-    while ($row_voted_candidates = $result_voted_candidates->fetch_assoc()) {
-        $voted_StudentID = $row_voted_candidates['CandidateID'];
-        echo "disableVoteButton('$voted_StudentID');";
-    }
-
-    $stmt_voted_candidates->close();
-    $conn_disable->close();
-    ?>
-</script>
+                <?php
+                foreach ($voted_candidates as $candidateID) {
+                    echo "disableVoteButton('$candidateID');";
+                }
+                ?>
+            </script>
 
         <?php else: ?>
             <!-- Include CandidateVoteHistory.php if the vote limit is reached -->
