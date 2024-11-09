@@ -1,6 +1,7 @@
 <?php
 session_start(); // Start the session
 include '../../../Database/DatabaseConnection.php';
+include '../Home Page/CheckCandidateApproval.php';
 
 // Set PHP timezone to match your server's timezone
 date_default_timezone_set('Asia/Kuala_Lumpur'); // Adjust as per your timezone
@@ -80,13 +81,32 @@ $show_default_message = !$nomination_isActive && !$src_isActive;
 <body>
 <div class="background-image"></div>
 <header class="header">
-    <div class="logo-container"><a href="../Home Page/UserHomepage.php"><img src="../../../Images/GMiLogo.png" class="GMiLogo" alt="GMi Logo"></a></div>
-    <div class="top-right-buttons"><a href="../Home Page/UserHomepage.php"><button class="back-button"><i class='fas fa-arrow-left'></i></button></a></div>
+    <div class="logo-container">
+        <a href="../Home Page/UserHomepage.php">
+            <img src="../../../Images/GMiLogo.png" class="GMiLogo" alt="GMi Logo"> <!-- Logo -->
+        </a>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../SRC Nomination/SRCNominationPage.php">SRC Nomination</a></li>
+            <li><a href="../Vote Casting/VoteCastingPage.php">Vote Casting</a></li>
+            <li><a href="ViewResultPage.php">View Result</a></li>
+            <li><a href="../GMi Updates/GMiUpdatesPage.php">GMi Updates</a></li>
+            <?php if ($showEditButton): ?>
+                <li><a href="../Edit SRC Details/EditSRCDetailsPage.php">Edit SRC Details</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+    <div class="top-right-buttons">
+        <a href="../Home Page/UserHomepage.php">
+            <button class="back-button"><i class='fas fa-arrow-left'></i></button> <!-- Back button -->
+        </a>
+    </div>
 </header>
 <main>
     <?php if ($nomination_active && $nomination_name === "Nomination Result"): ?>
         <?php if ($nomination_isActive): ?>
-            <h2>Nomination Results</h2>
+            <div class="text"><h2>Nomination Results</h2></div>
             <p>Thank you to everyone who participated in the nomination process.</p>
             <div class="Result-Container">
                 <?php
