@@ -23,7 +23,7 @@ if (!isset($_SESSION['AdminLoggedIn'])) {
             <button class="bars-button" id="barsButton"><i class="fa fa-bars"></i></button>
         </div>
     </header>
-    <div class="main-header"><p>WILLKOMMEN IN UNSEREM "SMART VOTING SYSTEM"</p></div>
+    <div class="main-header"><p>WILLKOMMEN IN UNSEREM "GMi SRC E-Election"</p></div>
     <div class="sub-header"><h4><b>This is our new E-election!</b></h4><p>This site is packed with many exciting features designed to streamline and simplify the election process.</p></div>
     <main>
         <center><p>Please select an option:</p></center>
