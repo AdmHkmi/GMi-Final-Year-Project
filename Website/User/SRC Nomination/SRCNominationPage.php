@@ -16,6 +16,12 @@ $nomination_vote_limit = 3; // Set the nomination vote limit
 $current_vote_count = 0;
 $search_query = "";
 
+if (!isset($_SESSION['StudentID'])) {
+    // Use JavaScript to show an alert and redirect
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+    exit; // Ensure no further code is executed
+}
+
 // Check the user's current vote count
 $conn_vote_check = new mysqli($servername, $username, $password, $dbname);
 if ($conn_vote_check->connect_error) {
