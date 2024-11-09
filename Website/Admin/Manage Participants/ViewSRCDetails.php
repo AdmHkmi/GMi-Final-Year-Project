@@ -1,6 +1,12 @@
 <?php
 session_start(); // Start the session
 
+// Check if the session is not set for AdminLoggedIn
+if (!isset($_SESSION['AdminLoggedIn'])) {
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+    exit();
+}
+
 include '../../../Database/DatabaseConnection.php';
 
 // Set PHP timezone to match your server's timezone
