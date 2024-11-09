@@ -1,4 +1,14 @@
-<?php include "../Home Page/CheckCandidateApproval.php"; ?>
+<?php
+session_start(); // Start the session to access session variables
+
+if (!isset($_SESSION['StudentID'])) {
+    // Use JavaScript to show an alert and redirect
+    echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+    exit; // Ensure no further code is executed
+}
+
+include "../Home Page/CheckCandidateApproval.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
