@@ -126,22 +126,151 @@ header {
     color: #D9D9D9;
 }
 
-
 .report-container {
-    padding: 20px;
+    padding: 30px; /* Increased padding */
     margin-top: 80px; /* Adjust for fixed header */
     background-color: rgba(255, 255, 255, 0.8); /* Light background for readability */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Increased width */
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-.report-details {
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1 {
     text-align: center;
+    font-size: 36px; /* Increased font size */
+    margin-bottom: 20px;
 }
 
-.report-details p {
-    margin: 10px 0;
-    font-size: 18px;
+canvas {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    width: 80%; /* Increased width */
+    animation: chartAnimation 1.5s ease-in-out; /* Added chart animation */
+}
+
+@keyframes chartAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#customLegend {
+    margin-top: 20px;
+}
+
+#customLegend p {
+    font-size: 18px; /* Increased font size */
+    margin: 10px 0; /* Increased margin */
+}
+
+.report-details,
+.participation-details,
+.src-details {
+    margin-top: 20px;
+    padding: 20px; /* Increased padding */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px; /* Increased font size */
+}
+
+th, td {
+    padding: 15px; /* Increased padding */
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.src-image {
+    width: 80px; /* Increased image size */
+    height: 80px;
+    object-fit: cover;
+}
+
+button.view-voters-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Increased padding */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button.view-voters-button:hover {
+    background-color: #0056b3;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 30px; /* Increased padding */
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px; /* Increased max-width */
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    font-size: 32px; /* Increased font size */
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Chart animations for the bar and pie charts */
+.bar-chart, .pie-chart {
+    animation: chartAnimation 1s ease-out;
+}
+
+@keyframes chartAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
