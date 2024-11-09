@@ -101,9 +101,9 @@
             }
         } else {
             // Handle the case where the session variable is not set
-            echo '<script>alert("You must be logged in to view this page."); window.location.href = "../../../index.html";</script>';
+            echo '<script>alert("Session is not set up, please sign in first."); window.location.href = "../../../index.html";</script>';
+            exit; // Ensure no further code is executed        
         }
-
         // Close the connection
         $conn->close();
         ?>
