@@ -15,7 +15,7 @@ function sendVerificationEmail($StudentName, $StudentEmail, $token) {
         $mail->Username   = 'adamhakimi6670i@gmail.com';            // SMTP username
         $mail->Password   = 'iwtuokefcymlmjzz';                     // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
-        $mail->Port       = 465;                                    // TCP port to connect to
+        $mail->Port       = 587;                                    // TCP port to connect to
     
         // Recipients
         $mail->setFrom('adamhakimi6670i@gmail.com', 'GMi Voting System');
