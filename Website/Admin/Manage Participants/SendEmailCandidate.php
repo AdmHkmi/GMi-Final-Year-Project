@@ -43,9 +43,9 @@ try {
         <p>Dear Student,</p>
         <p>We are pleased to inform you that your candidacy has been approved for the upcoming voting events organized by the GMi Voting System.</p>
         <p>We encourage you to prepare and engage with your fellow students to promote your manifesto.</p>
-        <p>You can update your SRC profile on the <a href='http://localhost/Voting%20System/'>GMi SRC Voting Website.</a></p>
+        <p>You can update your SRC profile on the <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a></p>
         <p>Thank you for your participation!</p>
-        <p>Best regards,<br>GMi Voting System Team</p>
+        <p>Best regards,<br>GMi SRC E-election Team</p>
     ";
 
     // Send email to each approved candidate
