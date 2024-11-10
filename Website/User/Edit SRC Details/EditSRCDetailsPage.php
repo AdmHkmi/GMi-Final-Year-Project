@@ -34,7 +34,7 @@
 </header>
     <main>
         <div class="Instruction"> 
-        <b><i>Update your SRC profile details.</i></b><br>
+        <b><i>SRC PROFILE DETAILS</i></b><br>
         <b><i>You can update your name and manifesto.</i></b>
         </div>
         <?php
