@@ -1,0 +1,331 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-image {
+    background-image: url('../../../Images/BackgroundImage2.0.png');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.7s ease;
+}
+
+@keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+}
+
+.navbar {
+    flex: 2; 
+}
+
+.navbar ul {
+    list-style-type: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: space-around;
+}
+
+.navbar li {
+    margin: 0 10px; 
+}
+
+.navbar a {
+    text-decoration: none; 
+    color: #000; 
+    font-weight: bold; 
+}
+
+.navbar a:hover {
+    color: #007BFF; 
+}
+
+.logo-container {
+    flex: 1; 
+}
+
+.GMiLogo {
+    height: 50px;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.GMiLogo:hover {
+    transform: scale(1.1);
+}
+
+.top-right-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.top-right-buttons button {
+    font-size: 18px;
+    margin-left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.top-right-buttons button:hover {
+    transform: translateY(-3px);
+    background-color: #ddd;
+}
+
+.top-right-buttons .back-button {
+    background-color: #24287E;
+    color: #D9D9D9;
+}
+
+.top-right-buttons .back-button i {
+    color: #D9D9D9;
+}
+
+
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensure content is centered vertically */
+}
+
+.Profile-Container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 36px; /* Reduced padding to make it 10% smaller */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); /* Slightly reduced box shadow */
+    text-align: left;
+    max-width: 540px; /* Reduced max-width to make it 10% smaller */
+    width: 100%;
+    margin-top: 18px; /* Reduced margin to maintain spacing */
+    animation: scaleUp 0.8s ease;
+}
+
+.Profile-Container table {
+    width: 100%;
+}
+
+.Profile-Container table td {
+    padding: 12px; /* Reduced padding for td elements */
+}
+
+.Profile-Container input[type="text"],
+.Profile-Container input[type="email"],
+.Profile-Container input[type="password"] {
+    background-color: rgba(169, 169, 204, 0.87);    
+    width: calc(100% - 16px); /* Reduced width to adjust for padding */
+    padding: 8px; /* Reduced padding for inputs */
+    margin: 8px 0; /* Reduced margin */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Slightly reduced border radius */
+    font-size: 16px; /* Slightly reduced font size */
+    color: #333;
+}
+
+.Profile-Container button {
+    background-color: rgb(36, 40, 104);
+    width: calc(100% - 16px); /* Reduced width to adjust for padding */
+    padding: 8px; /* Reduced padding for button */
+    margin: 8px 0; /* Reduced margin */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Slightly reduced border radius */
+    font-size: 16px; /* Slightly reduced font size */
+    color: white;
+    cursor: pointer;
+}
+
+.Profile-Container button:hover {
+    background-color: rgb(21, 101, 178);
+}
+
+.Instruction {
+    background-color: #24287E;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease, bounceIn 1s ease;
+}
+
+.Instruction b {
+    font-size: 1.2em;
+    color: #D9D9D9;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile and Tablet UI Adjustments */
+@media (max-width: 768px) {
+    /* For tablets and smaller screens */
+    .Instruction {
+        padding: 16px; /* Reduced padding */
+        margin-bottom: 16px;
+        font-size: 1em; /* Adjusted font size */
+        border-radius: 8px;
+    }
+
+    .Profile-Container {
+        padding: 20px; /* Reduced padding */
+        max-width: 80%; /* Reduced max width */
+        width: 90%; /* Ensure it fits within the screen */
+        margin-top: 12px;
+    }
+
+    .Profile-Container table td {
+        padding: 8px; /* Reduced padding for table cells */
+    }
+
+    .Profile-Container input[type="text"],
+    .Profile-Container input[type="email"],
+    .Profile-Container input[type="password"],
+    .Profile-Container button {
+        padding: 6px; /* Smaller padding for inputs and button */
+        font-size: 14px; /* Adjusted font size */
+        width: calc(100% - 12px); /* Adjusted width for padding */
+    }
+}
+
+/* Smaller phones adjustments (up to 480px) */
+@media (max-width: 480px) {
+        header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .top-right-buttons {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+
+    .navbar {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar ul {
+        display: inline-flex;
+        padding: 0;
+    }
+
+    .navbar li {
+        margin: 0 5px;
+    }
+
+    .navbar a {
+        padding: 10px 15px;
+    }
+    
+    .Instruction {
+        padding: 12px; /* Further reduce padding */
+        font-size: 0.85em; /* Smaller font */
+        border-radius: 6px;
+        margin-bottom: 12px;
+    }
+
+    .Profile-Container {
+        padding: 16px; /* Compact padding */
+        max-width: 90%; /* Reduce width for very small screens */
+        width: 95%; /* Full width with slight padding */
+        margin-top: 8px; /* Smaller top margin */
+    }
+
+    .Profile-Container table td {
+        padding: 6px; /* Compact padding for table cells */
+    }
+
+    .Profile-Container input[type="text"],
+    .Profile-Container input[type="email"],
+    .Profile-Container input[type="password"],
+    .Profile-Container button {
+        padding: 5px;
+        font-size: 13px; /* Smaller font for compact layout */
+        width: calc(100% - 8px); /* Adjusted width */
+    }
+}
