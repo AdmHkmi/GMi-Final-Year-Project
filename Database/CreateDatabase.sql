@@ -1,5 +1,5 @@
 -- Create the VotingSystem database
-CREATE DATABASE VotingSystem;
+CREATE DATABASE gmisrcee_VotingSystem;
 
 -- Switch to the VotingSystem database
 USE VotingSystem;
