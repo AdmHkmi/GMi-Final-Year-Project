@@ -76,7 +76,6 @@ if (!isset($_SESSION['AdminLoggedIn'])) {
             <p>In this section, you can edit existing news items by updating the title and content. Optionally, you can change the image and adjust the status to control sharing with students. Once updated, the news item will reflect the changes made. You can inform students about news by clicking the "Notify Student" button to send them an email.</p>
 
             <?php
-            session_start();
             include '../../../Database/DatabaseConnection.php';
 
             // Fetch news items
