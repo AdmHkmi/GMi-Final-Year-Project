@@ -44,7 +44,8 @@ try {
     <p>We are thrilled to inform you that your candidacy for the Student Representative Council (SRC) has been successfully approved. After careful consideration, your application stood out, demonstrating the qualities and commitment we seek in our student representatives.</p>
     <p>Becoming a part of the SRC is both an accomplishment and a responsibility. As a member, you will have the opportunity to make meaningful contributions, share student perspectives, and help shape a positive experience for all at GMi. We believe your unique ideas and dedication will bring valuable insight and energy to the council.</p>
     <p>Thank you for your enthusiasm, and we look forward to seeing the positive impact you will make. Once again, congratulations on this well-deserved recognition!</p>
-    <p>Warm regards,<br>The GMi Voting System Team</p>
+    <p>For futher information, please login to <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a></p>
+    <p>Warm regards,<br>The GMi SRC E-election Team</p>
     ";
 
     // Send email to each approved SRC candidate
