@@ -47,7 +47,7 @@ if (isset($_SESSION['StudentID'])) {
         }
     }
 
-    $codeContents = "http://localhost/Voting System/Website/User/Vote Casting/ViewSRCDetails.php?StudentID=" . urlencode($studentID);
+    $codeContents = "http://www.gmisrce-election.my/Website/User/Vote Casting/ViewSRCDetails.php?StudentID=" . urlencode($studentID);
     $fileName = $studentID . '_' . md5($codeContents) . '.png';
     $pngAbsoluteFilePath = $tempDir . $fileName;
 
