@@ -40,9 +40,9 @@ try {
         <p>Dear Student,</p>
         <p>We are pleased to inform you that the results for the recent SRC voting events have been published. Below are the details:</p>
         <p><strong>Event Name:</strong> $eventName</p>
-        <p>The results have been finalized, and you can now log in to your student account on the <a href='http://localhost/Voting System/'>GMi SRC Voting Website</a> to view the detailed results and outcomes.</p>
+        <p>The results have been finalized, and you can now log in to your student account on the <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a> to view the detailed results and outcomes.</p>
         <p>Thank you for your participation, and we encourage you to check the results!</p>
-        <p>Best regards,<br>GMi Voting System Team</p>
+        <p>Best regards,<br>GMi SRC E-election Team</p>
     ";
 
     // Check if there are any approved users
