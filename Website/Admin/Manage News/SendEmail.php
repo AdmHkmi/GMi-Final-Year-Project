@@ -46,8 +46,8 @@ try {
                 $mail->Body = "
                     <h3>" . $news['NewsTitle'] . "</h3>
                     <p>" . $news['NewsContent'] . "</p>
-                    <p>For more details, <a href='http://localhost/Voting System/'>visit GMi SRC Voting Website.</a></p>
-                    <p>Best regards,<br>GMi News Team</p>
+                    <p>For more details, visit <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a></p>
+                    <p>Best regards,<br>GMi SRC E-Election Team</p>
                 ";
 
                 // Loop through each approved student and send the email
