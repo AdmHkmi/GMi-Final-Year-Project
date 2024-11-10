@@ -65,9 +65,9 @@ if (isset($_POST['EventID'])) {
                     <p><strong>Event Name:</strong> $eventName</p>
                     <p><strong>Start Date:</strong> " . date('F j, Y, g:i A', strtotime($startDate)) . "</p>
                     <p><strong>End Date:</strong> " . date('F j, Y, g:i A', strtotime($endDate)) . "</p>
-                    <p>We encourage you to participate and make your voice heard during this voting period. For more details, please log in to your student account on the GMi Voting System portal.</p>
+                    <p>We encourage you to participate and make your voice heard during this voting period. For more details, please log in to your student account on the <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a></p>
                     <p>Thank you, and we look forward to your active involvement!</p>
-                    <p>Best regards,<br>GMi Voting System Team</p>
+                    <p>Best regards,<br>GMi SRC E-Election Team</p>
                 ";
             } elseif ($eventName == 'SRC Result' || $eventName == 'Nomination Result') {
                 // Email body for results notifications
@@ -79,9 +79,9 @@ if (isset($_POST['EventID'])) {
                         <p>Dear Student,</p>
                         <p>We are pleased to inform you that the results for the recent voting events have been published. Below are the details:</p>
                         <p><strong>Event Name:</strong> $eventName</p>
-                        <p>The results have been finalized, and you can now log in to your student account on the GMi Voting System portal to view the detailed results and outcomes.</p>
+                        <p>The results have been finalized, and you can now log in to your student account on the <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a> to view the detailed results and outcomes.</p>
                         <p>Thank you for your participation, and we encourage you to check the results!</p>
-                        <p>Best regards,<br>GMi Voting System Team</p>
+                        <p>Best regards,<br>GMi SRC E-Election Team</p>
                     ";
                 } else {
                     // Alert if the event is not active
@@ -105,8 +105,8 @@ if (isset($_POST['EventID'])) {
                     <p><strong>Event Name:</strong> $eventName</p>
                     <p><strong>Start Date:</strong> " . date('F j, Y, g:i A', strtotime($startDate)) . "</p>
                     <p><strong>End Date:</strong> " . date('F j, Y, g:i A', strtotime($endDate)) . "</p>
-                    <p>For more details, please log in to your student account on the GMi Voting System portal.</p>
-                    <p>Best regards,<br>GMi Voting System Team</p>
+                    <p>For more details, please log in to your student account on the <a href='http://www.gmisrce-election.my/'>GMi SRC E-Election.</a></p>
+                    <p>Best regards,<br>GMi SRC E-Election Team</p>
                 ";
             }
 
