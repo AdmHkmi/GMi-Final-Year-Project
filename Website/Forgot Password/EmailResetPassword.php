@@ -110,13 +110,13 @@ if ($conn->affected_rows) {  // Use the established database connection
                         <p>We received a request to reset your password for your account associated with <strong>$email</strong>.</p>
                         <p>If you did not make this request, please ignore this email.</p>
                         <p>If you would like to reset your password, please click the button below:</p>
-                        <p><a href="http://localhost/Voting System/Website/Forgot Password/ResetPassword.php?token=$token">Reset Password</a></p>
+                        <p><a href="http://www.gmisrce-election.my/Website/Forgot Password/ResetPassword.php?token=$token">Reset Password</a></p>
                         <p>This link will expire in 30 minutes.</p>
                         <p>Thank you,</p>
-                        <p>The GMi Voting System Team</p>
+                        <p>The GMi SRC E-election Team</p>
                     </div>
                     <div class="footer">
-                        <p>&copy; 2024 GMi Voting System. All rights reserved.</p>
+                        <p>&copy; 2024 GMi SRC E-election. All rights reserved.</p>
                     </div>
                 </div>
             </body>
