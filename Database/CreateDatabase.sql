@@ -2,7 +2,7 @@
 CREATE DATABASE gmisrcee_VotingSystem;
 
 -- Switch to the VotingSystem database
-USE VotingSystem;
+USE gmisrcee_VotingSystem;
 
 -- Create the VSAdmin table
 CREATE TABLE VSAdmin (
