@@ -1,9 +1,9 @@
 <?php
 // Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "VotingSystem";
+$servername = "gmisrce-election.my";
+$username = "gmisrcee";
+$password = "efd;AGv#96I79M";
+$dbname = "gmisrcee_VotingSystem";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
