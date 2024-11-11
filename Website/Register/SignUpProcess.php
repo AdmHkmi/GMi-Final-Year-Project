@@ -2,15 +2,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../phpmailer/vendor/autoload.php'; // Path to Composer's autoload.php
+require '../../phpmailer/vendor/autoload.php';
 include '../../Database/DatabaseConnection.php';
-include 'EmailUserVerification.php'; // Include the email function file
+include 'EmailUserVerification.php';
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get values from form
     $StudentName = trim($_POST['StudentName']);
-    $StudentID = strtoupper(trim($_POST['StudentID'])); // Convert to uppercase
+    $StudentID = strtoupper(trim($_POST['StudentID']));
     $StudentEmail = trim($_POST['StudentEmail']);
     $StudentPassword = trim($_POST['StudentPassword']);
 
@@ -27,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Hash the password before storing it
+    // Hash the password
     $hashedPassword = password_hash($StudentPassword, PASSWORD_DEFAULT);
 
     // Check if the StudentID or StudentEmail already exists
@@ -43,50 +42,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Insert the user into the database with UserApproval set to false
-    $sql = "INSERT INTO VSStudents (StudentName, StudentID, StudentEmail, StudentPassword, StudentProfilePicture, UserApproval) 
-            VALUES (?, ?, ?, ?, 'Default.jpg', false)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $StudentName, $StudentID, $StudentEmail, $hashedPassword);
+    // Generate a unique token for verification
+    $token = bin2hex(random_bytes(16));
 
-    if ($stmt->execute()) {
-        // Generate a unique token for verification
-        $token = bin2hex(random_bytes(16));
+    // Send verification email
+    $emailResult = sendVerificationEmail($StudentName, $StudentEmail, $token);
 
-        // Store the token in the database
-        $sqlToken = "UPDATE VSStudents SET VerificationToken = ? WHERE StudentEmail = ?";
-        $stmtToken = $conn->prepare($sqlToken);
-        $stmtToken->bind_param("ss", $token, $StudentEmail);
-        $stmtToken->execute();
+    if ($emailResult === true) {
+        // Insert the user into the database only if email was successfully sent
+        $sql = "INSERT INTO VSStudents (StudentName, StudentID, StudentEmail, StudentPassword, StudentProfilePicture, UserApproval, VerificationToken) 
+                VALUES (?, ?, ?, ?, 'Default.jpg', false, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssss", $StudentName, $StudentID, $StudentEmail, $hashedPassword, $token);
 
-        // Insert related data into VSVote
-        $profilePicture = 'Default.jpg';
-        $sqlVote = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture) 
-                    VALUES (?, ?, ?, ?)";
-        $stmtVote = $conn->prepare($sqlVote);
-        $stmtVote->bind_param("ssss", $StudentID, $StudentEmail, $StudentName, $profilePicture);
+        if ($stmt->execute()) {
+            // Insert related data into VSVote
+            $profilePicture = 'Default.jpg';
+            $sqlVote = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture) 
+                        VALUES (?, ?, ?, ?)";
+            $stmtVote = $conn->prepare($sqlVote);
+            $stmtVote->bind_param("ssss", $StudentID, $StudentEmail, $StudentName, $profilePicture);
 
-        if (!$stmtVote->execute()) {
-            echo "Error inserting into VSVote: " . $conn->error;
-        }
+            if ($stmtVote->execute()) {
+                echo '<script>alert("Registration successful! Please check your email for verification."); window.location.href = "../../index.html";</script>';
+            } else {
+                echo "Error inserting into VSVote: " . $conn->error;
+            }
 
-        // Send verification email
-        $emailResult = sendVerificationEmail($StudentName, $StudentEmail, $token);
-
-        if ($emailResult === true) {
-            echo '<script>alert("Registration successful! Please check your email for verification."); window.location.href = "../../index.html";</script>';
+            $stmtVote->close();
         } else {
-            echo $emailResult;  // Output the error message from the email function
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
-        $stmtToken->close();
-        $stmtVote->close();
+        $stmt->close();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo $emailResult;  // Output the error message from the email function
     }
 
     $stmtID->close();
-    $stmt->close();
 }
 
 $conn->close();
