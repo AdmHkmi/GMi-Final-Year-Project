@@ -42,6 +42,7 @@ $events_result = $conn->query($fetch_events_sql);
 <head>
     <title>Manage Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add this line -->
+    <link rel="icon" type="image/icon" href="../../../Images/favicon.ico">
     <link rel="stylesheet" href="ManageEvents.css"> <!-- Include CSS for styling -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Include Font Awesome for icons -->
 </head>
