@@ -89,6 +89,7 @@ $conn->close();
 <head>
     <title>Candidate Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/icon" href="../../../Images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="ViewSRCDetails.css">
     <script>
