@@ -48,7 +48,7 @@ if (isset($_POST['EventID'])) {
             $mail->setFrom('adamhakimi6670i@gmail.com', 'GMi Voting System');
 
             // Determine email content based on event type
-            if ($eventName == 'Nomination Vote' || $eventName == 'SRC Vote') {
+            if ($eventName == 'Nomination Vote' || $eventName == 'Candidate Vote') {
                 // Check if StartDate or EndDate is NULL
                 if ($startDate === NULL || $endDate === NULL) {
                     echo "<script>alert('The event start date or end date is not set. Emails cannot be sent.'); window.location.href='ManageEvents.php';</script>";
@@ -69,7 +69,7 @@ if (isset($_POST['EventID'])) {
                     <p>Thank you, and we look forward to your active involvement!</p>
                     <p>Best regards,<br>GMi SRC E-Election Team</p>
                 ";
-            } elseif ($eventName == 'SRC Result' || $eventName == 'Nomination Result') {
+            } elseif ($eventName == 'Candidate Result' || $eventName == 'Nomination Result') {
                 // Email body for results notifications
                 if ($isActive == 1) {
                     $mail->Subject = "Results Notification: $eventName";
