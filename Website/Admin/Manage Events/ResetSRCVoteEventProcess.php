@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ResetEvent'])) {
             exit; // Exit to prevent further script execution
         }
         // Prepare SQL statement to reset vote counts for SRC votes
-        $reset_vote_count_sql = "UPDATE VSVote SET TotalSRCVote = 0, SRCVoteLimit = 0";
+        $reset_vote_count_sql = "UPDATE VSVote SET TotalSRCVote = 0, CandidateVoteLimit = 0";
         if ($conn->query($reset_vote_count_sql) === TRUE) {
             // Prepare SQL statement to delete SRC vote history
             $delete_src_vote_sql = "DELETE FROM VSVoteHistory WHERE VoteType='SRC'";
