@@ -39,7 +39,7 @@ CREATE TABLE VSVote (
     TotalCandidateVote INT DEFAULT 0,
     TotalSRCVote INT DEFAULT 0,
     NominationVoteLimit INT DEFAULT 0,
-    SRCVoteLimit INT DEFAULT 0,
+    CandidateVoteLimit INT DEFAULT 0,
     CandidateApproval BOOLEAN NOT NULL DEFAULT FALSE,
     SRCApproval BOOLEAN NOT NULL DEFAULT FALSE,
     VotedDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -53,7 +53,8 @@ CREATE TABLE VSEvents (
     EventName VARCHAR(255) NOT NULL,
     IsActive BOOLEAN DEFAULT FALSE,
     StartDate DATETIME,
-    EndDate DATETIME
+    EndDate DATETIME,
+    VoteLimit INT DEFAULT 0
 );
 
 -- Create the VSNews table
@@ -105,4 +106,4 @@ VALUES ('GMiAdmin1991', 'SmartVotingGMi1991');
 
 -- Insert data into the VSEvents table
 INSERT INTO VSEvents (EventName)
-VALUES ('Nomination Vote'), ('SRC Vote'), ('Nomination Result'), ('SRC Result');
+VALUES ('Nomination Vote'), ('Candidate Vote'), ('Nomination Result'), ('Candidate Result');
