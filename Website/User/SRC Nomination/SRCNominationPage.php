@@ -85,8 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
     </div>
     <nav class="navbar">
         <ul>
-            <li><a href="SRCNominationPage.php">SRC Nomination</a></li>
-            <li><a href="../Vote Casting/VoteCastingPage.php">Vote Casting</a></li>
+            <li><a href="SRCNominationPage.php">Nomination Vote</a></li>
+            <li><a href="../Vote Casting/VoteCastingPage.php">Candidate Vote</a></li>
             <li><a href="../View Result/ViewResultPage.php">View Result</a></li>
             <li><a href="../GMi Updates/GMiUpdatesPage.php">GMi Updates</a></li>
             <?php if ($showEditButton): ?>
