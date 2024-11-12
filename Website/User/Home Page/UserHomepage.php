@@ -35,13 +35,13 @@ if (!isset($_SESSION['StudentID'])) {
             <a href="../SRC Nomination/SRCNominationPage.php">
                 <button class="option-button-item SRC-Nomination-Button">
                     <img src="../../../Images/SRC Nomination Icon.png" width="45" height="45">
-                    SRC NOMINATION
+                    NOMINATION VOTE
                 </button>
             </a>
             <a href="../Vote Casting/VoteCastingPage.php">
                 <button class="option-button-item Vote-Casting-Button">
                     <img src="../../../Images/Vote Casting Icon.png" width="45" height="45">
-                    VOTE CASTING
+                    CANDIDATE VOTE
                 </button>
             </a>
             <a href="../View Result/ViewResultPage.php">
