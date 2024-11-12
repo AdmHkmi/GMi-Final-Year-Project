@@ -63,8 +63,8 @@ $search = htmlspecialchars($search_query); // Store the original search query fo
     </div>
     <nav class="navbar">
         <ul>
-            <li><a href="../SRC Nomination/SRCNominationPage.php">SRC Nomination</a></li>
-            <li><a href="VoteCastingPage.php">Vote Casting</a></li>
+            <li><a href="../SRC Nomination/SRCNominationPage.php">Nomination Vote</a></li>
+            <li><a href="VoteCastingPage.php">Candidate Vote</a></li>
             <li><a href="../View Result/ViewResultPage.php">View Result</a></li>
             <li><a href="../GMi Updates/GMiUpdatesPage.php">GMi Updates</a></li>
             <?php if ($showEditButton): ?>
