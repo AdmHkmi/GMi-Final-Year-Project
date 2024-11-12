@@ -105,6 +105,13 @@ header {
     transition: border-color 0.3s;
 }
 
+.Signup-container input[type="text"]::placeholder,
+.Signup-container input[type="email"]::placeholder,
+.Signup-container input[type="password"]::placeholder {
+    color: black;
+    opacity: 0.6; /* Adjust opacity if needed */
+}
+
 .Signup-container input[type="text"]:focus,
 .Signup-container input[type="email"]:focus,
 .Signup-container input[type="password"]:focus {
