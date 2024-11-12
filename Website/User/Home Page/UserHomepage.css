@@ -144,16 +144,18 @@ body:hover {
 }
 
 .option-button {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 35px;
-    animation: fadeInUp ease forwards 1s;
+    gap: 30px; /* Reduced gap for a more compact layout */
+    animation: fadeInUp 1s ease forwards;
+    padding: 20px 0; /* Added padding to give breathing space */
 }
 
 .option-button-item {
-    flex: 1;
+    flex: 1 1 250px; /* Ensures items are flexible and responsive */
+    max-width: 280px; /* Limits max width for better control */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,26 +163,44 @@ body:hover {
     text-align: center;
     background-color: #D9D9D9;
     color: black;
-    padding: 50px 30px;
+    padding: 40px 25px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 15px; /* Rounded corners for a more modern look */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    max-height: 300px; /* Controls height to ensure uniformity */
 }
 
 .option-button-item:hover {
     background-color: #BFBFBF;
     transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Hover shadow effect */
 }
 
 .option-button-item img {
-    width: 45px;
-    height: 45px;
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .option-button-item img:hover {
     transform: rotate(360deg);
+    filter: brightness(1.2); /* Slight brightness effect on hover */
+}
+
+.option-button-item span {
+    font-size: 18px; /* Ensures the text stands out */
+    font-weight: 600; /* Makes the text bold for emphasis */
+    color: #333; /* Darker color for better readability */
+    transition: color 0.3s ease;
+}
+
+.option-button-item:hover span {
+    color: #1f206d; /* Changes text color on hover */
 }
 
 .contact-button {
