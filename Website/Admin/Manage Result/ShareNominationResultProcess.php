@@ -27,7 +27,7 @@ try {
     if ($updateStmt->affected_rows > 0) {
         // Commit transaction if update was successful
         $conn->commit();
-        echo '<script>alert("Nomination Results have been shared successfully."); window.location.href = "ManageResult.php";</script>';
+        echo '<script>alert("Candidate Results have been shared successfully."); window.location.href = "ManageResult.php";</script>';
         exit();
     } else {
         // Rollback transaction as no rows were updated
@@ -40,7 +40,7 @@ try {
 } catch (Exception $e) {
     // Rollback transaction on error
     $conn->rollback();
-    echo '<script>alert("Error sharing Nomination Results: ' . $e->getMessage() . '"); window.location.href = "ManageResult.php";</script>';
+    echo '<script>alert("Error sharing Candidate Results: ' . $e->getMessage() . '"); window.location.href = "ManageResult.php";</script>';
 }
 
 // Close connection
