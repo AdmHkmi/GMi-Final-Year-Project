@@ -15,6 +15,7 @@ if (!isset($_SESSION['AdminLoggedIn'])) {
     <title>Manage Users</title>
     <!-- Font Awesome for icons and external CSS for styling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/icon" href="../../../Images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="AddUser.css">
 </head>
