@@ -223,6 +223,7 @@ form {
 }
 
 form input[type="text"], 
+form input[type="number"],
 form input[type="datetime-local"] {
     background-color: #f1f3f4;
     width: calc(100% - 22px);
@@ -236,6 +237,7 @@ form input[type="datetime-local"] {
 }
 
 form input[type="text"]:focus, 
+form input[type="number"]:focus, 
 form input[type="datetime-local"]:focus {
     background-color: #fff;
     border-color: #007BFF;
