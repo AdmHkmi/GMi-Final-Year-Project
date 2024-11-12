@@ -2,6 +2,7 @@
     <head>
         <title>GMI SRC E-Voting</title>
         <link rel="stylesheet" href="Website/Login/LoginPage.css">
+        <link rel="icon" type="image/icon" href="Images/favicon.ico">
     </head>
     <body>
         <header>
@@ -15,7 +16,11 @@
                 <h2>SRC E-ELECTION</h2>
                 <form action="Website/Login/LoginProcess.php" method="post">
                     <input type="text" id="UsernameOrEmail" name="UsernameOrEmail" placeholder="StudentID or Email">
-                    <input type="password" id="password" name="password" placeholder="Password">
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                        <input type="checkbox" id="togglePassword" onclick="togglePasswordVisibility()">
+                        <label for="togglePassword">Show Password</label>
+                    </div>                    
                     <p>Create new account? <a href="Website/Register/RegisterPage.html"><b>Sign Up</b></a></p>
                     <p>Forgot password? <a href="Website/Forgot Password/ForgotPassword.html"><b>Reset Password</b></a></p>
                     <button type="submit">Login</button>
@@ -23,5 +28,12 @@
             </div>
         </main>
         <footer></footer>
+        <script>
+            function togglePasswordVisibility() {
+                const passwordInput = document.getElementById("password");
+                const type = passwordInput.type === "password" ? "text" : "password";
+                passwordInput.type = type;
+            }
+        </script>
     </body>
 </html>
