@@ -31,12 +31,12 @@ header {
     justify-content: center;
 }
 
-.GMiLogo, .MaraLogo {
+.GMiLogo {
     height: 70px;
     transition: transform 0.3s;
 }
 
-.GMiLogo:hover, .MaraLogo:hover {
+.GMiLogo:hover {
     transform: scale(1.1);
 }
 
@@ -137,7 +137,7 @@ main {
         align-items: center;
     }
 
-    .GMiLogo, .MaraLogo {
+    .GMiLogo {
         height: 60px;
     }
 
@@ -164,7 +164,7 @@ main {
         padding: 10px;
     }
 
-    .GMiLogo, .MaraLogo {
+    .GMiLogo {
         height: 50px;
     }
 
