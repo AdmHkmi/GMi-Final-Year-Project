@@ -1,6 +1,7 @@
 <html>
     <title>Register Page</title>
     <link rel="stylesheet" href="RegisterPage.css">
+    <link rel="icon" type="image/icon" href="../../Images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add this line -->
 </head>
 <body>
@@ -22,7 +23,11 @@
                     <tr><td><b>Student Email (@student.gmi.edu.my)</b></td></tr>
                     <tr><td><input type="email" id="StudentEmail" name="StudentEmail" placeholder="Jamal@student.gmi.edu.my"></td></tr>
                     <tr><td><b>Password</b></td></tr>
-                    <tr><td><input type="password" id="StudentPassword" name="StudentPassword" placeholder="JamalSukaKFC"></td></tr>
+                    <tr><td>                    
+                        <input type="password" id="StudentPassword" name="StudentPassword" placeholder="ABC123">
+                        <input type="checkbox" id="togglePassword" onclick="togglePasswordVisibility()">
+                        <label for="togglePassword">Show Password</label>
+                    </td></tr>
                     <tr><td><button type="submit">Sign Up</button></td></tr>
                     <tr><td>Have an account? <a href="../../index.html"><b>Sign In</b></a></td></tr>
                 </table>
@@ -30,5 +35,12 @@
         </div>
     </main>
     <footer></footer>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("StudentPassword");
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+        }
+    </script>
 </body>
 </html>
