@@ -8,8 +8,8 @@ try {
     // Begin transaction for atomic operations
     $conn->begin_transaction();
 
-    // Check if IsActive is already true for "SRC Result"
-    $checkStmt = $conn->prepare("SELECT IsActive FROM VSEvents WHERE EventName = 'SRC Result'");
+    // Check if IsActive is already true for "Candidate Result"
+    $checkStmt = $conn->prepare("SELECT IsActive FROM VSEvents WHERE EventName = 'Candidate Result'");
     $checkStmt->execute();
     $checkStmt->bind_result($isActive);
     $checkStmt->fetch();
@@ -20,8 +20,8 @@ try {
         exit();
     }
 
-    // Update IsActive for "SRC Result" event to TRUE (1)
-    $updateStmt = $conn->prepare("UPDATE VSEvents SET IsActive = TRUE WHERE EventName = 'SRC Result'");
+    // Update IsActive for "Candidate Result" event to TRUE (1)
+    $updateStmt = $conn->prepare("UPDATE VSEvents SET IsActive = TRUE WHERE EventName = 'Candidate Result'");
     $updateStmt->execute();
 
     if ($updateStmt->affected_rows > 0) {
