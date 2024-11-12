@@ -80,6 +80,7 @@ $show_default_message = !$nomination_isActive && !$src_isActive;
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote Casting Page</title>
+    <link rel="icon" type="image/icon" href="../../../Images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="ViewResultPage.css">
 </head>
