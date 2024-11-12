@@ -23,6 +23,28 @@ Steps:
 
 FYP TASK TO DO:
 
-- Funtionalities
-1. Set up the session more properly and correctly.
-2. Put comment on all code files.
+FYP Fix 
+
+
+Functionality
+
+- Admin View Profile
+Cant Open it 
+
+- User View Profile
+Cant Open it 
+
+- Alter Database
+Add Nomination Vote Limit
+Add SRC Vote Limit
+
+- Nomination Vote Page
+NominationVoteLimit = NominationVoteLimit
+(Follow database)
+
+- Candidate Vote Page
+(Follow database)
+SRCVoteLimit = SRCVoteLimit 
+
+- Generate Report
+Improve UI (Phones, Tablets, Desktops)
