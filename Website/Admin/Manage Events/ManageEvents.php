@@ -13,13 +13,13 @@ date_default_timezone_set('Asia/Kuala_Lumpur');
 // Include the database connection file
 include '../../../Database/DatabaseConnection.php';
 // SQL query to fetch all events from the database
-$fetch_events_sql = "SELECT EventID, EventName, StartDate, EndDate, IsActive FROM VSEvents";
+$fetch_events_sql = "SELECT EventID, EventName, StartDate, EndDate, IsActive, VoteLimit FROM VSEvents";
 $events_result = $conn->query($fetch_events_sql);
 
 // Update the IsActive status for each event based on the current date
 while ($event = $events_result->fetch_assoc()) {
-    // Skip "Nomination Result" and "SRC Result" events for status updates
-    if ($event["EventName"] !== "Nomination Result" && $event["EventName"] !== "SRC Result") {
+    // Skip "Nomination Result" and "Candidate Result" events for status updates
+    if ($event["EventName"] !== "Nomination Result" && $event["EventName"] !== "Candidate Result") {
         $current_date = date('Y-m-d H:i:s'); // Get the current date and time
         $start_date = $event["StartDate"]; // Get the event start date
         $end_date = $event["EndDate"]; // Get the event end date
@@ -94,8 +94,8 @@ $events_result = $conn->query($fetch_events_sql);
         <div class="header-section">
             <h2>Main Events</h2> <!-- Section header for main events -->
         </div>
-        <p>Main events play a vital role in the voting process. In this section, you'll find important events as listed below. The status of these events is key: if they're inactive, students can't cast their votes, and the voting process stops. Additionally, if the 'Nomination Result' or 'SRC Result' is inactive, students won't be able to see the results, but when they're active, everyone can view them. You can also utilize the "Send Email" button to notify students about the selected event.</p>
-        <div class="warning">REMEMBER!!! Everytime you reset "Nomination Vote" or "SRC Vote", it will reset the Candidate Vote Count and Student Vote Limit.</div>
+        <p>Main events play a vital role in the voting process. In this section, you'll find important events as listed below. The status of these events is key: if they're inactive, students can't cast their votes, and the voting process stops. Additionally, if the 'Nomination Result' or 'Candidate Result' is inactive, students won't be able to see the results, but when they're active, everyone can view them. You can also utilize the "Send Email" button to notify students about the selected event.</p>
+        <div class="warning">REMEMBER!!! Everytime you reset "Nomination Vote" or "Candidate Vote", it will reset the Candidate Vote Count and Student Vote Limit.</div>
         <table>
             <tr>
                 <th>Event Name</th>
@@ -108,12 +108,12 @@ $events_result = $conn->query($fetch_events_sql);
             $main_events_count = 0; // Counter for main events
             // Check for main events
             while ($event = $events_result->fetch_assoc()) {
-                if (in_array($event["EventName"], ["Nomination Vote", "Nomination Result", "SRC Vote", "SRC Result"])) {
+                if (in_array($event["EventName"], ["Nomination Vote", "Nomination Result", "Candidate Vote", "Candidate Result"])) {
                     $main_events_count++;
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($event["EventName"]) . "</td>"; // Display event name
-                    // Handle display logic for "Nomination Result" and "SRC Result"
-                    if ($event["EventName"] === "Nomination Result" || $event["EventName"] === "SRC Result") {
+                    // Handle display logic for "Nomination Result" and "Candidate Result"
+                    if ($event["EventName"] === "Nomination Result" || $event["EventName"] === "Candidate Result") {
                         echo "<td>-</td>";
                         echo "<td>-</td>";
                         echo "<td>" . ($event["IsActive"] ? "Shared" : "Not Shared") . "</td>";
@@ -132,19 +132,19 @@ $events_result = $conn->query($fetch_events_sql);
                     echo "<button class='button email-button' type='submit'>Send Email</button>";
                     echo "</form>";
                     // Conditionally display the delete button for events that can be deleted
-                    if ($event["EventName"] != "Nomination Vote" && $event["EventName"] != "SRC Vote" && $event["EventName"] != "Nomination Result" && $event["EventName"] != "SRC Result") {
+                    if ($event["EventName"] != "Nomination Vote" && $event["EventName"] != "Candidate Vote" && $event["EventName"] != "Nomination Result" && $event["EventName"] != "Candidate Result") {
                         echo "<form method='post' action='DeleteEventProcess.php' class='inline-form' onsubmit='return confirm(\"Are you sure you want to delete this event?\");'>";
                         echo "<input type='hidden' name='deleteEventID' value='" . $event["EventID"] . "'>"; // Hidden input for event ID
                         echo "<button class='button delete-button' type='submit'>Delete</button>"; // Delete button
                         echo "</form>";
                     }
                     // Conditionally display the Reset button for events that can be reset
-                    if ($event["EventName"] != "Nomination Result" && $event["EventName"] != "SRC Result") {
+                    if ($event["EventName"] != "Nomination Result" && $event["EventName"] != "Candidate Result") {
                         echo "<form method='post' action='";
                         // Determine the action based on the event name
                         if ($event["EventName"] === "Nomination Vote") {
                             echo "ResetNominationVoteEventProcess.php";
-                        } elseif ($event["EventName"] === "SRC Vote") {
+                        } elseif ($event["EventName"] === "Candidate Vote") {
                             echo "ResetSRCVoteEventProcess.php";
                         } else {
                             echo "ResetEventProcess.php";
@@ -158,8 +158,8 @@ $events_result = $conn->query($fetch_events_sql);
                     echo "<button onclick='toggleEditRow(" . $event["EventID"] . ")' class='button edit-button'>Edit</button>";
                     echo "</td>"; // Close table data
                     echo "</tr>"; // Close table row
-                    // Create the edit form row for "Nomination Result" and "SRC Result" events
-                    if ($event["EventName"] === "Nomination Result" || $event["EventName"] === "SRC Result") {
+                    // Create the edit form row for "Nomination Result" and "Candidate Result" events
+                    if ($event["EventName"] === "Nomination Result" || $event["EventName"] === "Candidate Result") {
                         echo "<tr id='edit-row-" . $event["EventID"] . "' style='display:none;'>"; // Hidden row
                         echo "<td colspan='5'>"; // Span across all columns
                         echo "<form method='post' action='EditEventProcess.php'>";
@@ -183,6 +183,8 @@ $events_result = $conn->query($fetch_events_sql);
                         echo "<input type='datetime-local' id='StartDate-" . $event["EventID"] . "' name='StartDate' value='" . date('Y-m-d\TH:i', strtotime($event["StartDate"])) . "' required><br>"; // Start date input
                         echo "<label for='EndDate-" . $event["EventID"] . "'>End Date:</label>";
                         echo "<input type='datetime-local' id='EndDate-" . $event["EventID"] . "' name='EndDate' value='" . date('Y-m-d\TH:i', strtotime($event["EndDate"])) . "' required><br><br>"; // End date input
+                        echo "<label for='VoteLimit-" . $event["EventID"] . "'>Vote Limit:</label>";
+                        echo "<input type='number' id='VoteLimit-" . $event["EventID"] . "' name='VoteLimit' value='" . htmlspecialchars($event["VoteLimit"]) . "' required><br>";
                         echo "<button class='button save-button' type='submit' onclick=\"return confirm('Are you sure you want to save these changes?')\">Save Changes</button>"; // Save changes button
                         echo "</form>";
                         echo "</td>";
@@ -217,7 +219,7 @@ $events_result = $conn->query($fetch_events_sql);
             $other_events_count = 0; // Counter for other events
             // Check for other events
             while ($event = $events_result->fetch_assoc()) {
-                if (!in_array($event["EventName"], ["Nomination Vote", "Nomination Result", "SRC Vote", "SRC Result"])) {
+                if (!in_array($event["EventName"], ["Nomination Vote", "Nomination Result", "Candidate Vote", "Candidate Result"])) {
                     $other_events_count++;
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($event["EventName"]) . "</td>"; // Display event name
