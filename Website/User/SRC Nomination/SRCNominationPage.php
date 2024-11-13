@@ -34,19 +34,19 @@ if ($row = $result_event_limit->fetch_assoc()) {
 }
 $conn_vote_limit->close();
 
-// Check the user's current vote count
+// Fetch the current vote count from the VSVote table for the logged-in user
 $conn_vote_check = new mysqli($servername, $username, $password, $dbname);
 if ($conn_vote_check->connect_error) {
     die("Connection failed: " . $conn_vote_check->connect_error);
 }
 
-$sql_vote_count = "SELECT COUNT(*) as vote_count FROM VSVoteHistory WHERE VoterID = ? AND VoteType = 'Candidate'";
+$sql_vote_count = "SELECT NominationVoteLimit FROM VSVote WHERE StudentID = ?";
 $stmt_vote_count = $conn_vote_check->prepare($sql_vote_count);
 $stmt_vote_count->bind_param("s", $loggedInUser);
 $stmt_vote_count->execute();
 $result_vote_count = $stmt_vote_count->get_result();
 if ($row = $result_vote_count->fetch_assoc()) {
-    $current_vote_count = $row['vote_count'];
+    $current_vote_count = $row['NominationVoteLimit']; // Fetch the dynamic vote count from the database
 }
 $stmt_vote_count->close();
 $conn_vote_check->close();
