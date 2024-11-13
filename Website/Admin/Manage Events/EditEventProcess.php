@@ -8,11 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $startDate = $_POST['StartDate'];
     $endDate = $_POST['EndDate'];
     $voteLimit = isset($_POST['VoteLimit']) ? $_POST['VoteLimit'] : null;
+    $isActive = isset($_POST['IsActive']) ? 1 : 0; // Checkbox for IsActive
 
     // Prepare the update query
-    $update_sql = "UPDATE VSEvents SET StartDate = ?, EndDate = ?, VoteLimit = ? WHERE EventID = ?";
+    $update_sql = "UPDATE VSEvents SET StartDate = ?, EndDate = ?, VoteLimit = ?, IsActive = ? WHERE EventID = ?";
     $stmt = $conn->prepare($update_sql);
-    $stmt->bind_param("ssii", $startDate, $endDate, $voteLimit, $eventID);
+    $stmt->bind_param("ssiii", $startDate, $endDate, $voteLimit, $isActive, $eventID);
 
     // Execute and check for success
     if ($stmt->execute()) {
