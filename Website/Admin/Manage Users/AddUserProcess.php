@@ -30,26 +30,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssi", $studentID, $studentEmail, $studentPassword, $studentName, $profilePicture, $userApproval); // Bind parameters
     // Execute the insert statement
     if ($stmt->execute()) {
-        // Prepare to insert the new user into the VSVote table
-        $sqlVote = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture) 
-                    VALUES (?, ?, ?, ?)";
-        $stmtVote = $conn->prepare($sqlVote); // Prepare the vote insertion statement
-        $stmtVote->bind_param("ssss", $studentID, $studentEmail, $studentName, $profilePicture); // Bind parameters for vote insertion
-        // Execute the vote insertion statement
-        if ($stmtVote->execute()) {
-            // If successful, show a success alert
-            echo '<script>alert("New user added successfully."); window.location.href = "AddUser.php";</script>';
+        // Only insert into VSVote if user is approved
+        if ($userApproval == 1) {
+            // Prepare to insert the new user into the VSVote table
+            $sqlVote = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture) 
+                        VALUES (?, ?, ?, ?)";
+            $stmtVote = $conn->prepare($sqlVote); // Prepare the vote insertion statement
+            $stmtVote->bind_param("ssss", $studentID, $studentEmail, $studentName, $profilePicture); // Bind parameters for vote insertion
+            // Execute the vote insertion statement
+            if ($stmtVote->execute()) {
+                // If successful, show a success alert
+                echo '<script>alert("New user added successfully."); window.location.href = "AddUser.php";</script>';
+            } else {
+                // If there is an error creating the vote record, show an alert with the error message
+                echo '<script>alert("User added, but error creating vote record: ' . $stmtVote->error . '"); window.location.href = "AddUser.php";</script>';
+            }
+            $stmtVote->close(); // Close the vote statement
         } else {
-            // If there is an error creating the vote record, show an alert with the error message
-            echo '<script>alert("User added, but error creating vote record: ' . $stmtVote->error . '"); window.location.href = "AddUser.php";</script>';
+            // If the user is not approved, show success without inserting into VSVote
+            echo '<script>alert("New user added successfully, but not approved yet."); window.location.href = "AddUser.php";</script>';
         }
-        $stmtVote->close(); // Close the vote statement
+        $stmt->close(); // Close the user insertion statement
     } else {
         // If there is an error inserting the user, show an alert with the error message
         echo '<script>alert("Error: ' . $stmt->error . '"); window.location.href = "AddUser.php";</script>';
     }
     $stmtID->close(); // Close the ID check statement
-    $stmt->close(); // Close the user insertion statement
 }
 // Close the database connection
 $conn->close();
