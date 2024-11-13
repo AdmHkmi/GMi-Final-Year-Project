@@ -39,13 +39,13 @@ if ($result_nomination->num_rows > 0) {
 
 $conn_nomination->close();
 
-// Check for an active event named "SRC Result"
+// Check for an active event named "Candidate Result"
 $conn_src = new mysqli($servername, $username, $password, $dbname);
 if ($conn_src->connect_error) {
     die("Connection failed: " . $conn_src->connect_error);
 }
 
-$check_src_sql = "SELECT EventID, EventName, IsActive FROM VSEvents WHERE EventName = 'SRC Result'";
+$check_src_sql = "SELECT EventID, EventName, IsActive FROM VSEvents WHERE EventName = 'Candidate Result'";
 $result_src = $conn_src->query($check_src_sql);
 
 if ($result_src->num_rows > 0) {
@@ -61,14 +61,14 @@ $conn_src->close();
 if ($nomination_active && $nomination_name === "Nomination Result" && $nomination_isActive) {
     // Since we want to remove the specific message, we don't set $nomination_message here
 } else {
-    $nomination_message = "The results haven't been published yet. Please try again later.";
+    $nomination_message = "The nomination result haven't been published yet. Please try again later.";
 }
 
-// Message for displaying results or informing about the event status - SRC Result
-if ($src_active && $src_name === "SRC Result" && $src_isActive) {
+// Message for displaying results or informing about the event status - Candidate Result
+if ($src_active && $src_name === "Candidate Result" && $src_isActive) {
     // Since we want to remove the specific message, we don't set $src_message here
 } else {
-    $src_message = "The results haven't been published yet. Please try again later.";
+    $src_message = "The src result haven't been published yet. Please try again later.";
 }
 
 // Check if both results are not active
@@ -149,7 +149,7 @@ $show_default_message = !$nomination_isActive && !$src_isActive;
         </div>
     <?php endif; ?>
 
-    <?php if ($src_active && $src_name === "SRC Result"): ?>
+    <?php if ($src_active && $src_name === "Candidate Result"): ?>
         <?php if ($src_isActive): ?>
             <h2>Introducing our new SRC (Student Representative Council)!</h2>
             <p>Thanks to everyone who participated in this voting event.</p>
