@@ -69,7 +69,7 @@ include "../Home Page/CheckCandidateApproval.php";
             echo "<table>";
             echo "<tr><th>Event Name</th><th>Start Date</th><th>End Date</th></tr>";
             while ($event = $events_result->fetch_assoc()) {
-                if ($event["EventName"] === "Nomination Result" || $event["EventName"] === "SRC Result") {
+                if ($event["EventName"] === "Nomination Result" || $event["EventName"] === "Candidate Result") {
                     continue; // Skip displaying "Voting Result" event
                 }
                 
