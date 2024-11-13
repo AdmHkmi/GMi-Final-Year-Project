@@ -1,3 +1,9 @@
+<?php
+    // Start the session if it hasn't already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <html>
 <head>
     <title>User Profile Page</title>
@@ -8,11 +14,6 @@
 </head>
 <body>
     <?php
-    // Start the session if it hasn't already started
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
     // Ensure the database connection is included
     include '../../../Database/DatabaseConnection.php';
 
