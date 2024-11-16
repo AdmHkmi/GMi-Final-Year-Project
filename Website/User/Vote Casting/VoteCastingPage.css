@@ -488,49 +488,42 @@ header {
             padding: 15px;
         }
     
-        /* Candidate card styling for better mobile display */
-    /* Candidate card styling for better mobile display */
-    .candidate-card {
-        width: 95%;
-        max-width: 380px;
-        min-height: 500px; /* Increased height for more space */
-        margin: 15px auto;
-        padding: 25px 20px; /* Extra padding for content spacing */
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .candidate-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Candidate image styling */
-    .candidate-card img {
-        width: 80%;
-        max-width: 220px;
-        height: auto;
-        border-radius: 50%;
-        margin-bottom: 20px;
-    }
-
-    /* Candidate name and description */
-    .candidate-card h3 {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-        color: #24287E;
-    }
-
-    .candidate-card p {
-        font-size: 1.1em;
-        color: #555;
-        line-height: 1.5;
-        margin: 15px 0;
-    }
+        .candidate-card {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #fff; /* Card background color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+            text-align: center; /* Center-align text */
+            overflow: hidden; /* Prevent content from overflowing */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        }
+    
+        .candidate-card:hover {
+            transform: translateY(-5px); /* Lift the card on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+        }
+    
+        .candidate-card img {
+            width: 80%; /* Adjust the image size */
+            max-width: 200px;
+            border-radius: 50%; /* Make image circular */
+            margin-bottom: 15px;
+        }
+    
+        .candidate-card h3 {
+            font-size: 1.2em; /* Slightly larger font for name */
+            margin-bottom: 10px;
+            color: #24287E; /* Add color to the name */
+        }
+    
+        .candidate-card p {
+            font-size: 0.9em; /* Adjust text size */
+            color: #555; /* Lighter color for description */
+            line-height: 1.4; /* Improve line spacing for readability */
+        }
 
     /* Vote and manifesto buttons styling */
     .vote-button,
