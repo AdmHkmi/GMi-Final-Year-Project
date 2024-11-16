@@ -77,6 +77,7 @@
             </ul>
         </nav>
         <div class="top-right-buttons">
+        <a href="ChangeStudentID.php"><button class="add-user">Change Student ID</button></a>
             <a href="../Home Page/UserHomepage.php">
                 <button class="back-button"><i class='fas fa-arrow-left'></i></button> <!-- Back button -->
             </a>
@@ -291,7 +292,7 @@ if (isset($_SESSION['StudentID'])) {
                             </tr>
                             <tr>
                                 <td><b>Student ID</b><br>
-                                    <input type="text" id="StudentID" name="StudentID" value="' . htmlspecialchars($row["StudentID"]) . '">
+                                <input type="text" id="StudentID" name="StudentID" value="' . htmlspecialchars($row["StudentID"]) . '" readonly>
                                 </td>
                             </tr>
                             <tr>

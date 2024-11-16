@@ -115,6 +115,10 @@ header {
     color: #D9D9D9;
 }
 
+.top-right-buttons .add-user {
+    background-color: rgb(18, 146, 18);
+    color: #fcfcfc;
+}
 
 .main {
     flex: 1;
