@@ -3,57 +3,62 @@
 session_start();
 // Include the database connection file
 include '../../../Database/DatabaseConnection.php';
+
 // Check if the request method is POST and the EventID is set
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['EventID'])) {
     // Retrieve the EventID from the POST data
     $EventID = $_POST['EventID'];
 
-    // Check if IsActive status is being updated
+    // Initialize an array to store the fields to update
+    $fields_to_update = [];
+    $parameters = [];
+    $types = "";
+
+    // Check if each field is set and add it to the update query
+    if (isset($_POST['StartDate'])) {
+        $fields_to_update[] = "StartDate = ?";
+        $parameters[] = $_POST['StartDate'];
+        $types .= "s";
+    }
+    if (isset($_POST['EndDate'])) {
+        $fields_to_update[] = "EndDate = ?";
+        $parameters[] = $_POST['EndDate'];
+        $types .= "s";
+    }
+    if (isset($_POST['VoteLimit'])) {
+        $fields_to_update[] = "VoteLimit = ?";
+        $parameters[] = (int)$_POST['VoteLimit'];
+        $types .= "i";
+    }
+    if (isset($_POST['EventName'])) {
+        $fields_to_update[] = "EventName = ?";
+        $parameters[] = $_POST['EventName'];
+        $types .= "s";
+    }
     if (isset($_POST['IsActive'])) {
-        $IsActive = $_POST['IsActive'];
-        // Prepare SQL statement to update IsActive status
-        $update_event_sql = "UPDATE VSEvents SET IsActive = ? WHERE EventID = ?";
-        $stmt = $conn->prepare($update_event_sql);
-        // Bind parameters: IsActive (integer) and EventID (integer)
-        $stmt->bind_param("ii", $IsActive, $EventID);
-    } 
-    // Check if StartDate and EndDate are being updated
-    elseif (isset($_POST['StartDate']) && isset($_POST['EndDate'])) {
-        $StartDate = $_POST['StartDate'];
-        $EndDate = $_POST['EndDate'];
-        // Prepare SQL statement to update StartDate and EndDate
-        $update_event_sql = "UPDATE VSEvents SET StartDate = ?, EndDate = ? WHERE EventID = ?";
-        $stmt = $conn->prepare($update_event_sql);
-        // Bind parameters: StartDate (string), EndDate (string), and EventID (integer)
-        $stmt->bind_param("ssi", $StartDate, $EndDate, $EventID);
-    } 
-    // Check if EventName is being updated
-    elseif (isset($_POST['EventName'])) {
-        $EventName = $_POST['EventName'];
-        $StartDate = $_POST['StartDate'];
-        $EndDate = $_POST['EndDate'];
-        $IsActive = $_POST['IsActive'];
-        // Prepare SQL statement to update EventName, StartDate, EndDate, and IsActive
-        $update_event_sql = "UPDATE VSEvents SET EventName = ?, StartDate = ?, EndDate = ?, IsActive = ? WHERE EventID = ?";
-        $stmt = $conn->prepare($update_event_sql);
-        // Bind parameters: EventName (string), StartDate (string), EndDate (string), IsActive (integer), and EventID (integer)
-        $stmt->bind_param("sssii", $EventName, $StartDate, $EndDate, $IsActive, $EventID);
-    } 
-    // Check if VoteLimit is being updated
-    elseif (isset($_POST['VoteLimit'])) {
-        $VoteLimit = $_POST['VoteLimit'];
-        // Prepare SQL statement to update VoteLimit
-        $update_event_sql = "UPDATE VSEvents SET VoteLimit = ? WHERE EventID = ?";
-        $stmt = $conn->prepare($update_event_sql);
-        // Bind parameters: VoteLimit (integer) and EventID (integer)
-        $stmt->bind_param("ii", $VoteLimit, $EventID);
-    } else {
-        // Handle the case where no valid POST data is provided
-        echo "Invalid POST data received.";
+        $fields_to_update[] = "IsActive = ?";
+        $parameters[] = (int)$_POST['IsActive'];
+        $types .= "i";
+    }
+
+    // If there are no fields to update, exit
+    if (empty($fields_to_update)) {
+        echo "No valid data provided for updating.";
         exit();
     }
 
-    // Execute the prepared statement and check for success
+    // Construct the SQL query dynamically
+    $update_event_sql = "UPDATE VSEvents SET " . implode(", ", $fields_to_update) . " WHERE EventID = ?";
+    $parameters[] = (int)$EventID;
+    $types .= "i";
+
+    // Prepare the statement
+    $stmt = $conn->prepare($update_event_sql);
+
+    // Bind the parameters dynamically
+    $stmt->bind_param($types, ...$parameters);
+
+    // Execute the statement
     if ($stmt->execute()) {
         // On success, redirect to ManageEvents page
         header("Location: ManageEvents.php");
