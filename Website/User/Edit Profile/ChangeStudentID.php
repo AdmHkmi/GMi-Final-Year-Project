@@ -81,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Change Student ID</title>
@@ -111,9 +112,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Insert your current password" required>
-            
+            <div class="toggle-password-container">
+                <input type="checkbox" id="togglePassword" onclick="togglePasswordVisibility('password')">
+                <label for="togglePassword">Show Password</label>
+            </div>
             <button type="submit" class="submit-button">Update Student ID</button>
         </form>
     </div>
 </body>
+<script>
+    function togglePasswordVisibility(fieldId) {
+        const passwordField = document.getElementById(fieldId);
+        passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+</script>
 </html>
+
