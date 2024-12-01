@@ -24,7 +24,7 @@ Steps:
 Admin Information:
 
 Gmail
-Email: gmisrceelection.gmail.com 
+Email: gmisrceelection@gmail.com 
 Password: SmartVotingGMi1991
 
 Website
