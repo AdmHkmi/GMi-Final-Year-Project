@@ -21,30 +21,12 @@ Steps:
 5. Insert CreateDatabase.sql file code
 6. Click Go button
 
-FYP TASK TO DO:
+Admin Information:
 
-FYP Fix 
+Gmail
+Email: gmisrceelection.gmail.com 
+Password: SmartVotingGMi1991
 
-
-Functionality
-
-- Admin View Profile
-Cant Open it 
-
-- User View Profile
-Cant Open it 
-
-- Alter Database
-Add Nomination Vote Limit
-Add SRC Vote Limit
-
-- Nomination Vote Page
-NominationVoteLimit = NominationVoteLimit
-(Follow database)
-
-- Candidate Vote Page
-(Follow database)
-SRCVoteLimit = SRCVoteLimit 
-
-- Generate Report
-Improve UI (Phones, Tablets, Desktops)
+Website
+Email: GMiAdmin1991
+Password: SmartVotingGMi1991
