@@ -27,13 +27,13 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com'; // SMTP server
     $mail->SMTPAuth = true;
-    $mail->Username = 'adamhakimi6670i@gmail.com'; // SMTP username
-    $mail->Password = 'iwtuokefcymlmjzz'; // SMTP password
+    $mail->Username = 'gmisrceelection@gmail.com'; // SMTP username
+    $mail->Password = 'ycwncyptsdelfpzp'; // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
     // Sender information
-    $mail->setFrom('adamhakimi6670i@gmail.com', 'GMi Voting System');
+    $mail->setFrom('gmisrceelection@gmail.com', 'GMi Voting System');
 
     // Email body for candidates
     $mail->Subject = "Congratulations on Your Candidacy Approval";
