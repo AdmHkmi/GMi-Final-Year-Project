@@ -30,3 +30,6 @@ Password: SmartVotingGMi1991
 Website
 Email: GMiAdmin1991
 Password: SmartVotingGMi1991
+
+phpmailer
+Password: ycwncyptsdelfpzp
