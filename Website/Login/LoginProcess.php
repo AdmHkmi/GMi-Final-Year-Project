@@ -42,7 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare SQL statement to retrieve user from the database
-    $sqlUser = "SELECT * FROM VSStudents WHERE (StudentID = ? OR StudentEmail = ?)";
+    $sqlUser = "
+    SELECT VSStudents.*, VSVote.CandidateVoteLimit, VSVote.NominationVoteLimit
+    FROM VSStudents
+    LEFT JOIN VSVote ON VSStudents.StudentID = VSVote.StudentID
+    WHERE (VSStudents.StudentID = ? OR VSStudents.StudentEmail = ?)
+";
 
     $stmtUser = $conn->prepare($sqlUser);
     $stmtUser->bind_param("ss", $UsernameOrEmail, $UsernameOrEmail);
@@ -60,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['StudentID'] = $userRow['StudentID'];
                 $_SESSION['StudentEmail'] = $userRow['StudentEmail'];
                 $_SESSION['role'] = 'user';
-                $_SESSION['SRCVoteLimit'] = $userRow['SRCVoteLimit']; // Store SRCVoteLimit in session
+                $_SESSION['CandidateVoteLimit'] = $userRow['CandidateVoteLimit']; // Store CandidateVoteLimit in session
                 $_SESSION['NominationVoteLimit'] = $userRow['NominationVoteLimit']; // Store NominationVoteLimit in session
 
                 // Set cookies for user login
