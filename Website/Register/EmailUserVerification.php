@@ -12,13 +12,13 @@ function sendVerificationEmail($StudentName, $StudentEmail, $token) {
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'adamhakimi6670i@gmail.com';            // SMTP username
-        $mail->Password   = 'iwtuokefcymlmjzz';                     // SMTP password
+        $mail->Username   = 'gmisrceelection@gmail.com';            // SMTP username
+        $mail->Password   = 'ycwncyptsdelfpzp';                     // SMTP password
         $mail->SMTPSecure = 'tls';         // Enable TLS encryption
         $mail->Port       = 587;                                    // TCP port to connect to
     
         // Recipients
-        $mail->setFrom('adamhakimi6670i@gmail.com', 'GMi Voting System');
+        $mail->setFrom('gmisrceelection@gmail.com', 'GMi Voting System');
         $mail->addAddress($StudentEmail, $StudentName);             // Add a recipient
     
         // Content
