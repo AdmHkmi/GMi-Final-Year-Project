@@ -46,8 +46,8 @@ if ($conn->affected_rows) {  // Use the established database connection
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'adamhakimi6670i@gmail.com';            // SMTP username (should be secured in production)
-        $mail->Password   = 'iwtuokefcymlmjzz';                     // SMTP password (should be secured in production)
+        $mail->Username   = 'gmisrceelection@gmail.com';            // SMTP username (should be secured in production)
+        $mail->Password   = 'ycwncyptsdelfpzp';                     // SMTP password (should be secured in production)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption
         $mail->Port       = 587;                                    // TCP port to connect to
 
