@@ -16,61 +16,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['bulk_action'])) {
     
     // Loop through each selected user and perform the appropriate action
     foreach ($selectedUsers as $userID) {
-    $userID = $conn->real_escape_string($userID); // Escape user ID to prevent SQL injection
+        $userID = $conn->real_escape_string($userID); // Escape user ID to prevent SQL injection
+        
+        // Switch based on the bulk action (approve, unapprove, delete)
+        switch ($bulkAction) {
+            case 'Approve Selected':
+                // Approve the selected user
+                $sql = "UPDATE VSStudents SET UserApproval = 1 WHERE StudentID = '$userID'";
+                if (!$conn->query($sql)) {
+                    echo "Error updating user approval: " . $conn->error;
+                    continue; // Skip to next user on error
+                }
+                
+                // Insert the approved user into VSVote only if the StudentID doesn't already exist
+                $insertVoteSql = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture)
+                                  SELECT StudentID, StudentEmail, StudentName, StudentProfilePicture
+                                  FROM VSStudents
+                                  WHERE StudentID = '$userID' AND NOT EXISTS (
+                                      SELECT 1 FROM VSVote WHERE StudentID = '$userID'
+                                  )";
+                if (!$conn->query($insertVoteSql)) {
+                    echo "Error inserting into VSVote: " . $conn->error;
+                }
+                break;
+            
 
-    switch ($bulkAction) {
-        case 'Approve Selected':
-            $sql = "UPDATE VSStudents SET UserApproval = 1 WHERE StudentID = '$userID'";
-            if (!$conn->query($sql)) {
-                echo "Error updating user approval: " . $conn->error;
-                continue 2; // Skip to the next user
-            }
-            $insertVoteSql = "INSERT INTO VSVote (StudentID, StudentEmail, StudentName, StudentProfilePicture)
-                              SELECT StudentID, StudentEmail, StudentName, StudentProfilePicture
-                              FROM VSStudents
-                              WHERE StudentID = '$userID'";
-            if (!$conn->query($insertVoteSql)) {
-                echo "Error inserting into VSVote: " . $conn->error;
-            }
-            break;
+            case 'Unapprove Selected':
+                // Unapprove the selected user
+                $sql = "UPDATE VSStudents SET UserApproval = 0 WHERE StudentID = '$userID'";
+                if (!$conn->query($sql)) {
+                    echo "Error updating user unapproval: " . $conn->error;
+                    continue; // Skip to next user on error
+                }
+                
+                // Delete the user's voting data from VSVote table
+                $deleteVoteSql = "DELETE FROM VSVote WHERE StudentID = '$userID'";
+                if (!$conn->query($deleteVoteSql)) {
+                    echo "Error deleting from VSVote: " . $conn->error;
+                }
+                
+                // Delete the user's voting history from VSVoteHistory table
+                $deleteVoteHistorySql = "DELETE FROM VSVoteHistory WHERE VoterID = '$userID'";
+                if (!$conn->query($deleteVoteHistorySql)) {
+                    echo "Error deleting from VSVoteHistory: " . $conn->error;
+                }
+                break;
 
-        case 'Unapprove Selected':
-            $sql = "UPDATE VSStudents SET UserApproval = 0 WHERE StudentID = '$userID'";
-            if (!$conn->query($sql)) {
-                echo "Error updating user unapproval: " . $conn->error;
-                continue 2; // Skip to the next user
-            }
-            $deleteVoteSql = "DELETE FROM VSVote WHERE StudentID = '$userID'";
-            if (!$conn->query($deleteVoteSql)) {
-                echo "Error deleting from VSVote: " . $conn->error;
-            }
-            $deleteVoteHistorySql = "DELETE FROM VSVoteHistory WHERE VoterID = '$userID'";
-            if (!$conn->query($deleteVoteHistorySql)) {
-                echo "Error deleting from VSVoteHistory: " . $conn->error;
-            }
-            break;
+            case 'Delete Selected':
+                // Delete the user's voting data from VSVote table
+                $deleteVoteSql = "DELETE FROM VSVote WHERE StudentID = '$userID'";
+                if (!$conn->query($deleteVoteSql)) {
+                    echo "Error deleting from VSVote: " . $conn->error;
+                }
+                
+                // Delete the user's voting history from VSVoteHistory table
+                $deleteVoteHistorySql = "DELETE FROM VSVoteHistory WHERE VoterID = '$userID'";
+                if (!$conn->query($deleteVoteHistorySql)) {
+                    echo "Error deleting from VSVoteHistory: " . $conn->error;
+                }
+                
+                // Finally, delete the user from the VSStudents table
+                $sql = "DELETE FROM VSStudents WHERE StudentID = '$userID'";
+                if (!$conn->query($sql)) {
+                    echo "Error deleting from VSStudents: " . $conn->error;
+                }
+                break;
 
-        case 'Delete Selected':
-            $deleteVoteSql = "DELETE FROM VSVote WHERE StudentID = '$userID'";
-            if (!$conn->query($deleteVoteSql)) {
-                echo "Error deleting from VSVote: " . $conn->error;
-            }
-            $deleteVoteHistorySql = "DELETE FROM VSVoteHistory WHERE VoterID = '$userID'";
-            if (!$conn->query($deleteVoteHistorySql)) {
-                echo "Error deleting from VSVoteHistory: " . $conn->error;
-            }
-            $sql = "DELETE FROM VSStudents WHERE StudentID = '$userID'";
-            if (!$conn->query($sql)) {
-                echo "Error deleting from VSStudents: " . $conn->error;
-            }
-            break;
-
-        default:
-            echo "Invalid bulk action.";
-            exit();
+            default:
+                // Handle invalid actions
+                echo "Invalid bulk action.";
+                exit();
+        }
     }
-}
-
     
     // Close the database connection
     $conn->close();
