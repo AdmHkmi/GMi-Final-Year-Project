@@ -34,5 +34,5 @@ Password: SmartVotingGMi1991
 phpmailer
 Password: ycwncyptsdelfpzp
 
-Windows Hello PIN
+Windows Hello PIN:
 112233
